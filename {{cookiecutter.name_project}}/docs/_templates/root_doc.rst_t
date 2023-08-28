@@ -1,0 +1,19 @@
+.. include :: ../README.md
+   :parser: myst_parser.sphinx_
+
+{% for c in [project, "Documentation"] | join(" ") %}#{% endfor %}
+
+.. toctree::
+   :caption: Table of Contents
+   :maxdepth: 3
+
+   Home <self>
+   Getting Started <getting_started>
+   CLI Documentation <cli>
+   API Documentation <{{ project }}>
+   Notes for Developers <notes_for_developers>
+
+Index
+=====
+* :ref:`genindex`
+* :ref:`modindex`
