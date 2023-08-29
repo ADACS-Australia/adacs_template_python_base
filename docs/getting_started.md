@@ -2,7 +2,7 @@
 
 Getting started with this package is easy.  To install it you just need to run the following command:
 ```console
-$ pip install {{ cookiecutter.name_package }}
+$ pip install adacs_python_template
 ```
 
 ::: {note}
@@ -21,7 +21,7 @@ Some useful elements include:
 Command line execution can be marked-up as follows:
 
 ```console
-$ pip install {{ cookiecutter.name_package }}
+$ pip install adacs_python_template
 ```
 
 Python code can be marked-up as follows:
@@ -39,7 +39,7 @@ A tip can be marked-up as follows:
 :::{tip}
 Help for the executable for this project can be obtained in a terminal as follows:
 ```sh
-$ {{ cookiecutter.name_package }} -h
+$ adacs_python_template -h
 ```
 :::
 
@@ -48,9 +48,3 @@ A note can be marked-up as follows:
 ::: {note}
 This is an important thing to know.  Please take note.
 :::
-
-### Figures
-
-A figure can be included as follows:
-
-![Figure 1](assets/figure_example.pdf){align=center}
