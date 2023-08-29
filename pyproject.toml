@@ -1,15 +1,13 @@
 [tool.poetry]
 name = "adacs_python_template"
-version = "0.0.0-dev"
-description = "ADD A SHORT DESCRIPTION HERE"
-authors = [ "Gregory B. Poole" ]
+version = "0.0.0-dev" # Just a place holder; package version is managed by the dynamic-versioning plugin & git tags
+description = "A Cookiecutter template for generating python projects"
+authors = [ "ADACS" ]
 license = "MIT-expat"
 readme = "README.md"
-packages = [
-    { include = "adacs_python_template", from = "python" }
-]
-homepage = "https://github.com/gbpoole/adacs_python_template"
-documentation = "https://adacs_python_template.readthedocs.io/en/latest/"
+packages = [ ]
+homepage = "https://github.com/{{cookiecutter.login_github}}/{{cookiecutter.name_repo}}"
+documentation = "https://{{cookiecutter.name_RTD}}.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
 python = " >=3.11"
@@ -19,13 +17,13 @@ sphinx-rtd-theme = { version = "1.2.0", optional = true }
 myst-parser = { version = "^1.0.0", optional = true }
 pre-commit = { version = "^3.0.4", optional = true }
 pytest = { version = "^7.0", optional = true }
+pytest-cov = { version = "^4.1.0", optional = true }
 black = { version = "^22.10.0", optional = true }
 ruff = { version = "^0.0.243", optional = true}
 sphinx-click = { version = "^4.4.0", optional = true }
 mypy = { version = "^1.1.1", optional = true }
 sphinx-copybutton = { version = "^0.5.1", optional = true }
-cookiecutter = "^2.3.0"
-pytest-cookies = "^0.7.0"
+pytest-mock = "^3.11.1"
 
 [tool.poetry.extras]
 docs = [
@@ -37,24 +35,16 @@ docs = [
 ]
 dev = ["pre-commit",
        "pytest",
+       "pytest-cov",
        "mypy",
        "black",
        "ruff",
 ]
 
-[tool.poetry.scripts]
-adacs_python_template = "adacs_python_template.cli:cli"
-
 [tool.pytest.ini_options]
-addopts = "--ignore='{{cookiecutter.name_project}}'" # don't run any tests in the template itself
-pythonpath = "./" # relative to root directory
-
-# Uncomment and edit the following line to add custom markers to your tests
-# These can be run with the following (for example):
-#
-#   $ pytest -m marker_name
-#
-#markers = [ "marker_name: A short description of the marker" ]
+addopts = "--cov"
+pythonpath = "./tests" # relative to root directory
+ignore = ["{{cookiecutter.name_project}}"]
 
 # This configures the Poetry plugin which enables dynamic versioning via the repo tags
 # Note the changes that are also needed to the [build-system] config below.
@@ -65,7 +55,26 @@ style = "semver"
 
 [tool.mypy]
 ignore_missing_imports = true
-mypy_path = "$MYPY_CONFIG_FILE_DIR/python"
+mypy_path = "$MYPY_CONFIG_FILE_DIR/tests"
+
+[tool.coverage.paths]
+source = ["python"]
+
+[tool.coverage.run]
+branch = true
+source = ["python"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+  "pragma: no cover",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+  "if typing.TYPE_CHECKING:"
+]
 
 [tool.ruff]
 line-length = 88 # to match Black

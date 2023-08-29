@@ -23,6 +23,7 @@ __pycache__
 .src
 .cache
 .ropeproject
+.coverage
 
 # Pyenv stuff
 .python-version
