@@ -50,6 +50,9 @@ myst_enable_extensions = [
     "dollarmath",
 ]
 
+# Set the prompt text that you want the docs copy button to ignore when copying code cells
+copybutton_prompt_text = "$ "
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['{{ dot }}templates']
 
