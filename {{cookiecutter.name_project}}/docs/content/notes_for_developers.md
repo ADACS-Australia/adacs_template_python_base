@@ -210,7 +210,7 @@ This project has been set-up with pre-configured git hooks. They should be used 
 
 If developers would like to utilise the git hooks provided by this project they just need to run the following command from within the project:
 ``` console
-$ pre-commit
+$ pre-commit install
 ```
 
 Some of these hooks require internet access to work.  If you are trying to commit to the
