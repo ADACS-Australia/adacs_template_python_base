@@ -4,7 +4,7 @@ import os
 import subprocess
 from pathlib import Path
 from cookiecutter.utils import rmtree
-from pytest_cookiecutter.plugin import Cookies, Result
+from pytest_cookies.plugin import Cookies, Result
 
 
 @contextmanager
@@ -28,8 +28,9 @@ def bake_in_temp_dir(cookies: Cookies, *args, **kwargs):
     :param cookies: pytest_cookies.Cookies,
         cookie to be baked and its temporal files will be removed
     """
-    # sys.path.append('/Users/gpoole/my_code/adacs_python_template')
     result = cookies.bake(*args, **kwargs)
+    if not result.project_path:
+        raise OSError("Could not bake project.")
     try:
         yield result
     finally:
