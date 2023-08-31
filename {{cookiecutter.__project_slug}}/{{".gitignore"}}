@@ -1,6 +1,10 @@
 # vim:syntax=sh
 # vim:filetype=sh
 
+# This template file isn't needed, once config is done.  Remove it and
+# then you can remove this entry as well, if you'd like
+INSTRUCTIONS.template
+
 # Prevent the commit of analysis products
 *.npy
 *.png
