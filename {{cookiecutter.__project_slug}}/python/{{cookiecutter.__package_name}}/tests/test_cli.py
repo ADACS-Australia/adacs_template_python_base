@@ -1,5 +1,5 @@
-import {{cookiecutter.name_package}}
-import {{cookiecutter.name_package}}.cli as cli
+import {{cookiecutter.__package_name}}
+import {{cookiecutter.__package_name}}.cli as cli
 from click.testing import CliRunner
 from pathlib import Path
 
@@ -40,4 +40,4 @@ def test_cli_version(tmp_path: Path) -> None:
             ],
         )
         assert result.exit_code == 0
-        {% raw %}assert result.output == f"cli, version {{% endraw %}{{cookiecutter.name_package}}{% raw %}.__version__}\n"{% endraw %}
+        {% raw %}assert result.output == f"cli, version {{% endraw %}{{cookiecutter.__package_name}}{% raw %}.__version__}\n"{% endraw %}

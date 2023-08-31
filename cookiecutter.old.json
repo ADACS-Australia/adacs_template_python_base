@@ -1,0 +1,17 @@
+{
+    "owner":"Package Owner",
+    "authors":"Package Author List",
+    "login_github":"GitHub Repo Account Name",
+    "name_package":"python_package_name",
+    "name_project":"project_name",
+    "name_repo":"GitHub_Repo_Name",
+    "name_RTD":"Readthedocs_Project_Name",
+    "description":"Short project description",
+    "_copy_without_render": [
+        "*_t"
+    ],
+    "_extensions": [
+        "local_extensions.CurrentYearExtension",
+        "local_extensions.UnderlineExtension"
+    ]
+}

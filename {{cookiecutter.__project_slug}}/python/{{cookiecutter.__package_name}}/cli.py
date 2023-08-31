@@ -3,8 +3,8 @@ import click
 import importlib.metadata
 import collections
 
-import {{cookiecutter.name_package}}.my_module as my_module
-import {{cookiecutter.name_package}}.exceptions as ex
+import {{cookiecutter.__package_name}}.my_module as my_module
+import {{cookiecutter.__package_name}}.exceptions as ex
 
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
@@ -29,12 +29,12 @@ class _OrderedGroup(click.Group):
 
 
 @click.group(cls=_OrderedGroup, context_settings=CONTEXT_SETTINGS)
-@click.version_option(importlib.metadata.version("{{cookiecutter.name_package}}"))
+@click.version_option(importlib.metadata.version("{{cookiecutter.__package_name}}"))
 @click.pass_context
 def cli(ctx: click.core.Context) -> None:
-    """Run code from the {{cookiecutter.name_package}} package.
+    """Run code from the {{cookiecutter.__package_name}} package.
 
-    Please see the documentation at https://{{cookiecutter.name_RTD}}.readthedocs.io for information about how to work with {{cookiecutter.name_package | capitalize}}.
+    Please see the documentation at https://{{cookiecutter.rtd_project_name}}.readthedocs.io for information about how to work with {{cookiecutter.__package_name | capitalize}}.
     """
 
     # ensure that ctx.obj exists and is a dict (in case `cli()` is called

@@ -1,17 +1,33 @@
 {
-    "owner":"Package Owner",
-    "authors":"Package Author List",
-    "login_github":"GitHub Repo Account Name",
-    "name_package":"python_package_name",
-    "name_project":"project_name",
-    "name_repo":"GitHub_Repo_Name",
-    "name_RTD":"Readthedocs_Project_Name",
+    "project_name":"project_name",
+    "__project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "__package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "description":"Short project description",
+    "author":"Package Author",
+    "github_login":"GitHub Repo Account Name",
+    "github_repo":"GitHub_Repo_Name",
+    "rtd_project_name":"readthedocs_project_name",
+    "virtual_environment": ["venv","pyenv","poetry", "none"],
     "_copy_without_render": [
         "*_t"
     ],
     "_extensions": [
         "local_extensions.CurrentYearExtension",
         "local_extensions.UnderlineExtension"
-    ]
+    ],
+    "__prompts__": {
+        "project_name":            "What is the project's name?    :",
+        "description":             "Give a short/punchy description:",
+        "author":                  "Who is the project author?     :",
+        "github_login":            "What login will host the GitHub repo?:",
+        "github_repo":             "What is the GitHub repo's name?      :",
+        "readthedocs_project_name":"What is the Readthedocs project name?:",
+        "virtual_environment":{
+            "__prompt__": "How do you want to manage your virtual env?:",
+            "venv": "Virtualenv",
+            "pyenv": "pyenv",
+            "poetry": "Poetry",
+            "none": "None.  I'll set this up myself."
+        }
+    }
 }

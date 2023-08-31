@@ -1,5 +1,5 @@
-from {{cookiecutter.name_package}} import my_module
-import {{cookiecutter.name_package}}.exceptions as ex
+from {{cookiecutter.__package_name}} import my_module
+import {{cookiecutter.__package_name}}.exceptions as ex
 import pytest
 import stat
 import os
@@ -68,7 +68,7 @@ def test_my_module_create_file_invalid_line(
     """
     for ex_expected in [TypeError, ValueError]:
         mocker.patch(
-            "{{cookiecutter.name_package}}.my_module.create_line", side_effect=ex_expected
+            "{{cookiecutter.__package_name}}.my_module.create_line", side_effect=ex_expected
         )
         with pytest.raises(ex.MyModuleCreateFileError):
             my_module.create_file(tmp_path / "test")

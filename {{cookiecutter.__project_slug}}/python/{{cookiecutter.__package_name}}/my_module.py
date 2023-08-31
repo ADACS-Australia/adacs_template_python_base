@@ -1,6 +1,6 @@
 import os
 from math import isqrt
-import {{ cookiecutter.name_package }}.exceptions as ex
+import {{ cookiecutter.__package_name }}.exceptions as ex
 
 
 def create_line(input: int) -> str:

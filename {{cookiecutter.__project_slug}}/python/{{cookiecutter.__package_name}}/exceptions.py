@@ -1,5 +1,5 @@
 class Python_package_nameBaseException(Exception):
-    """Base class for exceptions raised from {{cookiecutter.name_package}}"""
+    """Base class for exceptions raised from {{cookiecutter.__package_name}}"""
 
     def __init__(self, message: str):
         self._message = message

@@ -6,8 +6,8 @@ authors = [ "ADACS" ]
 license = "MIT-expat"
 readme = "README.md"
 packages = [ ]
-homepage = "https://github.com/{{cookiecutter.login_github}}/{{cookiecutter.name_repo}}"
-documentation = "https://{{cookiecutter.name_RTD}}.readthedocs.io/en/latest/"
+homepage = "https://github.com/gbpoole/adacs_python_template"
+documentation = "https://adacs_python_template.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
 python = " >=3.11"
@@ -41,7 +41,7 @@ dev = ["pre-commit",
 
 [tool.pytest.ini_options]
 pythonpath = ["./tests", "./"] # relative to root directory
-addopts = "--ignore={{cookiecutter.name_project}}"
+addopts = "--ignore={{cookiecutter.__project_slug}}"
 
 # This configures the Poetry plugin which enables dynamic versioning via the repo tags
 # Note the changes that are also needed to the [build-system] config below.

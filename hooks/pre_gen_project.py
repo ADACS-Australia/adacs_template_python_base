@@ -2,12 +2,20 @@ import re
 import sys
 
 
-MODULE_REGEX = r'^[_a-zA-Z][_a-zA-Z0-9]+$'
+def package_name_check():
+    """Check that the cookiecutter package name is valid"""
 
-module_name = '{{ cookiecutter.name_project}}'
+    MODULE_REGEX = r"^[_a-zA-Z][_a-zA-Z0-9]+$"
 
-if not re.match(MODULE_REGEX, module_name):
-    print(f'ERROR: The project slug ({module_name}) is not a valid Python module name. Please do not use a - and use _ instead')
+    module_name = "{{ cookiecutter.__package_name }}"
 
-    #Exit to cancel project
-    sys.exit(1)
+    if not re.match(MODULE_REGEX, module_name):
+        print(
+            f'ERROR: The package name "{module_name}" is not a valid Python module name.'
+        )
+
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    package_name_check()

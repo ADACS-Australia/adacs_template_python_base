@@ -1,4 +1,4 @@
-# {{ cookiecutter.name_project }}
+# {{ cookiecutter.project_name }}
 
 This file will be the README content for your repo and PyPI website as well as the first page of your documentation.  We recommend doing the following:
 

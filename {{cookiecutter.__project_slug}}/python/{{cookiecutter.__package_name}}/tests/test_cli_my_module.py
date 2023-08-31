@@ -1,5 +1,5 @@
-import {{cookiecutter.name_package}}.cli as cli
-import {{cookiecutter.name_package}}.exceptions as ex
+import {{cookiecutter.__package_name}}.cli as cli
+import {{cookiecutter.__package_name}}.exceptions as ex
 import filecmp
 from os.path import isfile
 from click.testing import CliRunner
