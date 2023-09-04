@@ -1,9 +1,35 @@
 import {{cookiecutter.__package_name}}.cli as cli
-import {{cookiecutter.__package_name}}.exceptions as ex
+import {{cookiecutter.__package_name}}.files as files
 import filecmp
 from os.path import isfile
 from click.testing import CliRunner
 from pathlib import Path
+
+
+def test_cli_create_invalid_file(tmp_path: Path) -> None:
+    """Check that the correct exception results when a file fails to be created.
+
+    Parameters
+    ----------
+    tmp_path : Path
+        Temporary path, generated from a pytest fixture
+    """
+    runner = CliRunner()
+    basename = "test_cli_process_invalid_file"
+    with runner.isolated_filesystem(temp_dir=tmp_path):
+
+        with open(f"{basename}.txt", "w") as file_out:
+            file_out.write("1\n2\n3\nA\n")
+
+        result = runner.invoke(
+            cli.cli,
+            [
+                "create-file",
+                f"{basename}.txt",
+            ],
+        )
+        assert result.exit_code != 0
+        assert isinstance(result.exception, files.CreateFileError)
 
 
 def test_cli_process_invalid_file(tmp_path: Path) -> None:
@@ -29,7 +55,7 @@ def test_cli_process_invalid_file(tmp_path: Path) -> None:
             ],
         )
         assert result.exit_code != 0
-        assert isinstance(result.exception, ex.MyModuleProcessFileError)
+        assert isinstance(result.exception, files.ProcessFileError)
 
 
 def test_cli_create_file_n_lines_option(tmp_path: Path) -> None:
