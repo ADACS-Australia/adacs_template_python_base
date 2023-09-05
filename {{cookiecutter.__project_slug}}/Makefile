@@ -7,7 +7,7 @@ SPHINXBUILD   = sphinx-build
 SOURCEDIR     = docs
 BUILDDIR      = docs/_build
 
-# Exclude the following (spec-separated) paths from the docs
+# Exclude the following (space-separated) paths from the docs
 PATH_EXCLUDE_LIST = docs/content python/${PKG_PROJECT}/tests python/${PKG_PROJECT}/models python/${PKG_PROJECT}/cli.py
 
 # Set some variables needed by the documentation

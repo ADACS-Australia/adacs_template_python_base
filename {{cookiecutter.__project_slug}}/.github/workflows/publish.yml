@@ -29,8 +29,9 @@ jobs:
         with:
           fetch-depth: 0 # Needed for tags to be fetched; see https://github.com/actions/checkout/issues/290
 
-      - name: Set-up MPI
-        uses: mpi4py/setup-mpi@v1
+      # Uncomment if you need mpi
+      # - name: Set-up MPI
+      #   uses: mpi4py/setup-mpi@v1
 
       - name: Set-up Poetry
         uses: snok/install-poetry@v1

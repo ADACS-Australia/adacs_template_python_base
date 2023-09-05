@@ -17,8 +17,8 @@ def git():
             "https://github.com/{{cookiecutter.github_login}}/{{cookiecutter.__project_slug}}.git",
         ]
     )
-
     subprocess.call(["git", "commit", "-m", "Initial commit of template code"])
+    subprocess.call(["git", "tag",          "v0.0.0"])
 
 
 def print_instructions():
