@@ -1,5 +1,5 @@
 import datetime
-from utils import bake_in_temp_dir, run_inside_dir
+from utils import bake_in_temp_dir
 
 
 def test_year_compute_in_license_file(cookies):
@@ -37,11 +37,3 @@ def test_bake_with_defaults(cookies):
 
         for filename_i in check_toplevel_pathnames:
             assert filename_i in found_toplevel_pathnames
-
-
-def test_bake_and_run_tests(cookies):
-    with bake_in_temp_dir(cookies) as result:
-        assert result.project_path.is_dir()
-        assert result.exit_code == 0
-        assert result.exception is None
-        run_inside_dir("pytest", str(result.project_path)) == 0

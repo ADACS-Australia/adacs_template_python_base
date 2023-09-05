@@ -4,7 +4,6 @@ import importlib.metadata
 import collections
 
 import {{cookiecutter.__package_name}}.files as files
-import {{cookiecutter.__package_name}}.lines as lines
 
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])

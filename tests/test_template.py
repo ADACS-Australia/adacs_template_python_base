@@ -1,89 +1,37 @@
+import pytest
 from utils import bake_in_temp_dir, run_inside_dir
 
+test_these_changes_to_defaults = [
+    ({"author": "O'connor"}, 0, None),
+    #        ({'author': 'name "quote" name'},0,None),
+    #        ({'project_name': 'something-with-a-dash'},0,None),
+    #        ({'project_name': 'something with a space'},0,None),
+]
 
-def test_make_docs(cookies):
-    with bake_in_temp_dir(cookies) as result:
-        run_inside_dir("make docs", str(result.project_path)) == 0
 
-
-def test_bake_with_apostrophe_and_run_tests(cookies):
-    """Ensure that a `full_name` with apostrophes does not break setup.py"""
-    with bake_in_temp_dir(cookies, extra_context={"authors": "O'connor"}) as result:
+@pytest.fixture(params=test_these_changes_to_defaults)
+def bake_path(cookies, request):
+    extra_context = request.param[0]
+    exit_code_expected = request.param[1]
+    exception_expected = request.param[2]
+    with bake_in_temp_dir(cookies, extra_context=extra_context) as result:
         assert result.project_path.is_dir()
-        assert result.exit_code == 0
-        assert result.exception is None
+        assert result.exit_code == exit_code_expected
+        assert result.exception is exception_expected
+        yield result.project_path
 
 
-# def test_bake_withspecialchars_and_run_tests(cookies):
-#     """Ensure that a `full_name` with double quotes does not break setup.py"""
-#     with bake_in_temp_dir(
-#         cookies,
-#         extra_context={'full_name': 'name "quote" name'}
-#     ) as result:
-#         assert result.project.is_dir()
-#         run_inside_dir('python setup.py test', str(result.project)) == 0
-#
-#
-# def test_bake_with_apostrophe_and_run_tests(cookies):
-#     """Ensure that a `full_name` with apostrophes does not break setup.py"""
-#     with bake_in_temp_dir(
-#         cookies,
-#         extra_context={'full_name': "O'connor"}
-#     ) as result:
-#         assert result.project.is_dir()
-#         run_inside_dir('python setup.py test', str(result.project)) == 0
-#
-#
-# # def test_bake_and_run_travis_pypi_setup(cookies):
-# #     # given:
-# #     with bake_in_temp_dir(cookies) as result:
-# #         project_path = str(result.project)
-# #
-# #         # when:
-# #         travis_setup_cmd = ('python travis_pypi_setup.py'
-# #                             ' --repo audreyr/cookiecutter-pypackage'
-# #                             ' --password invalidpass')
-# #         run_inside_dir(travis_setup_cmd, project_path)
-# #         # then:
-# #         result_travis_config = yaml.load(
-# #             result.project.join(".travis.yml").open()
-# #         )
-# #         min_size_of_encrypted_password = 50
-# #         assert len(
-# #             result_travis_config["deploy"]["password"]["secure"]
-# #         ) > min_size_of_encrypted_password
-#
-#
-# # def test_project_with_hyphen_in_module_name(cookies):
-# #     result = cookies.bake(
-# #         extra_context={'project_name': 'something-with-a-dash'}
-# #     )
-# #     assert result.project is not None
-# #     project_path = str(result.project)
-# #
-# #     # when:
-# #     travis_setup_cmd = ('python travis_pypi_setup.py'
-# #                         ' --repo audreyr/cookiecutter-pypackage'
-# #                         ' --password invalidpass')
-# #     run_inside_dir(travis_setup_cmd, project_path)
-# #
-# #     # then:
-# #     result_travis_config = yaml.load(
-# #         open(os.path.join(project_path, ".travis.yml"))
-# #     )
-# #     assert "secure" in result_travis_config["deploy"]["password"],\
-# #         "missing password config in .travis.yml"
-#
-#
-#
-# @pytest.mark.parametrize("use_black,expected", [("y", True), ("n", False)])
-# def test_black(cookies, use_black, expected):
-#     with bake_in_temp_dir(
-#         cookies,
-#         extra_context={'use_black': use_black}
-#     ) as result:
-#         assert result.project.is_dir()
-#         requirements_path = result.project.join('requirements_dev.txt')
-#         assert ("black" in requirements_path.read()) is expected
-#         makefile_path = result.project.join('Makefile')
-#         assert ("black --check" in makefile_path.read()) is expected
+def test_bake_and_run_tests(bake_path):
+    run_inside_dir("pytest", bake_path) == 0
+
+
+def test_template_make_docs(bake_path):
+    run_inside_dir("make docs", bake_path) == 0
+
+
+def test_template_run_black(bake_path):
+    run_inside_dir("black .", bake_path) == 0
+
+
+def test_template_run_ruff(bake_path):
+    run_inside_dir("ruff .", bake_path) == 0

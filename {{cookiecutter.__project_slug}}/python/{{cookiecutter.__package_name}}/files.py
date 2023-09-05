@@ -1,7 +1,6 @@
 import {{cookiecutter.__package_name}} as pkg
 import {{cookiecutter.__package_name}}.lines as lines
 import os
-from math import isqrt
 
 
 class CreateFileError(pkg.BaseException):

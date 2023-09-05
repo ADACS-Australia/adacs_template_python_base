@@ -1,5 +1,4 @@
 import {{cookiecutter.__package_name}} as pkg
-import os
 from math import isqrt
 
 
