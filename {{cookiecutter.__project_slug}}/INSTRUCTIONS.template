@@ -2,8 +2,6 @@
 // Once this new project is configured, you can delete this file.  See 'notes_for_developers' if you need to see this content again.
 //
 
-# Rendering Complete
-
 ***Now that your template has been rendered, we recommend that you configure a few services as follows:***
 
 ## __GitHub__ (`https:/github.com`)
@@ -15,8 +13,8 @@
 
 2. **Configure branch permissions as follows:**
 
-- *Configure the main branch to only permit merges from pull requests*.  This can be done by clicking on the 'branches' tab and clicking on the 'Protect this branch' button for the 'main' branch.
-- *Ensure that all CI/CD tests are passing before a merge to the main branch can be made* by selecting 'Require status checks to pass before merging' when you set-up this branch protection rule.
+- *Configure the main branch to only permit merges from pull requests*.  This can be done by clicking on the `branches` tab and clicking on the `Protect this branch` button for the `main` branch.
+- *Ensure that all CI/CD tests are passing before a merge to the main branch can be made* by selecting `Require status checks to pass before merging` when you set-up this branch protection rule.
 
 3. **Depending on which services you choose to use for this project, configure repository secrets by navigating to `Settings->Secrets->Actions` (see below for how to find the values for these):**
 
