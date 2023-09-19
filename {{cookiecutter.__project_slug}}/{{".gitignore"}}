@@ -28,11 +28,16 @@ __pycache__
 .cache
 .ropeproject
 
+# Virtual env stuff
+venv
+.venv
+
 # Pyenv stuff
 .python-version
 
 # Poetry stuff
 dist
+poetry.toml
 
 # JetBrains stuff
 .idea
