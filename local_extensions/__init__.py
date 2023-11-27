@@ -86,6 +86,6 @@ class EscapeQuotes(Extension):
             str
                 Encoded string
             """
-            return s.replace('"', r"\"").replace("'", r"\'")
+            return s.replace('"', r"\"")
 
         environment.filters.update({"escape_quotes": escape_quotes})
