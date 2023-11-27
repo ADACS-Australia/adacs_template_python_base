@@ -14,7 +14,8 @@
 2. **Configure branch permissions as follows:**
 
 - *Configure the main branch to only permit merges from pull requests*.  This can be done by clicking on the `branches` tab and clicking on the `Protect this branch` button for the `main` branch.
-- *Ensure that all CI/CD tests are passing before a merge to the main branch can be made* by selecting `Require status checks to pass before merging` when you set-up this branch protection rule.
+- *Ensure that all commits must be made to a non-protected branch and submitted via a pull request* by selecting `Require a pull request before merging`.  You may also want to specify here how many approvals are needed as well.
+- *Ensure that all CI/CD tests are passing before a merge to the main branch can be made* by selecting `Require status checks to pass before merging`.
 
 3. **Depending on which services you choose to use for this project, configure repository secrets by navigating to `Settings->Secrets->Actions` (see below for how to find the values for these):**
 
