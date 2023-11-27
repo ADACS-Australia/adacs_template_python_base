@@ -2,7 +2,7 @@
 #   policy in regards to the use of git hooks.  For more information about the
 #   pre-commit framework, please see: https://pre-commit.com
 #
-# To get started with them is this project yourself, simply run: pre-commit
+# To get started with them is this project yourself, simply run: pre-commit install
 
 repos:
 
