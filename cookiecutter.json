@@ -7,17 +7,18 @@
     "github_login":"github_login",
     "github_repo":"repo_name",
     "rtd_project_name":"readthedocs_project_name",
-    "virtual_environment": ["venv","pyenv","poetry", "none"],
+    "virtual_environment": ["venv","pyenv","poetry","conda","none"],
     "_copy_without_render": [
         "*_t"
     ],
     "_extensions": [
         "local_extensions.CurrentYearExtension",
         "local_extensions.UnderlineExtension",
-        "local_extensions.PascalCaseExtension"
+        "local_extensions.PascalCaseExtension",
+        "local_extensions.EscapeQuotes"
     ],
     "__prompts__": {
-        "project_name":            "Give a short project name?     :",
+        "project_name":            "Give a short project name      :",
         "description":             "Give a short/punchy description:",
         "author":                  "Who is the project author?     :",
         "github_login":            "What login will host the GitHub repo?:",
@@ -26,8 +27,9 @@
         "virtual_environment":{
             "__prompt__": "How will you manage your virtual env?:",
             "venv":   "Virtualenv",
-            "pyenv":  "pyenv",
+            "pyenv":  "pyenv-virtualenv",
             "poetry": "Poetry",
+            "conda":  "Conda",
             "none":   "I'll set this up myself."
         }
     }

@@ -2,7 +2,7 @@ import datetime
 from utils import bake_in_temp_dir
 
 
-def test_year_compute_in_license_file(cookies):
+def test_year_in_license_file(cookies):
     with bake_in_temp_dir(cookies) as result:
         license_file_path = result.project_path / "LICENSE"
         now = datetime.datetime.now()

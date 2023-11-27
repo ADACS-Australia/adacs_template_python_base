@@ -64,3 +64,28 @@ class PascalCaseExtension(Extension):
             return "".join(sub(r"(_|-)+", " ", s).title().replace(" ", ""))
 
         environment.filters.update({"pascal_case": pascal_case})
+
+
+class EscapeQuotes(Extension):
+    """Jinja2 extension to return a version of a string with escape-encoded quotes."""
+
+    def __init__(self, environment: Environment):
+        """Initialize the extension with the given environment."""
+        super().__init__(environment)
+
+        def escape_quotes(s: str) -> str:
+            """Create a version of a string with escape-encoded quotes
+
+            Parameters
+            ----------
+            s : str
+                String to encode
+
+            Returns
+            -------
+            str
+                Encoded string
+            """
+            return s.replace('"', r"\"").replace("'", r"\'")
+
+        environment.filters.update({"escape_quotes": escape_quotes})

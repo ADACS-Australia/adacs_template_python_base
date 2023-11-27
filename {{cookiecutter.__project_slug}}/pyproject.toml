@@ -2,7 +2,7 @@
 name = "{{cookiecutter.__package_name}}"
 version = "0.0.0-dev" # Just a place holder; package version is managed by the dynamic-versioning plugin & git tags
 description = "{{cookiecutter.description}}"
-authors = [ "{{cookiecutter.author}}" ]
+authors = [ "{{cookiecutter.author | escape_quotes}}" ]
 license = "MIT-expat"
 readme = "README.md"
 packages = [
