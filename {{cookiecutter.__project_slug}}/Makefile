@@ -41,9 +41,9 @@ clean-docs:
 
 apidoc: clean-docs
 	@echo "Building documentation for:"
-	@echo "   project: "${PKG_PROJECT}
-	@echo "   author:  "${PKG_AUTHOR}
-	@echo "   version: "${PKG_VERSION}
+	@echo "   project: ${PKG_PROJECT}"
+	@echo "   author:  ${PKG_AUTHOR}"
+	@echo "   version: ${PKG_VERSION}"
 	@sphinx-apidoc -o docs --doc-project ${PKG_PROJECT} --doc-author "${PKG_AUTHOR}" --doc-version ${PKG_VERSION} --doc-release ${PKG_RELEASE} -t docs/_templates -T --extensions sphinx_click,sphinx.ext.doctest,sphinx.ext.mathjax,sphinx.ext.autosectionlabel,myst_parser,sphinx.ext.todo,sphinx_copybutton,sphinx.ext.napoleon -d 3 -E -f -F python/${PKG_PROJECT} ${PATH_EXCLUDE_LIST}
 	@rm -rf docs/make.bat
 

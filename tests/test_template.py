@@ -4,6 +4,7 @@ from utils import bake_in_temp_dir, run_inside_dir
 test_these_changes_to_defaults = [
     ({"author": "O'connor"}, 0, None),
     ({"author": 'name "quote" name'}, 0, None),
+    ({"author": 'Last, First'}, 0, None),
     ({"project_name": "something-with-a-dash"}, 0, None),
     ({"project_name": "something with a space"}, 0, None),
 ]
