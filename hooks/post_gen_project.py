@@ -23,16 +23,35 @@ def git() -> None:
 
 
 def venv(venv_type: str) -> None:
-    """Create a virtual environment for the rendered project
+    """Create a virtual environment for the rendered project.  IMPLEMENTATION UNFINISHED.
+
+    When this has been implemented properly, add the following to the cookiecutter.json file:
+
+    {% raw %}
+    ================================================================
+    "virtual_environment": ["venv","pyenv","poetry","conda","none"],
+    ...
+    "__prompts__": {
+        "virtual_environment":{
+            "__prompt__": "How will you manage your virtual env?:",
+            "venv":   "Virtualenv",
+            "pyenv":  "pyenv-virtualenv",
+            "poetry": "Poetry",
+            "conda":  "Conda",
+            "none":   "I'll set this up myself."
+        }
+    }
+    ================================================================
+    {% endraw %}
 
     Parameters
     ----------
     venv_type : str
         String specifying how the virtual environment is being supported
     """
+    raise NotImplementedError()
     if venv_type == "venv":
         # Check if PYENV_VERSION is defined and if so, that it's set to system?
-        # raise NotImplementedError()
         pass
     elif venv_type == "poetry":
         # Check if PYENV_VERSION is defined and if so, that it's set to system?
@@ -44,7 +63,6 @@ def venv(venv_type: str) -> None:
         # subprocess.call(["pyenv", "local", "{{cookiecutter.__project_slug}}"])
         pass
     elif venv_type == "Conda":
-        # raise NotImplementedError()
         pass
     elif venv_type == "none":
         pass
@@ -90,6 +108,9 @@ def print_instructions() -> None:
 
 if __name__ == "__main__":
     git()
-    venv("{{ cookiecutter.virtual_environment }}")
-    install("{{ cookiecutter.virtual_environment }}")
+    {% raw %}
+    # venv("{{ cookiecutter.virtual_environment }}")
+    # install("{{ cookiecutter.virtual_environment }}")
+    {% endraw %}
+    install("poetry")
     print_instructions()
