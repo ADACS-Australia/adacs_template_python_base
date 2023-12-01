@@ -51,7 +51,7 @@ jobs:
 
       # Enforce code formating standards
       - name: Enforce linting
-        run: poetry run ruff .
+        run: poetry run ruff --config pyproject.toml .
 
       - name: Enforce formating
         run: poetry run black .
