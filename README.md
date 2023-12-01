@@ -1,6 +1,33 @@
-# ADACS Python Template
+# Starting a new Python codebase?
 
-This file will be the README content for your repo and PyPI website as well as the first page of your documentation.  We recommend doing the following:
+This template takes the effort out of starting from a good place.
 
-- Start with a clear, consise and catchy statement about what this codebase is/does
-- Give a quick example showing how to get started with it
+## Just do the following:
+
+***Make sure Cookiecutter is installed...***
+``` console
+$ pip install cookiecutter
+```
+*(or better yet, use [pipx](https://pypa.github.io/pipx/)*
+
+***...use it to render the project...***
+``` console
+$ cookiecutter URL
+
+```
+
+***...answer the questions...***
+
+![ADACS Python Template Questions](https://github.com/gbpoole/adacs_python_template/blob/main/adacs_python_template_cookiecutter_questions.png?raw=true)
+
+***...and configure the services you need.***
+
+IMAGE
+
+## What do you get for this?
+
+A codebase that helps you effortlessly:
+
+* Collaborate with colleagues in a way that helps you continually improve the codebase
+* Publish your code to PyPI so people can easilly install it
+* Automatically update, build and publish documentation
