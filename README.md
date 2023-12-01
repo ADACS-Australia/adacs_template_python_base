@@ -21,7 +21,7 @@ $ cookiecutter URL
 
 ![ADACS Python Template Questions](https://github.com/gbpoole/adacs_python_template/blob/main/docs/assets/adacs_python_template_cookiecutter_questions.png?raw=true)
 
-***...and configure the services you need using [these instructions](#configuring-new).***
+***...and configure the services you need using [these instructions](https://readthedocs.org/adacs-python-template/configuring_services.html).***
 
 ## What do you get for this?
 
