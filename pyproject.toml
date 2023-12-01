@@ -55,6 +55,12 @@ style = "semver"
 ignore_missing_imports = true
 mypy_path = "$MYPY_CONFIG_FILE_DIR/tests"
 
+[tool.black]
+extend-exclude = [
+  '\{\{cookiecutter.__project_slug\}\}', # checked by pytest
+  'hooks' # These files are treated as Jinja2 templates and may have invalid Python code
+]
+
 [tool.ruff]
 line-length = 88 # to match Black
 select = [
@@ -66,7 +72,7 @@ ignore = [
     "E501", # line length violations (let Black handle this)
 ]
 extend-exclude = [
-  '\{\{cookiecutter.__project_slug\}\}',
+  '\{\{cookiecutter.__project_slug\}\}', # checked by pytest
   'hooks' # These files are treated as Jinja2 templates and may have invalid Python code
 ]
 
