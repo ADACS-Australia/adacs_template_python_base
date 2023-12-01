@@ -25,6 +25,7 @@ sphinx-copybutton = { version = "^0.5.1", optional = true }
 pytest-mock = "^3.11.1"
 rich = "^13.5.2"
 cookiecutter = "^2.5.0"
+pytest-cookies = "^0.7.0"
 
 [tool.poetry.extras]
 docs = [

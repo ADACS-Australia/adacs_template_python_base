@@ -735,6 +735,22 @@ pluggy = ">=0.12,<2.0"
 testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytest-cookies"
+version = "0.7.0"
+description = "The pytest plugin for your Cookiecutter templates. 🍪"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pytest-cookies-0.7.0.tar.gz", hash = "sha256:1aaa6b4def8238d0d1709d3d773b423351bfb671c1e3438664d824e0859d6308"},
+    {file = "pytest_cookies-0.7.0-py3-none-any.whl", hash = "sha256:52770f090d77b16428f6a24a208e6be76addb2e33458035714087b4de49389ea"},
+]
+
+[package.dependencies]
+cookiecutter = ">=2.1.0"
+pytest = ">=3.9.0"
+
+[[package]]
 name = "pytest-mock"
 version = "3.12.0"
 description = "Thin-wrapper around the mock package for easier use with pytest"
@@ -1250,4 +1266,4 @@ docs = ["Sphinx", "sphinx-rtd-theme", "myst-parser", "sphinx-click", "sphinx-cop
 [metadata]
 lock-version = "2.0"
 python-versions = " >=3.11"
-content-hash = "ae3177a10727e89bd8479840beb7fa50bf5b074f9be18791083a51c7c9c6775e"
+content-hash = "c601c777fd0613def539ab42b97b8d379e3aeba163fb730c19b33dfc9087ef5d"
