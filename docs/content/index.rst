@@ -9,5 +9,5 @@
    :maxdepth: 3
 
    Home <self>
-   Getting Started <getting_started>
+   Configuring a New Project <configuring_services>
    Notes for Developers <notes_for_developers>

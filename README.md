@@ -2,27 +2,26 @@
 
 This template takes the effort out of starting from a good place.
 
-## Just do the following:
+## Getting Started
 
 ***Make sure Cookiecutter is installed...***
 ``` console
 $ pip install cookiecutter
 ```
-*(or better yet, use [pipx](https://pypa.github.io/pipx/)*
-
+*(or better yet, use [pipx](https://pypa.github.io/pipx/))*
+``` console
+$ pipx install cookiecutter
+```
 ***...use it to render the project...***
 ``` console
 $ cookiecutter URL
 
 ```
-
 ***...answer the questions...***
 
 ![ADACS Python Template Questions](https://github.com/gbpoole/adacs_python_template/blob/main/docs/assets/adacs_python_template_cookiecutter_questions.png?raw=true)
 
-***...and configure the services you need.***
-
-IMAGE
+***...and configure the services you need using [these instructions](#configuring-new).***
 
 ## What do you get for this?
 
