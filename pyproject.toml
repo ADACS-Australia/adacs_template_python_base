@@ -1,11 +1,13 @@
 [tool.poetry]
 name = "adacs_python_template"
 version = "0.0.0-dev" # Just a place holder; package version is managed by the dynamic-versioning plugin & git tags
-description = "A Cookiecutter template for generating python projects"
+description = "A Cookiecutter template for instantiating Python projects"
 authors = [ "ADACS" ]
 license = "MIT-expat"
 readme = "README.md"
-packages = [ ]
+packages = [
+    { include = "adacs_python_template", from = "python" }
+]
 homepage = "https://github.com/gbpoole/adacs_python_template"
 documentation = "https://adacs_python_template.readthedocs.io/en/latest/"
 

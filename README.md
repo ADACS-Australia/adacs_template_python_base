@@ -1,9 +1,7 @@
 # Starting a new Python codebase?
-
 This template takes the effort out of starting from a good place.
 
 ## Getting Started
-
 ***Make sure Cookiecutter is installed...***
 ``` console
 $ pip install cookiecutter
@@ -24,9 +22,8 @@ $ cookiecutter URL
 ***...and configure the services you need using [these instructions](https://readthedocs.org/adacs-python-template/configuring_services.html).***
 
 ## What do you get for this?
-
-A codebase that helps you effortlessly:
-
-* Collaborate with colleagues in a way that helps you continually improve the codebase
-* Publish your code to PyPI so people can easilly install it
-* Automatically update, build and publish documentation
+***A codebase that eases collaboration and automatically:***
+* Enforces code formatting and linting policies
+* Ensures that all commits on the main branch and released versions build correctly and pass all unit tests
+* (optionally) publishes your code to PyPI so people can easilly install it
+* (optionally) updates, builds and publishes documentation

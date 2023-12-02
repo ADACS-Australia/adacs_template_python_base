@@ -63,9 +63,9 @@ jobs:
           poetry check
           poetry lock --check
 
-      # # Run tests
-      # - name: Generate build
-      #   run: poetry build
+      # Run tests
+      - name: Generate build
+        run: poetry build
 
       - name: Code tests
         run: poetry run pytest
