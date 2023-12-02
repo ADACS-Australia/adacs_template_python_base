@@ -9,5 +9,5 @@
    :maxdepth: 3
 
    Home <self>
-   Configuring a New Project <configuring_services>
-   Notes for Developers <notes_for_developers>
+   Configuring a New Project <content/configuring_services>
+   Development Guidelines <content/notes_for_developers>

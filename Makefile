@@ -36,12 +36,8 @@ clean: clean-docs
 
 clean-docs:
 	@rm -rf build docs/_build
-	@rm -f docs/*.rst docs/*.md
 
-content: clean-docs
-	@cp docs/content/* docs/
-
-docs: content
+docs: clean-docs
 	@echo "Building documentation for:"
 	@echo "   project: ${PKG_PROJECT}"
 	@echo "   author:  ${PKG_AUTHOR}"

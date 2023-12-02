@@ -50,8 +50,9 @@ jobs:
         run: poetry install --no-interaction --extras "docs dev"
 
       # Enforce code formating standards
+      # note that --config is needed to prevent ruff from using the version in the template
       - name: Enforce linting
-        run: poetry run ruff .
+        run: poetry run ruff --config pyproject.toml .
 
       - name: Enforce formating
         run: poetry run black .
