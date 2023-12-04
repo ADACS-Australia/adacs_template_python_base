@@ -23,7 +23,13 @@ $ cookiecutter gh:gbpoole/adacs_python_template
 
 ## What do you get for this?
 ***A codebase that eases collaboration and automatically:***
-* Enforces code formatting and linting policies
 * Ensures that all commits on the main branch and released versions build correctly and pass all unit tests
+* Enforces code formatting and linting policies
+* Manages code and release versioning
 * (optionally) publishes your code to PyPI so people can easilly install it
 * (optionally) updates, builds and publishes documentation to *Read the Docs*.
+***The codebase is also initialised with some code setting-up:***
+* A simple ASCII file read/process/write workflow
+* A CLI interface, providing simple and self-documenting terminal access to the codebase for your users
+Modify them for a quick start on some working code or delete them if not needed.  They will illustrate some best practices with this code base
+regardless.
