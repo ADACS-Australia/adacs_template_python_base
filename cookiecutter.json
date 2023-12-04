@@ -23,5 +23,6 @@
         "github_login":            "What login will host the GitHub repo?:",
         "github_repo":             "What will the GitHub repo's name be? :",
         "readthedocs_project_name":"What is the Readthedocs project name?:"
-    }
+    },
+    "_jinja2_env_vars": {"lstrip_blocks": true, "trim_blocks": true}
 }

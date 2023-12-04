@@ -10,7 +10,7 @@
    Home <self>
    Getting Started <content/getting_started>
    CLI Documentation <content/cli>
-   API Documentation <_apidoc/short_project_name>
+   API Documentation <_apidoc/{{cookiecutter.__package_name}}>
    Notes for Developers <content/notes_for_developers>
 
 Index
