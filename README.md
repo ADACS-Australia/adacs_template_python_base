@@ -19,7 +19,7 @@ $ cookiecutter https://github.com/gbpoole/adacs_python_template.git
 
 ![ADACS Python Template Questions](https://github.com/gbpoole/adacs_python_template/blob/main/docs/assets/adacs_python_template_cookiecutter_questions.png?raw=true)
 
-***...and configure the services you need using [these instructions](https://readthedocs.org/adacs-python-template/configuring_services.html).***
+***...and configure the services you need using [these instructions](https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html).***
 
 ## What do you get for this?
 ***A codebase that eases collaboration and automatically:***
