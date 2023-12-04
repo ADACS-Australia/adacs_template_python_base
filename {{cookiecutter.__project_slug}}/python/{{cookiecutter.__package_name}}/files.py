@@ -1,6 +1,8 @@
 import {{cookiecutter.__package_name}} as pkg
 import {{cookiecutter.__package_name}}.lines as lines
 import os
+from pathlib import Path
+from typing import List
 
 
 class CreateFileError(pkg.BaseException):
@@ -15,7 +17,13 @@ class ProcessFileError(pkg.BaseException):
     pass
 
 
-def create_file(filename_out: str, n_lines: int = 10) -> None:
+class ReadFileError(pkg.BaseException):
+    """Raised when a failure is encountered while reading a file"""
+
+    pass
+
+
+def create_file(filename_out: str | Path, n_lines: int = 10) -> None:
     """Create a text file consisting of one +ve integer per line
 
     Parameters
@@ -26,23 +34,21 @@ def create_file(filename_out: str, n_lines: int = 10) -> None:
         Optional number of lines to output
     """
     try:
-        with open(filename_out, "x") as file: # 'x' mode is write, but only if file does not exist
+        with open(
+            filename_out, "x"
+        ) as file:  # 'x' mode is write, but only if file does not exist
             # ======= LOGIC =======
             for i_line in range(n_lines):
                 line_i = lines.create_line(i_line)
                 file.write(line_i)
             # =====================
     except OSError as e:
-        raise CreateFileError(
-{% raw %}
-            f"Could not open output file {{{filename_out}}}."
-{% endraw %}
-        ) from e
+        raise CreateFileError(f"Could not open output file {% raw %}{{{filename_out}}}{% endraw %}.") from e
     except (TypeError, ValueError) as e:
         raise CreateFileError("Invalid line generated.") from e
 
 
-def process_file(filename_in: str, inverse: bool = False) -> None:
+def process_file(filename_in: str | Path, inverse: bool = False) -> None:
     """Process a file
 
     Parameters
@@ -66,13 +72,34 @@ def process_file(filename_in: str, inverse: bool = False) -> None:
                     line = file_in.readline()
             except (OSError, lines.ProcessLineError) as e:
                 raise ProcessFileError(
-{% raw %}
-                    f"Failed to process file {{{filename_in}}}."
-{% endraw %}
+                    f"Failed to process file {% raw %}{{{filename_in}}}{% endraw %}."
                 ) from e
     except OSError as e:
         raise ProcessFileError(
-{% raw %}
-            f"File open/close error when processing files {{{filename_in}}}->{{{filename_out}}}."
-{% endraw %}
+            f"File open/close error when processing files {% raw %}{{{filename_in}}}{% endraw %}->{% raw %}{{{filename_out}}}{% endraw %}."
         ) from e
+
+
+def read_file(filename_in: str | Path) -> List[str]:
+    """Read a file
+
+    Parameters
+    ----------
+    filename_in : str
+        The filename of the input file
+    """
+    basename, extension = os.path.splitext(filename_in)
+
+    lines = []
+    try:
+        with open(filename_in, "r") as file_in:
+            line = file_in.readline()
+            while line:
+                lines.append(line.rstrip())
+                line = file_in.readline()
+    except OSError as e:
+        raise ReadFileError(
+            f"File open/close error when reading file {% raw %}{{{filename_in}}}{% endraw %}."
+        ) from e
+
+    return lines

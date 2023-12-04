@@ -21,12 +21,10 @@ def create_line(input: int) -> str:
     str
         A carriage-returned string, to be written to file
     """
-{% raw %}
     if not isinstance(input, int):
-        raise TypeError(f"A +ve integer is expected as input; received {{{input}}}.")
+        raise TypeError(f"A +ve integer is expected as input; received {% raw %}{{{input}}}{% endraw %}.")
     if input < 0:
-        raise ValueError(f"A +ve integer is expected as input; received {{{input}}}.")
-{% endraw %}
+        raise ValueError(f"A +ve integer is expected as input; received {% raw %}{{{input}}}{% endraw %}.")
     # ======= LOGIC =======
     output = input
     # =====================
@@ -57,8 +55,4 @@ def process_line(line: str, inverse: bool = False) -> int:
             return input * input
         # =====================
     except (ValueError, TypeError) as e:
-        raise ProcessLineError(
-{% raw %}
-            f"Invalid line passed as input: {{{line}}}."
-{% endraw %}
-        ) from e
+        raise ProcessLineError(f"Invalid line passed as input: {% raw %}{{{line}}}{% endraw %}.") from e

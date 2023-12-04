@@ -42,10 +42,8 @@ def test_files_create_file_open_fail(tmp_path: Path) -> None:
         files.create_file(create_unwritable_file(tmp_path))
 
 
-def test_files_create_file_invalid_line(
-    tmp_path: Path, mocker: MockerFixture
-) -> None:
-    """Verify that the the generation of an exception in create_line
+def test_files_create_file_invalid_line(tmp_path: Path, mocker: MockerFixture) -> None:
+    """Verify that the generation of an exception in create_line
     results in the correct exception being created by create_file
 
     Parameters
@@ -56,9 +54,7 @@ def test_files_create_file_invalid_line(
         Fixture used to patch create_line
     """
     for ex_expected in [TypeError, ValueError]:
-        mocker.patch(
-            "{{cookiecutter.__package_name}}.lines.create_line", side_effect=ex_expected
-        )
+        mocker.patch("{{cookiecutter.__package_name}}.lines.create_line", side_effect=ex_expected)
         with pytest.raises(files.CreateFileError):
             files.create_file(tmp_path / "test")
 
@@ -90,3 +86,42 @@ def test_files_process_file_open_output_file_error(tmp_path: Path) -> None:
     create_unwritable_file(tmp_path, "file_in_modified.txt")
     with pytest.raises(files.ProcessFileError):
         files.process_file(file_input_test)
+
+
+def test_files_read_file_open_input_file_error(tmp_path: Path) -> None:
+    """Verify that an attempt to read a file that does not exist
+    raises the correct exception
+
+    Parameters
+    ----------
+    tmp_path : Path
+        Temporary path, generated from a pytest fixture
+    """
+    file_to_test = tmp_path / "file_that_does_not_exist"
+    with pytest.raises(files.ReadFileError):
+        files.read_file(file_to_test)
+
+
+def test_files_read_file(tmp_path: Path) -> None:
+    """Verify that reading a file yields the correct results.
+
+    Parameters
+    ----------
+    tmp_path : Path
+        Temporary path, generated from a pytest fixture
+    """
+
+    # Create list
+    source_list = ["1", "2", "3", "4"]
+
+    # Write list to file
+    file_to_test = tmp_path / "file_with_list"
+    with open(file_to_test, "w") as file_out:
+        for item in source_list:
+            file_out.write(f"{item}\n")
+
+    # Read file
+    read_lines = files.read_file(file_to_test)
+
+    # Check results
+    assert source_list == read_lines

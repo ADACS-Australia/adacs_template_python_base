@@ -31,7 +31,7 @@ class _OrderedGroup(click.Group):
 @click.version_option(importlib.metadata.version("{{cookiecutter.__package_name}}"))
 @click.pass_context
 def cli(ctx: click.core.Context) -> None:
-    """Run code from the {{cookiecutter.__package_name}} package. """
+    """Run code from the {{cookiecutter.__package_name}} package."""
 
     # ensure that ctx.obj exists and is a dict (in case `cli()` is called
     # by means other than the `if` block below)
