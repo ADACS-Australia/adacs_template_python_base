@@ -25,26 +25,31 @@ jobs:
   #     run: |
   #       echo "$GITHUB_CONTEXT"
 
-  publish:
+  check_configuration:
+    name: Check for service configuration secrets
     runs-on: ubuntu-latest
 
     steps:
 
-      # Report on which services are configured
-      - name: Check for service configuration secrets
-        steps:
-        - - name: Read the Docs URL
-            if: "!env.RTD_WEBHOOK_URL"
-            run: echo "::warning title=RTD_WEBHOOK_URL not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_URL to your repo secrets if you want it enabled."
-        - - name: Read the Docs Token
-            if: "!env.RTD_WEBHOOK_TOKEN"
-            run: echo "::warning title=RTD_WEBHOOK_TOKEN not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_TOKEN to your repo secrets if you want it enabled."
-        - - name: test.PyPI Token
-            if: "!env.TEST_PYPI_TOKEN"
-            run: echo "::warning title=TEST_PYPI_TOKEN not Set::PyPI functionality not enabled.  Add PYPI_TOKEN to your repo secrets if you want it enabled."
-        - - name: test.PyPI Token
-            if: "!env.TEST_PYPI_TOKEN"
-            run: echo "::warning title=TEST_PYPI_TOKEN not Set::test.PyPI functionality not enabled.  Add TEST_PYPI_TOKEN to your repo secrets if you want it enabled."
+    # Report on which services are configured
+      - name: Read the Docs URL
+        if: "!env.RTD_WEBHOOK_URL"
+        run: echo "::warning title=RTD_WEBHOOK_URL not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_URL to your repo secrets if you want it enabled."
+      - name: Read the Docs Token
+        if: "!env.RTD_WEBHOOK_TOKEN"
+        run: echo "::warning title=RTD_WEBHOOK_TOKEN not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_TOKEN to your repo secrets if you want it enabled."
+      - name: test.PyPI Token
+        if: "!env.TEST_PYPI_TOKEN"
+        run: echo "::warning title=TEST_PYPI_TOKEN not Set::PyPI functionality not enabled.  Add PYPI_TOKEN to your repo secrets if you want it enabled."
+      - name: test.PyPI Token
+        if: "!env.TEST_PYPI_TOKEN"
+        run: echo "::warning title=TEST_PYPI_TOKEN not Set::test.PyPI functionality not enabled.  Add TEST_PYPI_TOKEN to your repo secrets if you want it enabled."
+
+  publish:
+    name: Publish code and documentation
+    runs-on: ubuntu-latest
+
+    steps:
 
       # Set-up dependencies
       - name: Check-out repo
