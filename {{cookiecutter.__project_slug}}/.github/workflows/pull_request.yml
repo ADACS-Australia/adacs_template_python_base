@@ -1,4 +1,5 @@
 {% raw %}
+
 name: Pull Request
 
 on:
@@ -23,6 +24,22 @@ jobs:
 
     steps:
 
+      # Report on which services are configured
+      - name: Check for service configuration secrets
+        steps:
+        - - name: Read the Docs URL
+            if: "!env.RTD_WEBHOOK_URL"
+            run: echo "::warning title=RTD_WEBHOOK_URL not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_URL to your repo secrets if you want it enabled."
+        - - name: Read the Docs Token
+            if: "!env.RTD_WEBHOOK_TOKEN"
+            run: echo "::warning title=RTD_WEBHOOK_TOKEN not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_TOKEN to your repo secrets if you want it enabled."
+        - - name: test.PyPI Token
+            if: "!env.TEST_PYPI_TOKEN"
+            run: echo "::warning title=TEST_PYPI_TOKEN not Set::PyPI functionality not enabled.  Add PYPI_TOKEN to your repo secrets if you want it enabled."
+        - - name: test.PyPI Token
+            if: "!env.TEST_PYPI_TOKEN"
+            run: echo "::warning title=TEST_PYPI_TOKEN not Set::test.PyPI functionality not enabled.  Add TEST_PYPI_TOKEN to your repo secrets if you want it enabled."
+
       # Set-up dependencies
       - name: Check-out repo
         uses: actions/checkout@v3
@@ -32,6 +49,10 @@ jobs:
       # Uncomment if you need mpi
       # - name: Set-up MPI
       #   uses: mpi4py/setup-mpi@v1
+
+      # Uncomment if you need Cuda
+      # - name: Set-up Cuda Toolkit
+      #   run: sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-toolkit-gcc
 
       - name: Set-up Poetry
         uses: snok/install-poetry@v1
@@ -75,5 +96,8 @@ jobs:
         run: poetry run pytest
 
       - name: Documentation build test
-        run: poetry run make docs
+        run: |
+          cd docs
+          poetry run make html
+
 {% endraw %}
