@@ -109,7 +109,5 @@ jobs:
         run: poetry run pytest
 
       - name: Documentation build test
-        run: |
-          cd docs
-          poetry run make html
+        run: poetry run make docs
 
