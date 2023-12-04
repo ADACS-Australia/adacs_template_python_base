@@ -36,7 +36,10 @@ clean: clean-docs
 clean-docs:
 	@rm -rf build docs/_build
 
-docs: clean-docs
+content: clean-docs
+	# Make sure this remains, even if it does nothing, because it gets called in .readthedocs.yml
+
+docs: content
 	@echo "Building documentation for:"
 	@echo "   project: ${PKG_PROJECT}"
 	@echo "   author:  ${PKG_AUTHOR}"
