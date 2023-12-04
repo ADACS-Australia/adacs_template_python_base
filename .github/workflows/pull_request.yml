@@ -24,18 +24,18 @@ jobs:
 
     steps:
 
-    # Report on which services are configured
+      # Report on which services are configured
       - name: Read the Docs URL
-        if: "!env.RTD_WEBHOOK_URL"
+        if: "!(env.RTD_WEBHOOK_URL)"
         run: echo "::warning title=RTD_WEBHOOK_URL not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_URL to your repo secrets if you want it enabled."
       - name: Read the Docs Token
-        if: "!env.RTD_WEBHOOK_TOKEN"
+        if: "!(env.RTD_WEBHOOK_TOKEN)"
         run: echo "::warning title=RTD_WEBHOOK_TOKEN not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_TOKEN to your repo secrets if you want it enabled."
       - name: test.PyPI Token
-        if: "!env.TEST_PYPI_TOKEN"
+        if: "!(env.TEST_PYPI_TOKEN)"
         run: echo "::warning title=TEST_PYPI_TOKEN not Set::PyPI functionality not enabled.  Add PYPI_TOKEN to your repo secrets if you want it enabled."
       - name: test.PyPI Token
-        if: "!env.TEST_PYPI_TOKEN"
+        if: "!(env.TEST_PYPI_TOKEN)"
         run: echo "::warning title=TEST_PYPI_TOKEN not Set::test.PyPI functionality not enabled.  Add TEST_PYPI_TOKEN to your repo secrets if you want it enabled."
 
   run_tests:
@@ -80,8 +80,10 @@ jobs:
         run: poetry install --no-interaction --extras "docs dev"
 
       # Enforce code formating standards
+      # note: --config is needed to prevent ruff from using a version elsewhere in the project.
+      #       This is important for template projects, for example.
       - name: Enforce linting
-        run: poetry run ruff .
+        run: poetry run ruff --config pyproject.toml .
 
       - name: Enforce formating
         run: poetry run black .
