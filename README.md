@@ -12,7 +12,7 @@ $ pipx install cookiecutter
 ```
 ***...use it to render the project...***
 ``` console
-$ cookiecutter URL
+$ cookiecutter https://github.com/gbpoole/adacs_python_template.git
 
 ```
 ***...answer the questions...***

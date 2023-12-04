@@ -18,7 +18,5 @@ build:
       #   Installing everything is overkill, but I keep running 
       #   into this problem if I don't: https://github.com/python-poetry/poetry/issues/4493
       - poetry install --all-extras 
-      # Generate the API documentation
-      - make content
 sphinx:
   configuration: docs/conf.py

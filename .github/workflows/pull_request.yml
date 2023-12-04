@@ -1,8 +1,16 @@
+
 name: Pull Request
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+
+# These are needed because secrets can not be used in 'if' expressions
+env:
+  PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+  TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
+  RTD_WEBHOOK_URL: ${{ secrets.RTD_WEBHOOK_URL }}
+  RTD_WEBHOOK_TOKEN: ${{ secrets.RTD_WEBHOOK_TOKEN }}
 
 jobs:
 
@@ -17,7 +25,28 @@ jobs:
   #     run: |
   #       echo "$GITHUB_CONTEXT"
 
+  check_configuration:
+    name: Check for service configuration secrets
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Report on which services are configured
+      - name: Read the Docs URL
+        if: "!(env.RTD_WEBHOOK_URL)"
+        run: echo "::warning title=RTD_WEBHOOK_URL not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_URL to your repo secrets if you want it enabled."
+      - name: Read the Docs Token
+        if: "!(env.RTD_WEBHOOK_TOKEN)"
+        run: echo "::warning title=RTD_WEBHOOK_TOKEN not set::Read the Docs functionality not enabled.  Add RTD_WEBHOOK_TOKEN to your repo secrets if you want it enabled."
+      - name: test.PyPI Token
+        if: "!(env.TEST_PYPI_TOKEN)"
+        run: echo "::warning title=TEST_PYPI_TOKEN not Set::PyPI functionality not enabled.  Add PYPI_TOKEN to your repo secrets if you want it enabled."
+      - name: test.PyPI Token
+        if: "!(env.TEST_PYPI_TOKEN)"
+        run: echo "::warning title=TEST_PYPI_TOKEN not Set::test.PyPI functionality not enabled.  Add TEST_PYPI_TOKEN to your repo secrets if you want it enabled."
+
   run_tests:
+    name: Run all build and unit tests
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +56,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Needed for tags to be fetched; see https://github.com/actions/checkout/issues/290
+
+      # Uncomment if you need mpi
+      # - name: Set-up MPI
+      #   uses: mpi4py/setup-mpi@v1
+
+      # Uncomment if you need Cuda
+      # - name: Set-up Cuda Toolkit
+      #   run: sudo apt-get install nvidia-cuda-toolkit nvidia-cuda-toolkit-gcc
 
       - name: Set-up Poetry
         uses: snok/install-poetry@v1
@@ -50,7 +87,8 @@ jobs:
         run: poetry install --no-interaction --extras "docs dev"
 
       # Enforce code formating standards
-      # note that --config is needed to prevent ruff from using the version in the template
+      # note: --config is needed to prevent ruff from using a version elsewhere in the project.
+      #       This is important for template projects, for example.
       - name: Enforce linting
         run: poetry run ruff --config pyproject.toml .
 
@@ -72,3 +110,4 @@ jobs:
 
       - name: Documentation build test
         run: poetry run make docs
+
