@@ -40,10 +40,13 @@ author = format_authors(
 copyright_year = 2023
 copyright = f"{copyright_year}, {author}"
 
-# The short X.Y version
-version = "0.0.0-dev"
+# These versions are just placeholders.  The point of truth for versions is the last tag on the main branch with a "vX.Y.Z*" format.  This can
+# be accessed through installed project metadata.
 
-# The full version, including alpha/beta/rc tags
+# The short X.Y.Z version
+version = "0.0.0"
+
+# The full version, including alpha/beta/rc tags (just a placeholder)
 release = "0.0.0-dev"
 
 
