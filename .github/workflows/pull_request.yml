@@ -5,6 +5,13 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+# These are needed because secrets can not be used in 'if' expressions
+env:
+  PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+  TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
+  RTD_WEBHOOK_URL: ${{ secrets.RTD_WEBHOOK_URL }}
+  RTD_WEBHOOK_TOKEN: ${{ secrets.RTD_WEBHOOK_TOKEN }}
+
 jobs:
 
   # Useful for workflow debugging
