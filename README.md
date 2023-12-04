@@ -26,4 +26,4 @@ $ cookiecutter https://github.com/gbpoole/adacs_python_template.git
 * Enforces code formatting and linting policies
 * Ensures that all commits on the main branch and released versions build correctly and pass all unit tests
 * (optionally) publishes your code to PyPI so people can easilly install it
-* (optionally) updates, builds and publishes documentation
+* (optionally) updates, builds and publishes documentation to *Read the Docs*.
