@@ -7,7 +7,9 @@ from rich.markdown import Markdown
 
 def git() -> None:
     """Create and configure a git repo for the rendered project"""
-    subprocess.call(["git", "init"])
+    subprocess.call(["git", "init", "-b", "main"])
+    subprocess.call(["git", "config",  "--local", "push.followTags", "true" ])
+    subprocess.call(["git", "config",  "--local", "remote.origin.tagopt", "--tags" ])
     subprocess.call(["git", "add", "*"])
     subprocess.call(
         [
@@ -15,9 +17,10 @@ def git() -> None:
             "remote",
             "add",
             "origin",
-            "https://github.com/{{cookiecutter.github_login}}/{{cookiecutter.__project_slug}}.git",
+            "git@github.com:{{cookiecutter.github_login}}/{{cookiecutter.github_repo}}.git"
         ]
     )
+    subprocess.call(["git", "add", "*"])
     subprocess.call(["git", "commit", "-m", "Initial commit of template code"])
     subprocess.call(["git", "tag", "v0.0.0"])
 
