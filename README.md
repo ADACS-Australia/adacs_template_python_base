@@ -4,15 +4,15 @@ This template takes the effort out of starting from a good place.
 ## Getting Started
 ***Make sure Cookiecutter is installed...***
 ``` console
-$ pip install cookiecutter
+pip install cookiecutter
 ```
 *(or better yet, use [pipx](https://pypa.github.io/pipx/))*
 ``` console
-$ pipx install cookiecutter
+pipx install cookiecutter
 ```
 ***...use it to render the project...***
 ``` console
-$ cookiecutter gh:gbpoole/adacs_python_template
+cookiecutter gh:gbpoole/adacs_python_template
 
 ```
 ***...answer the questions...***

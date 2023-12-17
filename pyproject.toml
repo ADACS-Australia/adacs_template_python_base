@@ -46,7 +46,7 @@ dev = ["pre-commit",
 
 [tool.pytest.ini_options]
 pythonpath = ["./tests", "./"] # relative to root directory
-addopts = "--ignore={{cookiecutter.__project_slug}}"
+addopts = "--ignore={{cookiecutter.github_repo}}"
 
 # This configures the Poetry plugin which enables dynamic versioning via the repo tags
 # Note the changes that are also needed to the [build-system] config below.
@@ -61,7 +61,7 @@ mypy_path = "$MYPY_CONFIG_FILE_DIR/tests"
 
 [tool.black]
 extend-exclude = [
-  '\{\{cookiecutter.__project_slug\}\}', # checked by pytest
+  '\{\{cookiecutter.github_repo\}\}', # checked by pytest
   'hooks' # These files are treated as Jinja2 templates and may have invalid Python code
 ]
 
@@ -76,7 +76,7 @@ ignore = [
     "E501", # line length violations (let Black handle this)
 ]
 extend-exclude = [
-  '\{\{cookiecutter.__project_slug\}\}', # checked by pytest
+  '\{\{cookiecutter.github_repo\}\}', # checked by pytest
   'hooks' # These files are treated as Jinja2 templates and may have invalid Python code
 ]
 

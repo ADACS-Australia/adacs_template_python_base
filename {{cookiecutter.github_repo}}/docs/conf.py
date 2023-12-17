@@ -37,7 +37,7 @@ project = load(open("../pyproject.toml", "rb"))["tool"]["poetry"]["name"]
 author = format_authors(
     load(open("../pyproject.toml", "rb"))["tool"]["poetry"]["authors"]
 )
-copyright_year = {{ current_year }}
+copyright_year = {{current_year}}
 copyright = f"{copyright_year}, {author}"
 
 # These versions are just placeholders.  The point of truth for versions is the last tag on the main branch with a "vX.Y.Z*" format.  This can
