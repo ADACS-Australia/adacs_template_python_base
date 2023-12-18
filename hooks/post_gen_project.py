@@ -27,6 +27,8 @@ def git() -> None:
             "git@github.com:{{cookiecutter.github_login}}/{{cookiecutter.github_repo}}.git"
         ]
     )
+    # This is needed to make sure that the committed poetry.lock file is up-to-date
+    result = subprocess.run(["poetry", "update"])
     result = subprocess.run(["git", "add", "*"])
     result = subprocess.run(["git", "commit", "-m", "Initial commit of template code"])
     # Make sure this is an annotated tag or it won't be pushed to remote and the version
