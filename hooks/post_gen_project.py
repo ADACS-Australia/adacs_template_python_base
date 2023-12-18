@@ -126,5 +126,4 @@ if __name__ == "__main__":
     # venv("{{ cookiecutter.virtual_environment }}")
     # install("{{ cookiecutter.virtual_environment }}")
     {% endraw %}
-    install("poetry")
     print_instructions()
