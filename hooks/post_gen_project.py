@@ -7,11 +7,18 @@ from rich.markdown import Markdown
 
 def git() -> None:
     """Create and configure a git repo for the rendered project"""
-    subprocess.call(["git", "init", "-b", "main"])
-    subprocess.call(["git", "config",  "--local", "push.followTags", "true" ])
-    subprocess.call(["git", "config",  "--local", "remote.origin.tagopt", "--tags" ])
-    subprocess.call(["git", "add", "*"])
-    subprocess.call(
+    result = subprocess.run(["git", "init", "-b", "main"])
+    result = subprocess.run(["git", "config",  "--local", "push.followTags", "true" ])
+    result = subprocess.run(["git", "config",  "--local", "--add", "remote.origin.tagopt", "--tags" ])
+    result = subprocess.run(
+        [
+            "git",
+            "remote",
+            "remove",
+            "origin"
+        ]
+    )
+    result = subprocess.run(
         [
             "git",
             "remote",
@@ -20,9 +27,11 @@ def git() -> None:
             "git@github.com:{{cookiecutter.github_login}}/{{cookiecutter.github_repo}}.git"
         ]
     )
-    subprocess.call(["git", "add", "*"])
-    subprocess.call(["git", "commit", "-m", "Initial commit of template code"])
-    subprocess.call(["git", "tag", "v0.0.0"])
+    result = subprocess.run(["git", "add", "*"])
+    result = subprocess.run(["git", "commit", "-m", "Initial commit of template code"])
+    # Make sure this is an annotated tag or it won't be pushed to remote and the version
+    # management won't be initialised correctly
+    result = subprocess.run(["git", "tag", "-a", "v0.0.0", "-m", "Initialised with template"])
 
 
 def venv(venv_type: str) -> None:
@@ -58,12 +67,12 @@ def venv(venv_type: str) -> None:
         pass
     elif venv_type == "poetry":
         # Check if PYENV_VERSION is defined and if so, that it's set to system?
-        # subprocess.call(["poetry", "config", "--local", "virtualenvs.in-project", "true"])
-        # subprocess.call(["poetry", "config", "--local", "virtualenvs.create",     "true"])
+        # result = subprocess.run(["poetry", "config", "--local", "virtualenvs.in-project", "true"])
+        # result = subprocess.run(["poetry", "config", "--local", "virtualenvs.create",     "true"])
         pass
     elif venv_type == "pyenv":
-        # subprocess.call(["pyenv", "virtualenv", "3.11", "{{cookiecutter.__project_slug}}"])
-        # subprocess.call(["pyenv", "local", "{{cookiecutter.__project_slug}}"])
+        # result = subprocess.run(["pyenv", "virtualenv", "3.11", "{{cookiecutter.__project_slug}}"])
+        # result = subprocess.run(["pyenv", "local", "{{cookiecutter.__project_slug}}"])
         pass
     elif venv_type == "Conda":
         pass
@@ -82,7 +91,7 @@ def install(venv_type: str) -> None:
         String specifying how the virtual environment is being supported
     """
     if venv_type in ["venv", "poetry", "pyenv"]:
-        subprocess.call(["poetry", "install", "--all-extras"])
+        result = subprocess.run(["poetry", "install", "--all-extras"])
     elif venv_type == "none":
         pass
     else:

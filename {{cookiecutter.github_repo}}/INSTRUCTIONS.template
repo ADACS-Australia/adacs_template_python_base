@@ -23,6 +23,10 @@
 - If you plan to make releases available on the *Python Package Index* (see below), then the following secret needs to be set: **PYPI_TOKEN**
 - If you plan to test releases with the *Test Python Package Index*, then the following secret needs to be set: **TEST_PYPI_TOKEN**
 
+4. Push code to GitHub
+
+To push your new project to GitHub, run the following from within the local repo: `git push -u origin main`
+
 ## __Read the Docs__ (`https://readthedocs.org`)
 
 **If you choose to release documentation on *Read the Docs* (RTD), configure your account as follows:**
