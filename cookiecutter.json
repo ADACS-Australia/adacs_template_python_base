@@ -6,7 +6,7 @@
     "author":"Package, Author",
     "github_login":"github_login",
     "github_repo":"{{ cookiecutter.__project_slug }}",
-    "rtd_project_name":"{{ cookiecutter.__project_slug }}",
+    "rtd_project_name":"{{ cookiecutter.github_repo }}",
     "__test": false,
     "_copy_without_render": [
         "*_t"
