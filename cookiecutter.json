@@ -5,8 +5,8 @@
     "description":"Short project description",
     "author":"Package, Author",
     "github_login":"github_login",
-    "github_repo":"repo_name",
-    "rtd_project_name":"readthedocs_project_name",
+    "github_repo":"{{ cookiecutter.__project_slug }}",
+    "rtd_project_name":"{{ cookiecutter.__project_slug }}",
     "__test": false,
     "_copy_without_render": [
         "*_t"
