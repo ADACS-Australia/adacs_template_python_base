@@ -43,9 +43,6 @@ dev = ["pre-commit",
        "ruff",
 ]
 
-[tool.poetry.scripts]
-{{cookiecutter.__package_name}} = "{{cookiecutter.__package_name}}.cli:cli"
-
 [tool.pytest.ini_options]
 addopts = "--cov"
 pythonpath = "./python" # relative to root directory
