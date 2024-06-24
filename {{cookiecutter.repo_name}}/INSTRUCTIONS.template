@@ -9,7 +9,7 @@
 Goto *`https://github.com`* and create a new repo with the following:
 
 - account:   **{{cookiecutter.github_login}}**
-- repo name: **{{cookiecutter.github_repo}}**
+- repo name: **{{cookiecutter.repo_name}}**
 
 2. **Enable GitHub Actions write permissions**
 

@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [
     { include = "{{cookiecutter.__package_name}}", from = "python" }
 ]
-homepage = "https://github.com/{{cookiecutter.github_login}}/{{cookiecutter.github_repo}}"
+homepage = "https://github.com/{{cookiecutter.github_login}}/{{cookiecutter.repo_name}}"
 documentation = "https://{{cookiecutter.rtd_project_name}}.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]

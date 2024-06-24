@@ -24,7 +24,7 @@ def git() -> None:
             "remote",
             "add",
             "origin",
-            "git@github.com:{{cookiecutter.github_login}}/{{cookiecutter.github_repo}}.git"
+            "git@github.com:{{cookiecutter.github_login}}/{{cookiecutter.repo_name}}.git"
         ]
     )
 
