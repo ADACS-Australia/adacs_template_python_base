@@ -19,6 +19,6 @@ build:
       #   into this problem if I don't: https://github.com/python-poetry/poetry/issues/4493
       - poetry install --all-extras 
       # Generate API documentation, etc. (if needed)
-      - make content
+      - make -f docs/Makefile content
 sphinx:
   configuration: docs/conf.py
