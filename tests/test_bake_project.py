@@ -20,9 +20,9 @@ def test_bake_with_defaults(cookies):
         ".pre-commit-db.json",
         ".readthedocs.yml",
         "LICENSE",
-        "Makefile",
         "README.md",
         "docs",
+        "docs/Makefile",
         "pyproject.toml",
         "python",
     ]
