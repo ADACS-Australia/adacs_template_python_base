@@ -28,14 +28,14 @@ repos:
     rev: 22.12.0
     hooks:
       - id: black
-        exclude: "{{cookiecutter.github_repo}}|hooks"
+        exclude: "{{cookiecutter.repo_name}}|hooks"
 
   # Lint code
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: v0.0.243
     hooks:
       - id: ruff
-        exclude: "{{cookiecutter.github_repo}}|hooks"
+        exclude: "{{cookiecutter.repo_name}}|hooks"
 
   # Make sure the Poetry project is properly maintained
   - repo: https://github.com/python-poetry/poetry

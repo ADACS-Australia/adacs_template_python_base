@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [
     { include = "{{cookiecutter.__package_name}}", from = "python" }
 ]
-homepage = "https://github.com/{{cookiecutter.github_login}}/{{cookiecutter.github_repo}}"
+homepage = "https://github.com/{{cookiecutter.github_login}}/{{cookiecutter.repo_name}}"
 documentation = "https://{{cookiecutter.rtd_project_name}}.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
@@ -42,9 +42,6 @@ dev = ["pre-commit",
        "black",
        "ruff",
 ]
-
-[tool.poetry.scripts]
-{{cookiecutter.__package_name}} = "{{cookiecutter.__package_name}}.cli:cli"
 
 [tool.pytest.ini_options]
 addopts = "--cov"

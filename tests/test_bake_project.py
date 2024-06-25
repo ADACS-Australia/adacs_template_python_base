@@ -1,4 +1,5 @@
 import datetime
+import pathlib
 from utils import bake_in_temp_dir
 
 
@@ -20,9 +21,9 @@ def test_bake_with_defaults(cookies):
         ".pre-commit-db.json",
         ".readthedocs.yml",
         "LICENSE",
-        "Makefile",
         "README.md",
         "docs",
+        "docs/Makefile",
         "pyproject.toml",
         "python",
     ]
@@ -32,9 +33,15 @@ def test_bake_with_defaults(cookies):
         assert result.exit_code == 0
         assert result.exception is None
 
-        found_toplevel_pathnames = [
-            path_i.name for path_i in result.project_path.iterdir()
-        ]
+        found_toplevel_pathnames = set()
+        root_dir = result.project_path
+        git_path = root_dir / ".git"
+        for path_i in root_dir.rglob("*"):
+            if git_path not in path_i.parents:
+                found_toplevel_pathnames.add(path_i)
+            else:
+                found_toplevel_pathnames.add(git_path)
 
-        for filename_i in check_toplevel_pathnames:
-            assert filename_i in found_toplevel_pathnames
+        # Check that the needed files from the base project are present
+        for path_i in check_toplevel_pathnames:
+            assert root_dir / pathlib.Path(path_i) in found_toplevel_pathnames

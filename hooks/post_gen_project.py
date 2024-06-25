@@ -7,7 +7,7 @@ from rich.markdown import Markdown
 
 def git() -> None:
     """Create and configure a git repo for the rendered project"""
-    result = subprocess.run(["git", "init", "-b", "main"])
+    result = subprocess.run(["git", "init", "-q",  "-b", "main"])
     result = subprocess.run(["git", "config",  "--local", "push.followTags", "true" ])
     result = subprocess.run(["git", "config",  "--local", "--add", "remote.origin.tagopt", "--tags" ])
     result = subprocess.run(
@@ -24,13 +24,17 @@ def git() -> None:
             "remote",
             "add",
             "origin",
-            "git@github.com:{{cookiecutter.github_login}}/{{cookiecutter.github_repo}}.git"
+            "git@github.com:{{cookiecutter.github_login}}/{{cookiecutter.repo_name}}.git"
         ]
     )
+
     # This is needed to make sure that the committed poetry.lock file is up-to-date
-    result = subprocess.run(["poetry", "update"])
+    result = subprocess.run(["poetry", "-q", "update"])
+
+    # Create initial commit
     result = subprocess.run(["git", "add", "*"])
-    result = subprocess.run(["git", "commit", "-m", "Initial commit of template code"])
+    result = subprocess.run(["git", "commit", "-q", "-m", "Initial commit of template code"])
+
     # Make sure this is an annotated tag or it won't be pushed to remote and the version
     # management won't be initialised correctly
     result = subprocess.run(["git", "tag", "-a", "v0.0.0", "-m", "Initialised with template"])
@@ -116,6 +120,7 @@ def print_instructions() -> None:
             line_in = file.readline()
 
     # Render the file as Markdown with Rich
+    print()
     console = Console()
     console.print(Markdown(lines))
 
@@ -126,4 +131,5 @@ if __name__ == "__main__":
     # venv("{{ cookiecutter.virtual_environment }}")
     # install("{{ cookiecutter.virtual_environment }}")
     {% endraw %}
-    print_instructions()
+    if not {{ cookiecutter.__test }}:
+        print_instructions()
