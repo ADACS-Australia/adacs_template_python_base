@@ -53,4 +53,4 @@ This is an important thing to know.  Please take note.
 
 A figure can be included as follows:
 
-![Figure 1](../assets/figure_example.pdf){align=center}
+![Figure 1](../assets/figure_example.png){align=center}
