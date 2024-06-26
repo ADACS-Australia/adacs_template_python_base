@@ -109,5 +109,5 @@ jobs:
         run: poetry run pytest
 
       - name: Documentation build test
-        run: poetry run make docs
+        run: poetry run make -f docs/Makefile docs
 
