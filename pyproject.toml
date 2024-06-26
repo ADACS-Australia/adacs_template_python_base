@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "adacs_python_template"
+name = "adacs_template_python_base"
 version = "0.0.0-dev" # Just a place holder; package version is managed by the dynamic-versioning plugin & git tags
 description = "A Cookiecutter template for instantiating Python projects"
 authors = [ "ADACS" ]
 license = "MIT-expat"
 readme = "README.md"
 packages = [
-    { include = "adacs_python_template", from = "python" }
+    { include = "adacs_template_python_base", from = "python" }
 ]
-homepage = "https://github.com/gbpoole/adacs_python_template"
-documentation = "https://adacs_python_template.readthedocs.io/en/latest/"
+homepage = "https://github.com/ADACS-Australia/adacs_template_python_base"
+documentation = "https://adacs_template_python_base.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
 python = " >=3.11"
