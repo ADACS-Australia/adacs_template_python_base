@@ -12,14 +12,14 @@ pipx install cookiecutter
 ```
 ***...use it to render the project...***
 ``` console
-cookiecutter gh:gbpoole/adacs_python_template
+cookiecutter gh:ADACS-Australia/adacs_template_python_base
 
 ```
 ***...answer the questions...***
 
-![ADACS Python Template Questions](https://github.com/gbpoole/adacs_python_template/blob/main/docs/assets/adacs_python_template_cookiecutter_questions.png?raw=true)
+![ADACS Python Template Questions](https://github.com/ADACS-Australia/adacs_template_python_base/blob/main/docs/assets/adacs_python_template_cookiecutter_questions.png?raw=true)
 
-***...and configure the services you need using [these instructions](https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html).***
+***...and configure the services you need using [these instructions](https://adacs-template-python-base.readthedocs.io/en/latest/content/configuring_services.html).***
 
 ## What do you get for this?
 ***A codebase that eases collaboration and automatically:***
@@ -29,9 +29,5 @@ cookiecutter gh:gbpoole/adacs_python_template
 * (optionally) publishes your code to PyPI so people can easilly install it
 * (optionally) updates, builds and publishes documentation to *Read the Docs*.
 
-***The codebase is also initialised with some code providing:***
-* A simple ASCII file read/process/write workflow
-* A CLI interface, providing simple and self-documenting terminal access to the codebase for your users
+***Other ADACS Python templates can then be applied to this base template to quickly kickstart a new project.***
 
-Modify them for a quick start on some working code or delete them if not needed.  They will illustrate some best practices with this code base
-regardless.
