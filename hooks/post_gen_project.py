@@ -122,7 +122,8 @@ def print_instructions() -> None:
     # Render the file as Markdown with Rich
     print()
     console = Console()
-    console.print(Markdown(lines))
+    if not {{ cookiecutter.__test }}:
+        console.print(Markdown(lines))
 
 
 if __name__ == "__main__":
@@ -131,5 +132,4 @@ if __name__ == "__main__":
     # venv("{{ cookiecutter.virtual_environment }}")
     # install("{{ cookiecutter.virtual_environment }}")
     {% endraw %}
-    if not {{ cookiecutter.__test }}:
-        print_instructions()
+    print_instructions()
