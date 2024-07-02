@@ -51,6 +51,23 @@ jobs:
 
     steps:
 
+      # Clone the base template
+      - name: Clone base template
+        uses: actions/checkout@v3
+        with:
+          repository: 'ADACS-Australia/adacs_template_python_base'
+          path: __adacs_template_python_base
+
+      # Set the path where the base template will be stored and move it there
+      - name: Set temporary path
+        run: echo "TEMP_DIR=$(mktemp -d)" >> $GITHUB_ENV
+
+      - name: Move base template
+        run: mv __adacs_template_python_base $TEMP_DIR
+
+      - name: Set path to new base template location
+        run: echo "BASE_TEMPLATE_PATH=$(echo $TEMP_DIR/__adacs_template_python_base )" >> $GITHUB_ENV
+
       # Set-up dependencies
       - name: Check-out repo
         uses: actions/checkout@v3
@@ -90,7 +107,7 @@ jobs:
       # note: --config is needed to prevent ruff from using a version elsewhere in the project.
       #       This is important for template projects, for example.
       - name: Enforce linting
-        run: poetry run ruff --config pyproject.toml .
+        run: poetry run ruff check --config pyproject.toml .
 
       - name: Enforce formating
         run: poetry run black .
@@ -100,6 +117,12 @@ jobs:
         run: |
           poetry check
           poetry lock --check
+
+      # Set-up some dummy git credentials so the tests (which use git) will run
+      - name: Set-up git credentials
+        run: |
+          git config --global user.email "git@user.org"
+          git config --global user.name "Git, User"
 
       # Run tests
       - name: Generate build

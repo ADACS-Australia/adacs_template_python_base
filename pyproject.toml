@@ -13,21 +13,21 @@ documentation = "https://adacs_template_python_base.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
 python = " >=3.11"
-click = "^8.1.3"
-Sphinx = { version = "^6.1.3", optional = true }
-sphinx-rtd-theme = { version = "1.2.0", optional = true }
-myst-parser = { version = "^1.0.0", optional = true }
-pre-commit = { version = "^3.0.4", optional = true }
-pytest = { version = "^7.0", optional = true }
-black = { version = "^22.10.0", optional = true }
-ruff = { version = "^0.0.243", optional = true}
-sphinx-click = { version = "^4.4.0", optional = true }
-mypy = { version = "^1.1.1", optional = true }
-sphinx-copybutton = { version = "^0.5.1", optional = true }
-pytest-mock = "^3.11.1"
-rich = "^13.5.2"
-cookiecutter = "^2.5.0"
-pytest-cookies = "^0.7.0"
+click = "^8"
+Sphinx = { version = "^6", optional = true }
+sphinx-rtd-theme = { version = "^1", optional = true }
+myst-parser = { version = "^1", optional = true }
+pre-commit = { version = "^3", optional = true }
+pytest = { version = "^7", optional = true }
+black = { version = "^24", optional = true }
+ruff = { version = "^0", optional = true}
+sphinx-click = { version = "^4", optional = true }
+mypy = { version = "^1", optional = true }
+sphinx-copybutton = { version = "^0", optional = true }
+pytest-mock = "^3"
+rich = "^13"
+cookiecutter = "^2"
+pytest-cookies = "^0"
 
 [tool.poetry.extras]
 docs = [
@@ -60,13 +60,21 @@ ignore_missing_imports = true
 mypy_path = "$MYPY_CONFIG_FILE_DIR/tests"
 
 [tool.black]
+extend-exclude = '''
+^/(
+  {{cookiecutter.repo_name}} # checked by pytest
+  hooks                      # These files are treated as Jinja2 templates and may have invalid Python code
+)
+'''
+
+[tool.ruff]
+line-length = 88 # to match Black
 extend-exclude = [
   '\{\{cookiecutter.repo_name\}\}', # checked by pytest
   'hooks' # These files are treated as Jinja2 templates and may have invalid Python code
 ]
 
-[tool.ruff]
-line-length = 88 # to match Black
+[tool.ruff.lint]
 select = [
     "E",
     "F",
@@ -75,17 +83,12 @@ select = [
 ignore = [
     "E501", # line length violations (let Black handle this)
 ]
-extend-exclude = [
-  '\{\{cookiecutter.repo_name\}\}', # checked by pytest
-  'hooks' # These files are treated as Jinja2 templates and may have invalid Python code
-]
-
 
 # Ignore `E402` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["E402"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
 [build-system]

@@ -15,7 +15,7 @@ from tomllib import load
 
 
 def format_authors(authors):
-    if type(authors) == list:
+    if type(authors) is list:
         result = ""
         for i_author, author in enumerate(authors):
             if i_author == 0:
@@ -24,7 +24,7 @@ def format_authors(authors):
                 result = result + f", {author}"
             else:
                 result = result + f", and {author}"
-    elif type(authors) == str:
+    elif type(authors) is str:
         result = authors
     return result
 
