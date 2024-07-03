@@ -7,14 +7,19 @@ Develpers and project owners/maintainers will require accounts with one or all o
 
     To work with this codebase, you will require a *GitHub* account ([go here to get one](https://github.com)).
     
-    Branch permissions for the project repository should be configured as follows:
-    
-    - Protect the main branch to only permit merges from pull requests.  This can be done by clicking on the 'branches' tab and clicking on the 'Protect this branch' button for the 'main' branch.
-    - Select 'Require status checks to pass before merging' when you set-up this branch protection rule.  This will ensure that all CI/CD tests pass before a merge to the main branch can be made.
+    Branch permissions for the main project repository should be configured only permit merges from pull requests.  To do so, navigate to `Settings->Branches->Add branch ruleset` and:
+
+        - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
+        - set `Enforecement status` to `Active`
+        - add a `Target Branch` targeting criteria by pattern and type `main`
+        - select `Require a pull request before merging`
+        - select `Require status checks to pass` and add `Pull Request` from GitHub Actions as a required check
+
+    This will ensure that all CI/CD tests pass before a merge to the main branch can be made.
     
     Several secrets need to be configured by navigating to `Settings->Secrets->Actions` and adding the following:
     
-    - To host the project documentation on *Read the Docs** (see below), the following secrets need to be set (see below for where to find these values):
+    - To host the project documentation on *Read the Docs* (see below), the following secrets need to be set (see below for where to find these values):
     
         - **RTD_WEBHOOK_TOKEN**, and
         - **RTD_WEBHOOK_URL**
