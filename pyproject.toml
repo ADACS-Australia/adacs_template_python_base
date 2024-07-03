@@ -62,8 +62,8 @@ mypy_path = "$MYPY_CONFIG_FILE_DIR/tests"
 [tool.black]
 extend-exclude = '''
 ^/(
-  {{cookiecutter.repo_name}} # checked by pytest
-  hooks                      # These files are treated as Jinja2 templates and may have invalid Python code
+    {{cookiecutter.repo_name}} # checked by pytest
+  | hooks                      # These files are treated as Jinja2 templates and may have invalid Python code
 )
 '''
 

@@ -124,6 +124,7 @@ html_static_path = ["assets"]
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
+
 # Handler for excluding modules, classes, etc from documentation
 # Presently, this just passes through the default behavior
 def autodoc_skip_member_handler(app, what, name, obj, skip, options):
