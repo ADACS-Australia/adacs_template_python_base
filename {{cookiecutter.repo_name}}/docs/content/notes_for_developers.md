@@ -267,7 +267,7 @@ Develpers and project owners/maintainers will require accounts with one or all o
         - set `Enforecement status` to `Active`
         - add a `Target Branch` targeting criteria by pattern and type `main`
         - select `Require a pull request before merging`
-        - select `Require status checks to pass` and add `Pull Request` from GitHub Actions as a required check
+        - select `Require status checks to pass` and add `Run all build and unit tests` from GitHub Actions as a required check
 
     This will ensure that all CI/CD tests pass before a merge to the main branch can be made.
     

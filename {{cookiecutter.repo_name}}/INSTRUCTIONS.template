@@ -39,7 +39,7 @@ Navigate to `Settings->Branches->Add branch ruleset` and ...
 - set `Enforecement status` to `Active`
 - add a `Target Branch` targeting criteria by pattern and type `main`
 - select `Require a pull request before merging`
-- select `Require status checks to pass` and add `Pull Request` from GitHub Actions as a required check
+- select `Require status checks to pass` and add `Run all build and unit tests` from GitHub Actions as a required check
 
 ***From this point on, no development should be performed on the main branch.  All updates to the main branch are managed via Pull
 Requests in the GitHub UI.***
