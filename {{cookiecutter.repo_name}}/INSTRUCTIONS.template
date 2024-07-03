@@ -2,54 +2,60 @@
 // Once this new project is configured, you can delete this file.  See 'notes_for_developers' if you need to see this content again.
 //
 
-*Now that your template has been rendered, we recommend configuring it as follows (more detailed instructions can be found at `https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html`):*
+*Now that your template has been rendered, we recommend configuring it as follows:*
 
-1. **Create a GitHub repo**
+1. **Create a Python environment**
+
+Use your favourite method to create and activate a Python environment for your development.
+
+2. **Install the project and all dependencies**
+
+With your environment activated, run the following from within your new repo: `poetry install --all-extras`
+
+***NOTE: This needs to be done before any tests can be run, documentation built, etc.***
+
+3. **Create a GitHub repo**
 
 Goto *`https://github.com`* and create a new repo with the following:
 
 - account:   **{{cookiecutter.github_login}}**
 - repo name: **{{cookiecutter.repo_name}}**
 
-2. **Enable GitHub Actions write permissions**
+4. **Enable GitHub Actions write permissions**
 
-On Github, navigate within the repo to `Settings->Actions->General` and select `Read and write permissions`.  This needs to be done
-before the next stage so that the GitHub version bump action that is run on first upload does not fail.
+On Github, navigate within the repo to `Settings->Actions->General` and select `Read and write permissions`.
 
-3. **Push the local repo to GitHub**
+***NOTE: This needs to be done before the next stage so that the GitHub version bump action that is run on first upload does not fail.***
 
-Run the following from within your new local repo: `git push -u origin main`
+5. **Push the local repo to GitHub**
 
-4. **Configure main branch permissions**
+Your new repo has been configured with your GitHub repo details.  Run the following from within your new local repo to push it to GitHub: `git push -u origin main`
 
-Navigate to `Settings->Branches->Add branch protection rule` and ...
+6. **Configure branch permissions**
 
-- type *main* in the `Branch name pattern`
+Navigate to `Settings->Branches->Add branch ruleset` and ...
+
+- give the Ruleset whatever name you'd like (e.g. `Protect Main`)
+- set `Enforecement status` to `Active`
+- add a `Target Branch` targeting criteria by pattern and type `main`
 - select `Require a pull request before merging`
-- select `Require status checks to pass before merging`
+- select `Require status checks to pass` and add `Run all build and unit tests` from GitHub Actions as a required check
 
-5. **[Optional] Configure repository secrets**
+***From this point on, no development should be performed on the main branch.  All updates to the main branch are managed via Pull
+Requests in the GitHub UI.***
 
-*This can be done at any time when you want to enable these features; they are simply deactivated until you do; see *`https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html`* for an account of where to find these values.*
-
-Navigate to `Settings->Secrets->Actions` and add the following *Secrets*:
-
-- **RTD_WEBHOOK_TOKEN** and **RTD_WEBHOOK_URL** enable automated hosting of documentation on *Read the Docs*
-- **PYPI_TOKEN** &/or **TEST_PYPI_TOKEN** enable the publication of code releases on the *Python Package Index* &/or the *Test Python Package Index* respectively
-
-6. **Create a Python environment**
-
-Use your favourite method to create and activate a Python environment for your development.
-
-7. **Install the development dependencies**
-
-From within the repo, run the following: `poetry install --all-extras`
-
-8. **Activate pre-commit git hooks**
+7. **[Optional] Activate pre-commit git hooks**
 
 From within the repo, run the following: `pre-commit install`
 
+8 **[Optional] Configure Services (Read The Docs, PyPI, etc.)**
+
+This can be done at any time when you want to enable these features; they are simply deactivated until you do; see *`https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html`* for instructions.
+
 9. **Start developing!**
+
+No development should be done on *main*, so create and checkout a new git branch with `git checkout -b new_branch_name` and start
+developing.
 
 If you have any questions, consult the template documentation at *`https://adacs-python-template.readthedocs.io/en/latest/index.html`*.
 

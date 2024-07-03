@@ -6,10 +6,7 @@ $ pip install {{ cookiecutter.__package_name }}
 ```
 
 ::: {note}
-This section is intended to be a place where you can show how easy it is to use your package.
-Taylor it to your own needs and see the *Markup Tips* section at the end for some guidance on
-the extended markdown elements that the Myst Parser gives you that you can use to build
-content.
+This section is intended to be a place where you can show how great your project is and how easy easy it is to use.  Taylor it to your own needs and see the *Markup Tips* section below for some guidance on the extended markdown elements that the Myst Parser gives you for building content.
 :::
 
 ## Markup Tips
