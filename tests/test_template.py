@@ -36,4 +36,4 @@ def test_template_run_black(bake_path):
 
 
 def test_template_run_ruff(bake_path):
-    run_inside_dir("ruff .", bake_path) == 0
+    run_inside_dir("ruff check .", bake_path) == 0
