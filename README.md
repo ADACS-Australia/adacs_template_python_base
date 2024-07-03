@@ -24,24 +24,21 @@ pipx install poetry
 ```
 
 ### Render the project
+Run cookiecutter on the template's repository:
 ``` console
 cookiecutter gh:ADACS-Australia/adacs_template_python_base
 ```
-
-### Answer the questions
+and answer the questions:
 
 ![ADACS Python Template Questions](https://github.com/ADACS-Australia/adacs_template_python_base/blob/main/docs/assets/adacs_python_template_cookiecutter_questions.png?raw=true)
 
-
 ### Install the new project
-Create a new virtual environment using your favourite method (if you don't know how to do this, go learn about it now) and install
-the project by running the following in the new repo directory:
+Create and activate a new virtual environment using your favourite method (if you don't know how to use Python environments, we advise you to go learn about them now) and install the project by running the following in the new repo directory:
 ``` console
 poetry install --all-extras
 ```
 
 ### Configure the services you need
-
 Follow [these instructions](https://adacs-template-python-base.readthedocs.io/en/latest/content/configuring_services.html) to
 configure GitHub, Read the Docs, PyPI, etc.
 

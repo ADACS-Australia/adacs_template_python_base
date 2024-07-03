@@ -9,11 +9,11 @@ Develpers and project owners/maintainers will require accounts with one or all o
     
     Branch permissions for the main project repository should be configured only permit merges from pull requests.  To do so, navigate to `Settings->Branches->Add branch ruleset` and:
 
-        - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
-        - set `Enforecement status` to `Active`
-        - add a `Target Branch` targeting criteria by pattern and type `main`
-        - select `Require a pull request before merging`
-        - select `Require status checks to pass` and add `Pull Request` from GitHub Actions as a required check
+    - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
+    - set `Enforecement status` to `Active`
+    - add a `Target Branch` targeting criteria by pattern and type `main`
+    - select `Require a pull request before merging`
+    - select `Require status checks to pass` and add `Pull Request` from GitHub Actions as a required check
 
     This will ensure that all CI/CD tests pass before a merge to the main branch can be made.
     
@@ -51,17 +51,18 @@ Develpers and project owners/maintainers will require accounts with one or all o
 
         - To obtain **RTD_WEBHOOK_URL** and **RTD_WEBHOOK_TOKEN**, migrate to the `Admin->Integrations` tab on the *RTD* project page and click on your incomming webhook.
 
-    Once properly configured, the documentation for this project should build automatically on *RTD* every time you generate a new release (see below for instructions).
+    Once properly configured, the documentation for this project should build automatically on *RTD* every time you [generate a new release](#new-release).
 
     ::: {note}
     Make sure **RTD_WEBHOOK_URL** starts with `https://`.  Prepend it if not.
     :::
 
+(config-pypi)=
 3. The [__Python Package Index (*PyPI*)__](https://pypi.org)
 
     This service is used to publish project releases.  An account is needed if you are the owner of the project, but not generally needed if you are simply a contributing developer.  An API token will need to be created and added to your *GitHub* project as **PYPI_TOKEN** (as detailed above).  This can be generated from the *PyPI* UI by navigating to `Account Settings->Add API Token`.
 
-    To test releases, a parallel account on *test.PyPI* is needed and a similar token to **PYPI_TOKEN** - named **TEST_PYPI_TOKEN** needs to be set, in the same way as above.  To create a test release, flag it as a "pre-release" through the *GitHub* interface when you generate a release, and it will be published on *test.PyPI.org* rather than *PyPI.org*.
+    To test releases, a parallel account on *test.PyPI* is needed and a similar token to **PYPI_TOKEN** - named **TEST_PYPI_TOKEN** needs to be set, in the same way as above.  To create a test release, flag it as a "pre-release" through the *GitHub* interface when you generate a release, and it will be published on *test.PyPI.org* rather than *PyPI.org*.  If this token is not defined, publication will not happen on either.
 
     ::: {note}
     Although `poetry` can be used to directly publish this project to *PyPI*, users should not do this.  The proper way to publish the project is through the *GitHub* interface, which leverages the *GitHub Workflows* of this project to ensure the enforcement of project standards before a new version can be created.
