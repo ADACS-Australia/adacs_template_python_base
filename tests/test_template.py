@@ -19,7 +19,7 @@ def bake_path(cookies, request):
         assert result.project_path.is_dir()
         assert result.exit_code == exit_code_expected
         assert result.exception is exception_expected
-        run_inside_dir("poetry install --all-extras", result.project_path) == 0
+        run_inside_dir("poetry install", result.project_path) == 0
         yield result.project_path
 
 

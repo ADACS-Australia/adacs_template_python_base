@@ -35,7 +35,7 @@ and answer the questions:
 ### Install the new project
 Create and activate a new virtual environment (**use Python version >= 3.11**) using your favourite method (if you don't know how to use Python environments, we advise you to go learn about them now) and install the project by running the following in the new repo directory:
 ``` console
-poetry install --all-extras
+poetry install
 ```
 
 ### Configure the services you need

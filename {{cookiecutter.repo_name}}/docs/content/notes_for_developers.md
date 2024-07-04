@@ -74,7 +74,7 @@ Poetry is used to manage this project ([see here for an introduction](https://py
 Once the code is locally installed, development dependencies should be installed by moving to the project's root directory and executing the following:
 
 ``` console
-$ poetry install --all-extras
+$ poetry install
 ```
 
 In what follows, it will be assumed that this has been done.

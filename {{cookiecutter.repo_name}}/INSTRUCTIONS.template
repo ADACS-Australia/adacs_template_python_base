@@ -10,7 +10,7 @@ Use your favourite method to create and activate a Python environment for your d
 
 2. **Install the project and all dependencies**
 
-With your environment activated, run the following from within your new repo: `poetry install --all-extras`
+With your environment activated, run the following from within your new repo: `poetry install`
 
 ***NOTE: This needs to be done before any tests can be run, documentation built, etc.***
 
