@@ -9,7 +9,7 @@ packages = [
     { include = "adacs_template_python_base", from = "python" }
 ]
 homepage = "https://github.com/ADACS-Australia/adacs_template_python_base"
-documentation = "https://adacs_template_python_base.readthedocs.io/en/latest/"
+documentation = "https://adacs-base-python-template.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
 python = " >=3.11"
