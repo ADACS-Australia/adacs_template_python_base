@@ -101,7 +101,7 @@ jobs:
 
       # Install the project (we need some of the tools installed here for liniting etc)
       - name: Install the project
-        run: poetry install --no-interaction --extras "docs dev"
+        run: poetry install --no-interaction
 
       # Enforce code formating standards
       # note: --config is needed to prevent ruff from using a version elsewhere in the project.

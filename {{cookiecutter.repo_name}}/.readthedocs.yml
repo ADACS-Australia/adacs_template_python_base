@@ -13,7 +13,7 @@ build:
       - pip install poetry
     post_install:
       # Install project and dependencies with 'docs' dependency group.
-      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --with docs
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --only main,docs
       # Generate API documentation, etc. (if needed)
       - make -f docs/Makefile content
 sphinx:

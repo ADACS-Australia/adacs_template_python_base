@@ -97,7 +97,7 @@ def install(venv_type: str) -> None:
         String specifying how the virtual environment is being supported
     """
     if venv_type in ["venv", "poetry", "pyenv"]:
-        result = subprocess.run(["poetry", "install", "--all-extras"])
+        result = subprocess.run(["poetry", "install", "--no-interaction"])
     elif venv_type == "none":
         pass
     else:
