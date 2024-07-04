@@ -32,16 +32,16 @@ ruff = "^0"
 mypy = "^1"
 pre-commit = "^3"
 
-[tool.pytest.ini_options]
-pythonpath = ["./tests", "./"] # relative to root directory
-addopts = "--ignore={{cookiecutter.repo_name}}"
-
 # This configures the Poetry plugin which enables dynamic versioning via the repo tags
 # Note the changes that are also needed to the [build-system] config below.
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
 style = "semver"
+
+[tool.pytest.ini_options]
+pythonpath = ["./tests", "./"] # relative to root directory
+addopts = "--ignore={{cookiecutter.repo_name}}"
 
 [tool.mypy]
 ignore_missing_imports = true

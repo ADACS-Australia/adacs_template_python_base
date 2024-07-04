@@ -27,20 +27,11 @@ myst-parser = "^1"
 pytest = "^7"
 pytest-mock = "^3"
 pytest-cookies = "^0"
+pytest-cov = "^5"
 black = "^24"
 ruff = "^0"
 mypy = "^1"
 pre-commit = "^3"
-
-[tool.pytest.ini_options]
-addopts = "--cov"
-pythonpath = "./python" # relative to root directory
-# Uncomment and edit the following line to add custom markers to your tests
-# These can be run with the following (for example):
-#
-#   $ pytest -m marker_name
-#
-#markers = [ "marker_name: A short description of the marker" ]
 
 # This configures the Poetry plugin which enables dynamic versioning via the repo tags
 # Note the changes that are also needed to the [build-system] config below.
@@ -48,6 +39,17 @@ pythonpath = "./python" # relative to root directory
 enable = true
 vcs = "git"
 style = "semver"
+
+[tool.pytest.ini_options]
+addopts = "--cov"
+pythonpath = "./python" # relative to root directory
+
+# Uncomment and edit the following line to add custom markers to your tests
+# These can be run with the following (for example):
+#
+#   $ pytest -m marker_name
+#
+#markers = [ "marker_name: A short description of the marker" ]
 
 [tool.mypy]
 ignore_missing_imports = true
