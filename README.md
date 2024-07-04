@@ -39,7 +39,7 @@ poetry install
 ```
 
 ### Configure the services you need
-Follow [these instructions](https://adacs-template-python-base.readthedocs.io/en/latest/content/configuring_services.html) to
+Follow [these instructions](https://adacs-base-python-template.readthedocs.io/en/latest/content/configuring_services.html) to
 configure GitHub, Read the Docs, PyPI, etc.
 
 ## What do you get for this?
