@@ -1,6 +1,8 @@
-# Notes for Developers
+(developing-new)=
+# Guidelines for Developing a New Project
 
-This section provides details on how to configure and/or develop this codebase.
+This section provides guidelines that should be followed when developing a new project with this template.  It goes through what
+gets set-up when you render a new project and explains why things have been set-up they way they have.
 
 ## Continuos Integration/Continuous Deployment (CI/CD) Workflow
 

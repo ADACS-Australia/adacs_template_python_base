@@ -9,5 +9,6 @@
    :maxdepth: 3
 
    Home <self>
-   Configuring a New Project <content/configuring_services>
-   Development Guidelines <content/notes_for_developers>
+   Configuring a new project <content/configuring_services>
+   Development guidelines <content/development_guidelines>
+   Maintianing this template <content/template_maintenance>

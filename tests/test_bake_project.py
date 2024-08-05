@@ -11,7 +11,6 @@ def test_year_in_license_file(cookies):
 
 
 def test_bake_with_defaults(cookies):
-
     # List of filenames that need to be present in a properly rendered template
     check_toplevel_pathnames = [
         ".git",

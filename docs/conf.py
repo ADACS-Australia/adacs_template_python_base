@@ -40,7 +40,8 @@ author = format_authors(
 copyright_year = 2023
 copyright = f"{copyright_year}, {author}"
 
-# These versions are just placeholders.  The point of truth for versions is the last tag on the main branch with a "vX.Y.Z*" format.  This can
+# These versions are just placeholders.  The point of truth for versions is
+# the last tag on the main branch with a "vX.Y.Z*" format.  This can
 # be accessed through installed project metadata.
 
 # The short X.Y.Z version
@@ -77,7 +78,8 @@ myst_enable_extensions = [
     "dollarmath",
 ]
 
-# Set the prompt text that you want the docs copy button to ignore when copying code cells
+# Set the prompt text that you want the docs copy button to ignore when
+# copying code cells
 copybutton_prompt_text = "$ "
 
 # Add any paths that contain templates here, relative to this directory.
