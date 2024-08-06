@@ -30,17 +30,25 @@ RUN poetry install --no-root && \
 ##########################
 RUN touch entry_script.sh
 RUN chmod a+rx ${TEST_ROOT}/entry_script.sh
-RUN echo "if ! test -d "${TEMPLATE_ROOT} >> ${TEST_ROOT}/entry_script.sh
-RUN echo "then" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "  echo The project directory has not been mounted.  Please run the container with 'docker run -v <path>:${TEMPLATE_ROOT}'" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "  exit 1" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "fi" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "if ! cmp -s ${TEST_ROOT}/poetry.lock.image ${TEMPLATE_ROOT}/poetry.lock" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "then" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "  echo poetry.lock has been updated since the image was built.  Please rebuild it and try again." >> ${TEST_ROOT}/entry_script.sh
-RUN echo "  exit 1" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "fi" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "cd ${TEMPLATE_ROOT}" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "poetry install --only-root" >> ${TEST_ROOT}/entry_script.sh
-RUN echo "pytest" >> ${TEST_ROOT}/entry_script.sh
+RUN echo '\n\
+set -e \n\
+\n\
+_term() {\n\
+  echo "Caught SIGTERM signal!"\n\
+  kill -TERM "$child" 2>/dev/null\n\
+}\n\
+\n\
+# trap _term SIGTERM\n\
+\n\
+if ! test -d ${TEMPLATE_ROOT} ; then \n\
+  echo The project directory has not been mounted.  Please run the container with e.g. 'docker run -v \$PWD:${TEMPLATE_ROOT}' \n\
+  exit 1 \n\
+fi \n\
+if ! cmp -s ${TEST_ROOT}/poetry.lock.image ${TEMPLATE_ROOT}/poetry.lock ; then \n\
+  echo poetry.lock has been updated since the image was built.  Please rebuild it and try again. \n\
+  exit 1 \n\
+fi \n\
+cd ${TEMPLATE_ROOT} \n\
+poetry install --only-root \n\
+pytest' >> ${TEST_ROOT}/entry_script.sh
 ENTRYPOINT ["sh", "-c", "${TEST_ROOT}/entry_script.sh"]
