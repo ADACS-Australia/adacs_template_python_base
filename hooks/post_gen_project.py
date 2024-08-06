@@ -8,8 +8,10 @@ from rich.markdown import Markdown
 def git() -> None:
     """Create and configure a git repo for the rendered project"""
     result = subprocess.run(["git", "init", "-q",  "-b", "main"])
-    result = subprocess.run(["git", "config",  "--local", "push.followTags", "true" ])
-    result = subprocess.run(["git", "config",  "--local", "--add", "remote.origin.tagopt", "--tags" ])
+    result = subprocess.run(
+        ["git", "config",  "--local", "push.followTags", "true"])
+    result = subprocess.run(
+        ["git", "config",  "--local", "--add", "remote.origin.tagopt", "--tags"])
     result = subprocess.run(
         [
             "git",
@@ -33,11 +35,13 @@ def git() -> None:
 
     # Create initial commit
     result = subprocess.run(["git", "add", "*"])
-    result = subprocess.run(["git", "commit", "-q", "-m", "Initial commit of template code"])
+    result = subprocess.run(
+        ["git", "commit", "-q", "-m", "Initial commit of template code"])
 
     # Make sure this is an annotated tag or it won't be pushed to remote and the version
     # management won't be initialised correctly
-    result = subprocess.run(["git", "tag", "-a", "v0.0.0", "-m", "Initialised with template"])
+    result = subprocess.run(
+        ["git", "tag", "-a", "v0.0.0", "-m", "Initialised with template"])
 
 
 def venv(venv_type: str) -> None:
@@ -85,7 +89,8 @@ def venv(venv_type: str) -> None:
     elif venv_type == "none":
         pass
     else:
-        raise ValueError(f"Invalid venv implementation selection given: {venv_type}")
+        raise ValueError(
+            f"Invalid venv implementation selection given: {venv_typ}")
 
 
 def install(venv_type: str) -> None:
@@ -101,11 +106,11 @@ def install(venv_type: str) -> None:
     elif venv_type == "none":
         pass
     else:
-        raise ValueError(f"Invalid venv implementation selection given: {venv_type}")
+        raise ValueError(
+            f"Invalid venv implementation selection given: {venv_type}")
 
 
 def print_instructions() -> None:
-
     """Print instructions about how to configure the rendered project for use"""
     # Read the instructions file, ignoring lines that start with '***'
     with open("INSTRUCTIONS.template", "r") as file:
@@ -122,7 +127,7 @@ def print_instructions() -> None:
     # Render the file as Markdown with Rich
     print()
     console = Console()
-    if not {{ cookiecutter.__test }}:
+    if not {{cookiecutter.__test}}:
         console.print(Markdown(lines))
 
 

@@ -1,6 +1,8 @@
-# Notes for Developers
+(developing-new)=
+# Guidelines for Developing a New Project
 
-This section provides details on how to configure and/or develop this codebase.
+This section provides guidelines that should be followed when developing a new project with this template.  It goes through what
+gets set-up when you render a new project and explains why things have been set-up they way they have.
 
 ## Continuos Integration/Continuous Deployment (CI/CD) Workflow
 
@@ -243,12 +245,11 @@ The majority of documentation changes can be managed in one of the following 4 w
 
 4. **Add a new Markdown file**:
 
-	Otherwise, create a new `.md` file in the `docs/content` directory and add it to the list of Markdown files referenced in `docs/index.rst`.  Note that these files will be added to the documentation in the order specified, so place it in that list where you want it to appear in the final documentation.  This new `.md` file should start with a top-level title (marked-up by starting a line with a single `#`; see the top of this file for an example).
+    Otherwise, create a new `.md` file in the `docs/content` directory and add it to the list of Markdown files referenced in `docs/index.rst`.  Note that these files will be added to the documentation in the order specified, so place it in that list where you want it to appear in the final documentation.  This new `.md` file should start with a top-level title (marked-up by starting a line with a single `#`; see the top of this file for an example).
 
-5. **Extend the MyST-Parser support***
+5. **Extend the MyST-Parser support**:
 
-    New MyST-Parser extensions can be enabled in `docs/conf.py` by extending the `myst_enable_extensions` list.  See the
-    MyST-Parser documentation for a list of available extensions and instructions on how to use them.
+    New MyST-Parser extensions can be enabled in `docs/conf.py` by extending the `myst_enable_extensions` list.  See the MyST-Parser documentation for a list of available extensions and instructions on how to use them.
 
 #### Adding images, etc.
 
