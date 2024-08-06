@@ -17,7 +17,7 @@ developing on this template:
 
 ### Hooks
 
-There are two files in the `hooks` directory: one which gets run before a tempalte gets rendered and one which gets rendered after a template gets rendered.  **Both of these files are actually Jinja2 templates.**  As a result, these files can actually possess invalid code.  They do not get automatically formatted or linted as a result, so please be careful when developing these files; try to maintain proper coding style, for example.
+There are two files in the `hooks` directory: one which gets run *before* a tempalte gets rendered and one which gets run *after* a template gets rendered.  **Both of these files are actually Jinja2 templates.**  As a result, these files can legitimately possess invalid code.  **Be particularly careful if your code editor is configured to autoformat code, since this can cause unintended bugs in these files.**
 
 ## Changes to documentation
 

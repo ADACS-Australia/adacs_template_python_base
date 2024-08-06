@@ -133,8 +133,8 @@ def print_instructions() -> None:
 
 if __name__ == "__main__":
     git()
-    { % raw % }
+    {% raw %}
     # venv("{{ cookiecutter.virtual_environment }}")
     # install("{{ cookiecutter.virtual_environment }}")
-    { % endraw % }
+    {% endraw %}
     print_instructions()
