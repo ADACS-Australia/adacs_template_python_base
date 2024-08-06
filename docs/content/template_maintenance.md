@@ -8,7 +8,18 @@ the maintenance of this template.
 
 When testing, temporary projects get created and need to be installed into an environment before tests can be run, documentation builds checked, etc.  Be warned that this can both pollute your development environment and lead to unreliable tests due to the bleeding of state from past test runs to new runs.
 
-To address this we will soon add the ability to run tests in a Docker container, where we can ensure fresh and reproducable test runs.  This is not implemented yet but will be soon.
+To address this, a `Dockerfile` and `Makefile` are provided for running tests in a container.  Run the
+following to build the container:
+
+``` console
+make docker-build
+```
+
+Run the following to run the tests in the container:
+
+``` console
+make docker-tests
+```
 
 ## Some things to note about Cookiecutter templates
 
