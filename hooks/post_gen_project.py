@@ -7,7 +7,8 @@ from rich.markdown import Markdown
 
 def git() -> None:
     """Create and configure a git repo for the rendered project"""
-    result = subprocess.run(["git", "init", "-q",  "-b", "main"])
+    result = subprocess.run(["git", "init", "-q"])
+    result = subprocess.run(["git", "checkout", "-q",  "-b", "main"])
     result = subprocess.run(
         ["git", "config",  "--local", "push.followTags", "true"])
     result = subprocess.run(
