@@ -7,7 +7,7 @@ PRJ_PATH=$(realpath ${MAKEFILE_DIR} )
 PRJ_SLUG=$(notdir ${PRJ_PATH})
 
 docker-build:
-	docker build -t ${PRJ_SLUG} .
+	@docker build -t ${PRJ_SLUG} .
 
 docker-tests:
-	docker run --rm -v ${PRJ_PATH}:/template ${PRJ_SLUG}
+	@docker run -t -i --rm -v ${PRJ_PATH}:/template ${PRJ_SLUG} ./entry_script.sh

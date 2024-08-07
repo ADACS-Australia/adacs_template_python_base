@@ -20,28 +20,28 @@ WORKDIR ${TEST_ROOT}
 # script when we start the container)
 ################################################################
 COPY pyproject.toml poetry.lock .
-RUN poetry install --no-root && \
+RUN poetry install --no-root --compile && \
     rm -rf ${POETRY_CACHE_DIR} && \
     rm pyproject.toml && \
     mv poetry.lock poetry.lock.image
 
 ##########################
-# Set-up the entry point
+# Set-up the entry script
 ##########################
 RUN touch entry_script.sh
-RUN chmod a+rx ${TEST_ROOT}/entry_script.sh
-RUN echo '\n\
+RUN chmod a+rx entry_script.sh
+RUN echo \
+'#!/bin/bash \n\
 set -e \n\
 \n\
 _term() {\n\
-  echo "Caught SIGTERM signal!"\n\
+  echo "SIGTERM signal caught by container.  Exiting."\n\
   kill -TERM "$child" 2>/dev/null\n\
 }\n\
 \n\
-# trap _term SIGTERM\n\
-\n\
+trap _term SIGTERM\n\
 if ! test -d ${TEMPLATE_ROOT} ; then \n\
-  echo The project directory has not been mounted.  Please run the container with e.g. 'docker run -v \$PWD:${TEMPLATE_ROOT}' \n\
+  echo "The project directory has not been mounted properly.  Please run the container with: docker run -v $""PWD:"${TEMPLATE_ROOT}" etc." \n\
   exit 1 \n\
 fi \n\
 if ! cmp -s ${TEST_ROOT}/poetry.lock.image ${TEMPLATE_ROOT}/poetry.lock ; then \n\
@@ -49,6 +49,8 @@ if ! cmp -s ${TEST_ROOT}/poetry.lock.image ${TEMPLATE_ROOT}/poetry.lock ; then \
   exit 1 \n\
 fi \n\
 cd ${TEMPLATE_ROOT} \n\
+\n\
 poetry install --only-root \n\
-pytest' >> ${TEST_ROOT}/entry_script.sh
-ENTRYPOINT ["sh", "-c", "${TEST_ROOT}/entry_script.sh"]
+echo \n\
+pytest' \
+>> entry_script.sh
