@@ -21,6 +21,10 @@ Run the following to run the tests in the container:
 make docker-tests
 ```
 
+::: {note}
+Running the tests in a container on MacOS is **slow**: 10 mins on an M1 Mac vs 1 min in the CI/CD.  Optimisation suggestions welcome.
+:::
+
 ## Some things to note about Cookiecutter templates
 
 The following are some things that you might not know about Cookiecutter templates that you may need to be aware of if you are
