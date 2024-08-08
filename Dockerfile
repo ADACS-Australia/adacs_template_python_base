@@ -32,25 +32,17 @@ RUN touch entry_script.sh
 RUN chmod a+rx entry_script.sh
 RUN echo \
 '#!/bin/bash \n\
-set -e \n\
+if ! test -d ${TEMPLATE_ROOT} ; then\n\
+  echo "The project directory has not been mounted properly.  Please run the container with: docker run -v $""PWD:"${TEMPLATE_ROOT}" etc."\n\
+  exit 1\n\
+fi\n\
+if ! cmp -s ${TEST_ROOT}/poetry.lock.image ${TEMPLATE_ROOT}/poetry.lock ; then\n\
+  echo poetry.lock has been updated since the image was built.  Please rebuild it and try again.\n\
+  exit 1\n\
+fi\n\
+cd ${TEMPLATE_ROOT}\n\
 \n\
-_term() {\n\
-  echo "SIGTERM signal caught by container.  Exiting."\n\
-  kill -TERM "$child" 2>/dev/null\n\
-}\n\
-\n\
-trap _term SIGTERM\n\
-if ! test -d ${TEMPLATE_ROOT} ; then \n\
-  echo "The project directory has not been mounted properly.  Please run the container with: docker run -v $""PWD:"${TEMPLATE_ROOT}" etc." \n\
-  exit 1 \n\
-fi \n\
-if ! cmp -s ${TEST_ROOT}/poetry.lock.image ${TEMPLATE_ROOT}/poetry.lock ; then \n\
-  echo poetry.lock has been updated since the image was built.  Please rebuild it and try again. \n\
-  exit 1 \n\
-fi \n\
-cd ${TEMPLATE_ROOT} \n\
-\n\
-poetry install --only-root \n\
-echo \n\
+poetry install --only-root\n\
+echo\n\
 pytest' \
 >> entry_script.sh
