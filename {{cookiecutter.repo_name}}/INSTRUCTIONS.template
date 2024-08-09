@@ -6,7 +6,7 @@
 
 1. **Create and activate a Python 3.11 environment**
 
-Use your favourite method to create and activate a Python 3.11 environment for your development.
+Use your favourite method to *create and activate* a Python 3.11 environment for your development.
 
 2. **Install the project and all dependencies**
 
@@ -14,49 +14,55 @@ With your environment activated, run the following from within your new repo: `p
 
 *NOTE: This needs to be done before any tests can be run, documentation built, etc.*
 
-3. **Create a GitHub repo and adjust workflow permissions**
+3. **Create a GitHub repo**
 
-Goto *`https://github.com`* and create a new repo with the following:
+If you have not yet done so, goto *`https://github.com`* and create a new repo with the following:
 
 - account:   **{{cookiecutter.github_login}}**
 - repo name: **{{cookiecutter.repo_name}}**
+
+4. **Adjust workflow permissions**
 
 Navigate within the repo to `Settings->Actions->General` and select `Read and write permissions`.
 
 *NOTE: This needs to be done before the next stage so that the GitHub version bump action that is run on first upload does not fail.*
 
-4. **Push the local repo to GitHub**
+5. **Push the local repo to GitHub**
 
 Your new repo has been configured with your GitHub repo details.  Run the following from within your new local repo to push it to GitHub: `git push -u origin main`
 
 *NOTE: If you notice any failed workflow runs at this point, it may be because you forgot to make the Action permission change mentioned above.*
 
-5. **Configure branch permissions**
+6. **Configure branch permissions**
 
 Navigate to `Settings->Branches->Add branch ruleset` and ...
 
 - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
 - set `Enforecement status` to `Active`
-- add a `Target Branch` targeting criteria by pattern and type `main`
-- select `Require a pull request before merging`
-- select `Require status checks to pass` and add the check `Run all build and unit tests` as a required check
+- add a `Target Branch` via `Add target->Include by pattern` and type `main`
+- adjust `Branch Rules` by selecting `Require a pull request before merging`
+- adjust `Branch Rules` by selecting `Require status checks to pass` and add the check `Run all build and unit tests` as a required check
 - push the `Create` button at the bottom
 
 *From this point on, no development should be performed on the main branch.  All updates to the main branch are managed via Pull Requests in the GitHub UI.*
 
-6. **[Optional] Activate pre-commit git hooks**
+7. **[Optional] Activate pre-commit git hooks**
 
 From within the repo, run the following: `pre-commit install`
 
-7 **[Optional] Configure Services (Read The Docs, PyPI, etc.)**
+8 **[Optional] Configure Services (Read The Docs, PyPI, etc.)**
 
-This can be done at any time when you want to enable these features; they are simply deactivated until you do; see *`https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html`* for instructions.
+This can be done at any time when you want to enable these features; they are simply deactivated until you do; see *https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html* for instructions.
 
-8. **Start developing!**
+9. **Start developing!**
 
-**No development should be done on *main***, so create and checkout a new git branch with `git checkout -b new_branch_name` and start
-developing.
+No development should be done on the *main* branch, so create and checkout a new git branch with `git checkout -b new_branch_name` and start developing.
 
-**N.B.: If you are new to the use of this template, make sure you have a good read of the `Notes for Developer
-If you have any questions, consult the template documentation at *`https://adacs-python-template.readthedocs.io/en/latest/index.html`*.
+**N.B.: If you are new to the use of this template, make sure you have a good read of the following
+sections of the documentation:**
+
+- `Guidelines for Developing a New Project`: *https://adacs-base-python-template.readthedocs.io/en/latest/content/development_guidelines.html*
+- `Common Gotchas`: *https://adacs-base-python-template.readthedocs.io/en/latest/content/common_gotchas.html*
+
+Any questions?  Consult the docs at *https://adacs-base-python-template.readthedocs.io/en/latest/index.html*.
 
