@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://github.com/ADACS-Australia/adacs_template_python_base/blob/main/docs/assets/adacs_logo.png" alt="ADACS Logo">
+  <img src="https://github.com/ADACS-Australia/adacs_template_python_base/blob/main/docs/assets/adacs_logo.png?raw=true" alt="ADACS Logo">
 </p>
 
 <p align="center">
-  <a href="https://www.python.org/downloads/release/python-311/">
+  <a href="https://www.python.org/downloads/release/python-3110/">
     <img src="https://img.shields.io/badge/python-3.11-blue.svg" alt="Python 3.11">
   </a>
   <a href='https://adacs-base-python-template.readthedocs.io/en/latest/?badge=latest'>
