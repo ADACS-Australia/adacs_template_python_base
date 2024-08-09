@@ -54,7 +54,7 @@ jobs:
 
       # Set-up dependencies
       - name: Check-out repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Needed for tags to be fetched; see https://github.com/actions/checkout/issues/290
 
