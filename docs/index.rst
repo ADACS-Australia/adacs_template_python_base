@@ -11,4 +11,5 @@
    Home <self>
    Configuring a new project <content/configuring_services>
    Development guidelines <content/development_guidelines>
+   Common Gotchas <content/common_gotchas>
    Maintianing this template <content/template_maintenance>

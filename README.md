@@ -1,5 +1,22 @@
-# Starting a new Python codebase?
-This template takes the effort out of starting from a good place.
+<p align="center">
+  <img src="https://github.com/ADACS-Australia/adacs_template_python_base/blob/main/docs/assets/adacs_logo.png" alt="ADACS Logo">
+</p>
+
+<p align="center">
+  <a href="https://www.python.org/downloads/release/python-311/">
+    <img src="https://img.shields.io/badge/python-3.11-blue.svg" alt="Python 3.11">
+  </a>
+  <a href='https://adacs-base-python-template.readthedocs.io/en/latest/?badge=latest'>
+    <img src='https://readthedocs.org/projects/adacs-base-python-template/badge/?version=latest' alt='Documentation Status' />
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
+  </a>
+</p>
+
+# Base Python Codebase Template
+
+**Starting a new Python codebase?**  Read on to see how this template can have you set-up with all the elements of a professional codebase in less than 30 mins.
 
 ## Getting Started
 ***Installing the needed dependencies and building your new project is easy with the following steps ...***
