@@ -51,26 +51,9 @@ jobs:
 
     steps:
 
-      # Clone the base template
-      - name: Clone base template
-        uses: actions/checkout@v3
-        with:
-          repository: 'ADACS-Australia/adacs_template_python_base'
-          path: __adacs_template_python_base
-
-      # Set the path where the base template will be stored and move it there
-      - name: Set temporary path
-        run: echo "TEMP_DIR=$(mktemp -d)" >> $GITHUB_ENV
-
-      - name: Move base template
-        run: mv __adacs_template_python_base $TEMP_DIR
-
-      - name: Set path to new base template location
-        run: echo "BASE_TEMPLATE_PATH=$(echo $TEMP_DIR/__adacs_template_python_base )" >> $GITHUB_ENV
-
       # Set-up dependencies
       - name: Check-out repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Needed for tags to be fetched; see https://github.com/actions/checkout/issues/290
 
@@ -90,7 +73,7 @@ jobs:
           installer-parallel: true
 
       - name: Set-up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'poetry'
