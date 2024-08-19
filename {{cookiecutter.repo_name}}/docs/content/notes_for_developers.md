@@ -18,7 +18,7 @@ workflows can be found within the `./.github/workflows/` directory and include:
 
 2. **bump.yml**
 
-    This workflow leverages the colocated `bump.sh` bash script to automatically increment the project version whenever code is pushed to the `main` branch.  It is controlled by adding the text `[version:minor]` or `[version:major]` to one of the commit messages of a pull request.
+    This workflow leverages the colocated `bump.sh` bash script to automatically increment the project version whenever code is pushed to the `main` branch.  It is controlled by adding the text `[version:minor]` or `[version:major]` to the message of the pull request's head commit.
 
 3. **publish.yml**
 
@@ -89,12 +89,12 @@ In the following, we lay-out some important guidelines for developing on this co
 
 ### Versioning
 
-Semantic versioning (i.e. a scheme that follows a `vMAJOR.MINOR.PATCH` format; see <https://semver.org> for details) is used for this project.  ***The single point of truth for the current production version is the last git tag on the main branch with a `v[0-9]*` format***.  When developing locally, the reported version will often appear as `v0.0.0-dev`.
+Semantic versioning (i.e. a scheme that follows a `vMAJOR.MINOR.PATCH` format; see <https://semver.org> for details) is used for this project.  ***The single point of truth for the current production version is the last git tag on the main branch with a `v[0-9]*` format***.  When developing locally, the reported version will appear as `v0.0.0-dev`.
 
 Changes are handled by a *GitHub Workflow* which increments the version and creates a new tag whenever a push occurs to the `main` branch.  This ensures that every commit on the `main` branch is assigned a unique version.  The logic by which it modifies the version is as follows:
 
-1. if the PR message (or one of its commits' messages) contains the text `[version:major]`, then `MAJOR` is incremented;
-2. else if the PR message (or one of its commits' messages) contains the text `[version:minor]`, then `MINOR` is incremented;
+1. if the message of the PR's head commit contains the text `[version:major]`, then `MAJOR` is incremented;
+2. else if it contains the text `[version:minor]`, then `MINOR` is incremented;
 3. else `PATCH` is incremented.
 
 A `MAJOR` version change should be indicated if the PR introduces a breaking change.  A `MINOR` version change should be indicated if the PR introduces new functionality.

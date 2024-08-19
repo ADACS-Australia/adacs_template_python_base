@@ -6,16 +6,21 @@
 ### Related Issue(s)
 [If applicable, mention any related issues or tasks that this pull request addresses.]
 
-### Checklist
-Please make sure to review and check the following before submitting your pull request. Remove any items that are not applicable.
+### Checklists
+Please indicate which of the following (if any) are being contributed to the codebase by this PR:
 
-- [ ] You have added the text `[version:minor]` if new functionality has been added; `[version:major]` if there are any breaking changes.
-- [ ] Unit tests have been added or updated to ensure proper functionality.
-- [ ] Documentation has been updated to reflect the changes (if applicable).
+- [ ] New feature(s) (warranting a MINOR version bump);
+- [ ] Breaking change(s) (warranting a MAJOR version bump);
+- [ ] Bug fix(es); or
+- [ ] Documentation improvements.
+
+**Make sure that `[version:minor]` gets added to the head commit message if a MINOR bump is needed; `[version:major]` if a MAJOR bump is needed.**
+
+Please ensure that the following have been addressed (if applicable) before submitting your PR:
+
+- [ ] Unit tests have been added or updated to ensure proper functionality;
+- [ ] Documentation has been updated to reflect the changes (if applicable); and
 - [ ] All commit messages are clear and descriptive.
 
-### Additional Notes
+### Notes for reviewers
 [Include any additional information or notes that may be helpful for reviewers.]
-
-### Reviewer(s)
-[Tag any specific person or team responsible for reviewing this pull request, if applicable.]
