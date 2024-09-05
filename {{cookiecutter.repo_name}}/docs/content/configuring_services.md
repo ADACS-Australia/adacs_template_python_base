@@ -1,7 +1,7 @@
 (configuring-services)=
 # Configuring Services
 
-This section details how the services leveraged by this project and those rendered by the ADACS Base Python Template need to be configured.
+This section details how the services leveraged by this project need to be configured.
 
 (configuring-github)=
 1. [***GitHub***](https:/github.com)

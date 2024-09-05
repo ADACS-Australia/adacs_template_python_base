@@ -1,8 +1,10 @@
-(developing-new)=
-# Guidelines for Developing a New Project
+(development-guidelines)=
+# Development Guidelines
 
-This section provides guidelines that should be followed when developing a new project with this template.  It goes through what
-gets set-up when you render a new project and explains why things have been set-up they way they have.
+This section provides details on how to configure and/or develop this codebase.  For details specific to:
+
+1. maintaining the template served by this codebase, see [Maintaining This Template](#template-maintenance).
+2. configuring the services used by this codebase, see [Configuring Services](#configuring-services).
 
 ## Continuos Integration/Continuous Deployment (CI/CD) Workflow
 
@@ -24,15 +26,14 @@ workflows can be found within the `./.github/workflows/` directory and include:
 
 3. **publish.yml**
 
-    This workflow is run whenever a new release is generated through *GitHub* (see below for details on how to do this).  Documentation is updated on *Read the Docs* and a new version of the code is published on the *Python Package Index* (*PyPI*).
+    This workflow is run whenever a new release is generated through *GitHub* (see below for details on how to do this).  Documentation is updated on *Read the Docs* (if configured to do so) and a new version of the code is published on the *Python Package Index* (*PyPI*; if configured to do so).
 
 ## Setting-up the Code
 
 A local development copy of the code base can be obtained and configured as follows:
 
 * Navigate to the *GitHub* page hosting the project
-* If you want to fork the code so that you work on your own version of the repository (not generally needed or
-  recommended):
+* If you want to fork the code so that you work on your own version of the repository (not generally needed or recommended):
     - Click on the `fork` button at the top of the page;
     - Edit the details you want to have for the new repoitory; and
     - Press `Create fork`.
@@ -41,7 +42,7 @@ A local development copy of the code base can be obtained and configured as foll
 * Generate a local copy using `git clone <url>`;
 
 ::: {note}
-Although not strictly necessary, it is recommended that you configure the branch permissions of any forked repositories as detailed in the *GitHub* configuration section below.
+Although not strictly necessary, it is recommended that you configure the branch permissions of any forked repositories as detailed in the [*GitHub* configuration section](#configuring-github).
 :::
 
 ## Poetry and Python environments for development
@@ -87,7 +88,7 @@ In the following, we lay-out some important guidelines for developing on this co
 
 ### Branches
 
-***Development should never be conducted on the `main` branch***.  If *GitHub* has been properly configured (see below), then merges to this branch are limited to Pull Requests (PRs) only.  Once a PR is opened for the `main` branch, the project tests are run.  When it is closed and code is committed to the main branch, the project version is automatically incremented (see below).
+***Development should never be conducted on the `main` branch***.  If *GitHub* has been properly configured (see [here](#configuring-github)), then merges to this branch are limited to Pull Requests (PRs) only.  Once a PR is opened for the `main` branch, the project tests are run.  When it is closed and code is committed to the main branch, the project version is automatically incremented (see below).
 
 ### Versioning
 
@@ -107,14 +108,32 @@ Make sure you think carefully about what type of changes you are committing.  If
 
 ### Tests
 
-*PyTest* is used to run tests for this codebase.  Make sure you run them before submitting any code to a PR by
-executing the following from the project root directory:
+*PyTest* is used to run tests for this codebase.  Make sure you run them before submitting any code to a PR by executing the following from the project root directory:
 
 ``` console
 $ pytest
 ```
 
-Some further comments about how testing has been configured for this project:
+When testing, temporary projects get created and need to be installed into an environment before tests can be run, documentation builds checked, etc.  Be warned that this can both pollute your development environment and lead to unreliable tests due to the bleeding of state from past test runs to new runs.
+
+To address this, a `Dockerfile` and `Makefile` are provided for running tests in a container.  Run the
+following to build the container:
+
+``` console
+make docker-build
+```
+
+Run the following to run the tests in the container:
+
+``` console
+make docker-tests
+```
+
+::: {note}
+Running the tests in a container on MacOS is **slow**: 10 mins on an M1 Mac vs 1 min in the CI/CD.  Optimisation suggestions welcome.
+:::
+
+Some further comments about how testing has been configured for projects rendered bt the ADACS Base Template:
 
 #### Coverage
 
