@@ -1,11 +1,11 @@
 #############
 # Base image
 #############
-FROM python:3.11-buster
+FROM python:3.12-bookworm
 
 ENV HOME=/home/pytest
 ENV USERNAME=pytest
-ENV PACKAGE_ROOT ${HOME}/package
+ENV PACKAGE_ROOT=${HOME}/package
 
 # Create user USERNAME
 RUN mkdir -p ${HOME} && \
