@@ -10,4 +10,4 @@ docker-build:
 	@docker build -t ${PRJ_SLUG} .
 
 docker-tests:
-	@docker run -t -i --rm -v ${PRJ_PATH}:/template ${PRJ_SLUG} ./entry_script.sh
+	@docker run -t -i --rm -v ${PRJ_PATH}:/home/pytest/package ${PRJ_SLUG} /home/pytest/entry_script.sh
