@@ -1,19 +1,13 @@
 (configuring-services)=
 # Configuring Services
 
-This section details how the services leveraged by this project and those rendered by the ADACS Base Python Template need to be configured.
+This section details how the services leveraged by this project need to be configured.  If you have just rendered a new project and followed the instructions that were given, you should have already done the following.  For reference - or in case you are looking to configure a fork of a project - we repeat those instructions here.
 
 (configuring-github)=
 1. [***GitHub***](https:/github.com)
 
     To work with this codebase, you will require a *GitHub* account ([go here to get one](https://github.com)).
     
-    ::: {note}
-    If you have just rendered a new project and have followed the instructions that were given, you should already have done the
-    following.  For completeness though - or in case you are looking to configure a fork of a project - we note that the following
-    needs to be done:
-    :::
-
     Branch permissions for the main project repository should be configured to only permit merges from pull requests.  To do so, navigate to `Settings->Branches->Add branch ruleset` and:
 
     - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
@@ -44,6 +38,11 @@ This section details how the services leveraged by this project and those render
     
         - **TEST_PYPI_TOKEN**,
 
+    ::: {note}
+    These secrets do not need to be configured if you do not want to use these services.  If left unconfigured, the
+    corresponding functionality will simply be ignored.
+    :::
+
 2. [__Read the Docs__](https://readthedocs.org)
 
     To (optionally) publish this project's documentation you will need a *RTD* account ([go here to get one](https://readthedocs.org)).  It can be configured in either of the following ways:
@@ -73,8 +72,8 @@ This section details how the services leveraged by this project and those render
 3. The [__Python Package Index (*PyPI*)__](https://pypi.org)
 
     To (optionally) publish releases of this project's code you will need a *PyPI* account ([go here to get one](https://pypi.org)).  To (optionally) generate test releases, you will need a *TestPyPI* account.  They operate the same way and can both be configured as follows:
-
     - An API token will need to be created and added to your *GitHub* project as **PYPI_TOKEN** (as detailed above).  This can be generated from the *PyPI* UI by navigating to `Account Settings->Add API Token`.  In the first instance - before the project exists on your account - generate a token with `Entire Account` scope.  Once the project has been published for a first time to *PyPI*, the initial token can be deleted and a new one generated with an project scope selected to be that of the project.  Make sure to update the *GitHub* secret value once you have done so.
+
     - Repeat this process for *TestPyPI* if you want to be able to generate test releases, adding it as a secret to your *GitHub* repo with the name **TEST_PYPI_TOKEN**
 
     ::: {note}

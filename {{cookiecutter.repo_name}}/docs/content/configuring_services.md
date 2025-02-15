@@ -72,8 +72,8 @@ This section details how the services leveraged by this project need to be confi
 3. The [__Python Package Index (*PyPI*)__](https://pypi.org)
 
     To (optionally) publish releases of this project's code you will need a *PyPI* account ([go here to get one](https://pypi.org)).  To (optionally) generate test releases, you will need a *TestPyPI* account.  They operate the same way and can both be configured as follows:
-
     - An API token will need to be created and added to your *GitHub* project as **PYPI_TOKEN** (as detailed above).  This can be generated from the *PyPI* UI by navigating to `Account Settings->Add API Token`.  In the first instance - before the project exists on your account - generate a token with `Entire Account` scope.  Once the project has been published for a first time to *PyPI*, the initial token can be deleted and a new one generated with an project scope selected to be that of the project.  Make sure to update the *GitHub* secret value once you have done so.
+
     - Repeat this process for *TestPyPI* if you want to be able to generate test releases, adding it as a secret to your *GitHub* repo with the name **TEST_PYPI_TOKEN**
 
     ::: {note}
