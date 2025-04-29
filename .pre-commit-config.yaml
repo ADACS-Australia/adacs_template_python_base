@@ -25,14 +25,14 @@ repos:
 
   # Format code
   - repo: https://github.com/psf/black
-    rev: 24.8.0
+    rev: 25.1.0
     hooks:
       - id: black
         exclude: "{{cookiecutter.repo_name}}|hooks"
 
   # Lint code
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.5.6
+    rev: v0.11.2
     hooks:
       - id: ruff
         exclude: "{{cookiecutter.repo_name}}|hooks"

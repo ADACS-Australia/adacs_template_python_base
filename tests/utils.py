@@ -34,6 +34,11 @@ def bake_in_temp_dir(cookies: Cookies, *args, **kwargs):
     try:
         yield result
     finally:
+        # We're only using Poetry to manage envs for the tests, so this is safe
+        # subprocess.check_output(shlex.split("poetry env remove --all"))
+        subprocess.check_output(
+            shlex.split(f"pip uninstall {result.project_path.name} -y")
+        )
         rmtree(str(result.project_path))
 
 
@@ -44,7 +49,8 @@ def run_inside_dir(command: str, path: Path):
     :param path: String, path of the directory the command is being run.
     """
     with inside_dir(path):
-        return subprocess.check_call(shlex.split(command))
+        result = subprocess.check_call(shlex.split(command))
+        return result
 
 
 def check_output_inside_dir(command: str, path: Path):

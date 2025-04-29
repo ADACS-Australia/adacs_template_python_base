@@ -4,9 +4,9 @@
 
 *Now that your template has been rendered, we recommend configuring it as follows:*
 
-1. **Create and activate a Python 3.11 environment**
+1. **Create and activate a Python 3.13 environment**
 
-Use your favourite method to *create and activate* a Python 3.11 environment for your development.
+Use your favourite method to *create and activate* a Python 3.13 environment for your development.
 
 2. **Install the project and all dependencies**
 

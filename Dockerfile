@@ -1,7 +1,7 @@
 #############
 # Base image
 #############
-FROM python:3.12-bookworm
+FROM python:3.13-bookworm
 
 ENV HOME=/home/pytest
 ENV USERNAME=pytest
@@ -22,11 +22,19 @@ RUN mkdir -p ${HOME} && \
 USER ${USERNAME}
 WORKDIR ${HOME}
 
+# Needed to fix dubious ownership error when installing with Poetry
+RUN git config --global --add safe.directory ${PACKAGE_ROOT} && \
+    git config --global user.email "${USERNAME}@pytest.com" && \
+    git config --global user.name "${USERNAME}"
+
+
 ##################################################
 # Create a virtual env and install poetry into it
+# Make sure to not set POETRY_VIRTUALENVS_CREATE=0
+# since we need Poetry to create virtual envs for
+# each pytest test
 ##################################################
 ENV POETRY_NO_INTERACTION=1
-ENV POETRY_VIRTUALENVS_CREATE=0
 ENV POETRY_CACHE_DIR=/tmp/poetry_cache
 RUN python -m venv venv && \
     . venv/bin/activate && \
@@ -76,5 +84,6 @@ cd ${PACKAGE_ROOT}\n\
 poetry install --only-root\n\
 echo\n\
 # Run pytest\n\
-pytest' \
+cat ${HOME}/.gitconfig\n\
+pytest -vvv' \
 >> entry_script.sh

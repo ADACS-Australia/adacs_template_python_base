@@ -11,7 +11,9 @@ class CurrentYearExtension(Extension):
         """Initialize the extension with the given environment."""
         super().__init__(environment)
 
-        environment.globals.update({"current_year": datetime.datetime.utcnow().year})
+        environment.globals.update(
+            {"current_year": datetime.datetime.now(datetime.UTC).year}
+        )
 
 
 class UnderlineExtension(Extension):

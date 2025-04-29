@@ -12,25 +12,25 @@ homepage = "https://github.com/ADACS-Australia/adacs_template_python_base"
 documentation = "https://adacs-base-python-template.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
-python = " >=3.11"
+python = " >=3.13"
 rich = "^13"
 cookiecutter = "^2"
 
 [tool.poetry.group.docs.dependencies]
-Sphinx = "^6"
-sphinx-rtd-theme = "^1"
-sphinx-click = "^4"
+Sphinx = "^8"
+sphinx-rtd-theme = "^3"
+sphinx-click = "^6"
 sphinx-copybutton = "^0"
-myst-parser = "^1"
+myst-parser = "^4"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^7"
+pytest = "^8"
 pytest-mock = "^3"
 pytest-cookies = "^0"
-black = "^24"
+black = "^25"
 ruff = "^0"
 mypy = "^1"
-pre-commit = "^3"
+pre-commit = "^4"
 
 # This configures the Poetry plugin which enables dynamic versioning via the repo tags
 # Note the changes that are also needed to the [build-system] config below.
