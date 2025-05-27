@@ -3,6 +3,9 @@
 #############
 FROM python:3.13-bookworm
 
+RUN apt-get update -y  && \
+    apt-get upgrade -y
+
 ENV HOME=/home/pytest
 ENV USERNAME=pytest
 ENV PACKAGE_ROOT=${HOME}/package
@@ -27,15 +30,12 @@ RUN git config --global --add safe.directory ${PACKAGE_ROOT} && \
     git config --global user.email "${USERNAME}@pytest.com" && \
     git config --global user.name "${USERNAME}"
 
-
 ##################################################
 # Create a virtual env and install poetry into it
-# Make sure to not set POETRY_VIRTUALENVS_CREATE=0
-# since we need Poetry to create virtual envs for
-# each pytest test
 ##################################################
-ENV POETRY_NO_INTERACTION=1
-ENV POETRY_CACHE_DIR=/tmp/poetry_cache
+ENV POETRY_HOME=${HOME}"/poetry" \
+    POETRY_CACHE_DIR="/tmp/poetry_cache" \
+    POETRY_NO_INTERACTION=true
 RUN python -m venv venv && \
     . venv/bin/activate && \
     pip install poetry
@@ -84,6 +84,5 @@ cd ${PACKAGE_ROOT}\n\
 poetry install --only-root\n\
 echo\n\
 # Run pytest\n\
-cat ${HOME}/.gitconfig\n\
-pytest -vvv' \
+pytest' \
 >> entry_script.sh
