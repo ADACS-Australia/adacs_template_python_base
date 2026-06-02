@@ -3,6 +3,20 @@
 If you are encountering problems with a codebase rendered from this template, perhaps one of the
 following is happening:
 
+## Poetry
+
+### **`No module named 'jinja2'` when running Poetry commands**
+
+If you installed Poetry via `pipx` and get a `No module named 'jinja2'` error when running any `poetry` command in this project, the cause is the `poetry-dynamic-versioning` plugin.  Poetry installs it into a project-local cache (`.poetry/plugins/`) but does not pull in `jinja2` as a transitive dependency, even though `dunamai` (which `poetry-dynamic-versioning` depends on) needs it at import time.
+
+The fix is to inject `jinja2` into Poetry's `pipx` environment and then clear the stale cache:
+
+``` console
+$ pipx inject poetry jinja2
+$ rm -rf .poetry/
+$ poetry check
+```
+
 ## Configuring PyPI and TestPyPI
 
 ### **'Entire account'-scoped secrets**

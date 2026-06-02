@@ -48,7 +48,7 @@ RUN python -m venv venv && \
 ################################################################
 COPY pyproject.toml poetry.lock .
 RUN . venv/bin/activate && \
-    poetry install --no-root --compile && \
+    poetry install --no-root --extras dev --compile && \
     rm -rf ${POETRY_CACHE_DIR} && \
     rm pyproject.toml
 
@@ -84,5 +84,5 @@ cd ${PACKAGE_ROOT}\n\
 poetry install --only-root\n\
 echo\n\
 # Run pytest\n\
-pytest' \
+pytest -v' \
 >> entry_script.sh

@@ -1,37 +1,45 @@
-[tool.poetry]
+[project]
 name = "{{cookiecutter.__package_name}}"
 version = "0.0.0-dev" # Just a place holder; package version is managed by the dynamic-versioning plugin & git tags
 description = "{{cookiecutter.description}}"
-authors = [ "{{cookiecutter.author | escape_quotes}}" ]
-license = "MIT-expat"
+authors = [
+    {name = "{{cookiecutter.author | escape_quotes}}"}
+]
+license = "MIT"
 readme = "README.md"
+requires-python = ">=3.13"
+
+dependencies = [
+    "rich~=13.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/{{cookiecutter.github_login}}/{{cookiecutter.repo_name}}"
+Documentation = "https://{{cookiecutter.rtd_project_name}}.readthedocs.io/en/latest/"
+
+[project.optional-dependencies]
+docs = [
+    "Sphinx~=8.0",
+    "sphinx-rtd-theme~=3.0",
+    "sphinx-click~=6.0",
+    "sphinx-copybutton~=0.0",
+    "myst-parser~=4.0",
+]
+dev = [
+    "pytest~=8.0",
+    "pytest-mock~=3.0",
+    "pytest-cookies~=0.0",
+    "pytest-cov~=5.0",
+    "black~=25.0",
+    "ruff~=0.0",
+    "mypy~=1.0",
+    "pre-commit~=4.0",
+]
+
+[tool.poetry]
 packages = [
     { include = "{{cookiecutter.__package_name}}", from = "python" }
 ]
-homepage = "https://github.com/{{cookiecutter.github_login}}/{{cookiecutter.repo_name}}"
-documentation = "https://{{cookiecutter.rtd_project_name}}.readthedocs.io/en/latest/"
-
-[tool.poetry.dependencies]
-python = " >=3.13"
-rich = "^13"
-cookiecutter = "^2"
-
-[tool.poetry.group.docs.dependencies]
-Sphinx = "^8"
-sphinx-rtd-theme = "^3"
-sphinx-click = "^6"
-sphinx-copybutton = "^0"
-myst-parser = "^4"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8"
-pytest-mock = "^3"
-pytest-cookies = "^0"
-pytest-cov = "^5"
-black = "^25"
-ruff = "^0"
-mypy = "^1"
-pre-commit = "^4"
 
 # This configures the Poetry plugin which enables dynamic versioning via the repo tags
 # Note the changes that are also needed to the [build-system] config below.
@@ -89,7 +97,6 @@ select = [
 ignore = [
     "E501", # line length violations (let Black handle this)
 ]
-
 
 # Ignore `E402` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
 [tool.ruff.lint.per-file-ignores]
