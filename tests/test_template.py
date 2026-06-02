@@ -23,8 +23,8 @@ def bake_path(cookies, request):
         assert run_inside_dir(
             "python -m venv venv", result.project_path, source_env=False
         )
-        # Install the baked project into its environment
-        assert run_inside_dir("poetry install", result.project_path)
+        # Install the baked project into its environment (with dev extras for pytest-cov etc.)
+        assert run_inside_dir("poetry install --extras dev", result.project_path)
         yield result.project_path
 
 
