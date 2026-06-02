@@ -84,7 +84,7 @@ jobs:
 
       # Install the project (we need some of the tools installed here for liniting etc)
       - name: Install the project
-        run: poetry install --no-interaction
+        run: poetry install --no-interaction --extras dev
 
       # Enforce code formating standards
       # note: --config is needed to prevent ruff from using a version elsewhere in the project.
@@ -97,9 +97,7 @@ jobs:
 
       # Make sure the Poetry project is properly maintained
       - name: Enforce maintainance of Poetry project
-        run: |
-          poetry check
-          poetry lock --check
+        run: poetry check --lock
 
       # Set-up some dummy git credentials so the tests (which use git) will run
       - name: Set-up git credentials

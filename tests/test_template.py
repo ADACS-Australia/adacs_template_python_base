@@ -29,8 +29,7 @@ def bake_path(cookies, request):
 
 
 def test_bake_and_check_poetry(bake_path):
-    assert run_inside_dir("poetry check", bake_path)
-    assert run_inside_dir("poetry lock --check", bake_path)
+    assert run_inside_dir("poetry check --lock", bake_path)
 
 
 def test_bake_and_run_tests(bake_path):
