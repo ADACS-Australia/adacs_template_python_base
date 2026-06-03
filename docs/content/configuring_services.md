@@ -53,7 +53,7 @@ The following instructions are only for owners/maintainers of this codebase.  De
 
     - To obtain **RTD_WEBHOOK_URL**, use the RTD API v3 builds endpoint for your project:
       ```
-      https://readthedocs.org/api/v3/projects/<project-slug>/builds/
+      https://readthedocs.org/api/v3/projects/<project-slug>/versions/latest/builds/
       ```
       where `<project-slug>` matches the slug shown on your RTD project page.
 
