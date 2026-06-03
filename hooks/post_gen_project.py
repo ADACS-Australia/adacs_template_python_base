@@ -7,13 +7,14 @@ from rich.markdown import Markdown
 
 def git() -> None:
     """Create and configure a git repo for the rendered project"""
-    result = subprocess.run(["git", "init", "-q"])
-    result = subprocess.run(["git", "checkout", "-q",  "-b", "main"])
-    result = subprocess.run(
-        ["git", "config",  "--local", "push.followTags", "true"])
-    result = subprocess.run(
-        ["git", "config",  "--local", "--add", "remote.origin.tagopt", "--tags"])
-    result = subprocess.run(
+    subprocess.run(["git", "init", "-q"], check=True)
+    subprocess.run(["git", "checkout", "-q",  "-b", "main"], check=True)
+    subprocess.run(
+        ["git", "config",  "--local", "push.followTags", "true"], check=True)
+    subprocess.run(
+        ["git", "config",  "--local", "--add", "remote.origin.tagopt", "--tags"], check=True)
+    # Allowed to fail: no origin exists in a freshly init'd repo
+    subprocess.run(
         [
             "git",
             "remote",
@@ -21,28 +22,29 @@ def git() -> None:
             "origin"
         ]
     )
-    result = subprocess.run(
+    subprocess.run(
         [
             "git",
             "remote",
             "add",
             "origin",
             "git@github.com:{{cookiecutter.github_login}}/{{cookiecutter.repo_name}}.git"
-        ]
+        ],
+        check=True,
     )
 
     # This is needed to make sure that the committed poetry.lock file is up-to-date
-    result = subprocess.run(["poetry", "-q", "update"])
+    subprocess.run(["poetry", "-q", "update"], check=True)
 
     # Create initial commit
-    result = subprocess.run(["git", "add", "*"])
-    result = subprocess.run(
-        ["git", "commit", "-q", "-m", "Initial commit of template code"])
+    subprocess.run(["git", "add", "*"], check=True)
+    subprocess.run(
+        ["git", "commit", "-q", "-m", "Initial commit of template code"], check=True)
 
     # Make sure this is an annotated tag or it won't be pushed to remote and the version
     # management won't be initialised correctly
-    result = subprocess.run(
-        ["git", "tag", "-a", "v0.0.0", "-m", "Initialised with template"])
+    subprocess.run(
+        ["git", "tag", "-a", "v0.0.0", "-m", "Initialised with template"], check=True)
 
 
 def venv(venv_type: str) -> None:
@@ -103,7 +105,7 @@ def install(venv_type: str) -> None:
         String specifying how the virtual environment is being supported
     """
     if venv_type in ["venv", "poetry", "pyenv"]:
-        result = subprocess.run(["poetry", "install", "--no-interaction"])
+        subprocess.run(["poetry", "install", "--no-interaction"], check=True)
     elif venv_type == "none":
         pass
     else:
