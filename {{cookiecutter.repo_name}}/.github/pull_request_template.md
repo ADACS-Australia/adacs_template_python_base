@@ -1,26 +1,26 @@
-## Pull Request
+## Description
 
-### Description
-[Provide a brief description of the changes or features implemented in this pull request.]
+<!-- Describe what this PR does and why. What problem does it solve? -->
 
-### Related Issue(s)
-[If applicable, mention any related issues or tasks that this pull request addresses.]
+## Related Issues
 
-### Checklists
-Please indicate which of the following (if any) are being contributed to the codebase by this PR:
+<!-- List related issues ("Fixes #123", "Closes #456") or write "N/A". -->
 
-- [ ] New feature(s) (warranting a MINOR version bump);
-- [ ] Breaking change(s) (warranting a MAJOR version bump);
-- [ ] Bug fix(es); or
-- [ ] Documentation improvements.
+## Type of Change
 
-**Make sure that `[version:minor]` gets added to the head commit message if a MINOR bump is needed; `[version:major]` if a MAJOR bump is needed.**
+Select all that apply:
 
-Please ensure that the following have been addressed (if applicable) before submitting your PR:
+- [ ] New feature → add `[version:minor]` to the head commit message
+- [ ] Breaking change → add `[version:major]` to the head commit message
+- [ ] Bug fix
+- [ ] Documentation improvement
+- [ ] Other / none of the above
 
-- [ ] Unit tests have been added or updated to ensure proper functionality;
-- [ ] Documentation has been updated to reflect the changes (if applicable); and
-- [ ] All commit messages are clear and descriptive.
+## Pre-Submit Checklist
 
-### Notes for reviewers
-[Include any additional information or notes that may be helpful for reviewers.]
+- [ ] Tests have been added or updated to cover my changes
+- [ ] Documentation has been updated if behaviour changed
+- [ ] Commit messages are clear and descriptive
+- [ ] I have added `[version:minor]` or `[version:major]` to the head commit message if this PR warrants a minor or major bump (patch is the default)
+
+<!-- Notes for reviewers: if there is anything specific you want reviewers to focus on, add it here. -->
