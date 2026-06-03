@@ -85,22 +85,20 @@ jobs:
 
       # Install the project (we need some of the tools installed here for liniting etc)
       - name: Install the project
-        run: poetry install --no-interaction
+        run: poetry install --no-interaction --extras dev --extras docs
 
       # Enforce code formating standards
       # note: --config is needed to prevent ruff from using a version elsewhere in the project.
       #       This is important for template projects, for example.
       - name: Enforce linting
-        run: poetry run ruff --config pyproject.toml .
+        run: poetry run ruff check --config pyproject.toml .
 
       - name: Enforce formating
         run: poetry run black .
 
       # Make sure the Poetry project is properly maintained
       - name: Enforce maintainance of Poetry project
-        run: |
-          poetry check
-          poetry lock --check
+        run: poetry check --lock
 
       # Run tests
       - name: Generate build
