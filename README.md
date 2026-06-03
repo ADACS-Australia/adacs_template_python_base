@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.python.org/downloads/release/python-3110/">
+  <a href="https://www.python.org/downloads/release/python-3130/">
     <img src="https://img.shields.io/badge/python-3.13-blue.svg" alt="Python 3.13">
   </a>
   <a href='https://adacs-base-python-template.readthedocs.io/en/latest/?badge=latest'>

@@ -6,7 +6,7 @@ This section provides details on how to configure and/or develop this codebase. 
 1. maintaining the template served by this codebase, see [Maintaining This Template](#template-maintenance).
 2. configuring the services used by this codebase, see [Configuring Services](#configuring-services).
 
-## Continuos Integration/Continuous Deployment (CI/CD) Workflow
+## Continuous Integration/Continuous Deployment (CI/CD) Workflow
 
 This project uses *GitHub Workflows* to automate or ease a number of development tasks.  These
 workflows can be found within the `./.github/workflows/` directory and include:
@@ -35,7 +35,7 @@ A local development copy of the code base can be obtained and configured as foll
 * Navigate to the *GitHub* page hosting the project
 * If you want to fork the code so that you work on your own version of the repository (not generally needed or recommended):
     - Click on the `fork` button at the top of the page;
-    - Edit the details you want to have for the new repoitory; and
+    - Edit the details you want to have for the new repository; and
     - Press `Create fork`.
 * Obtain the URL for the repository you're going to use (denoted `<url>`) by clicking on the green `Code` button on the repository *GitHub* page
 * On your local machine, navigate with your terminal to the location where you want to place the code
@@ -168,7 +168,7 @@ $ pre-commit install
 ```
 
 Some of these hooks require internet access to work.  If you are trying to commit to the
-repository locally and are being prevented from doing so because you are working online, the
+repository locally and are being prevented from doing so because you are working offline, the
 hooks can be ignored by using the `--no-verify` flag when running `git commit`, like so:
 ``` console
 $ git commit --no-verify
@@ -248,7 +248,7 @@ $ open docs/_build/html/index.html
 
 #### Editing the Documentation
 
-The majority of documentation changes can be managed in one of the following 4 ways:
+The majority of documentation changes can be managed in one of the following 5 ways:
 
 1. **Edits to `README.md`**:
 

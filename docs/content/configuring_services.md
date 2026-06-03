@@ -15,7 +15,7 @@ The following instructions are only for owners/maintainers of this codebase.  De
     Branch permissions for the main project repository should be configured to only permit merges from pull requests.  To do so, navigate to `Settings->Branches->Add branch ruleset` and:
 
     - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
-    - set `Enforecement status` to `Active`
+    - set `Enforcement status` to `Active`
     - add a `Target Branch` targeting criteria by pattern and type `main`
     - select `Require a pull request before merging`
     - select `Require status checks to pass` and add `Run all build and unit tests` from GitHub Actions as a required check

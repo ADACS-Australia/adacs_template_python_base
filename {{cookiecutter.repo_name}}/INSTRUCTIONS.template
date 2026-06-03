@@ -38,7 +38,7 @@ Your new repo has been configured with your GitHub repo details.  Run the follow
 Navigate to `Settings->Branches->Add branch ruleset` and ...
 
 - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
-- set `Enforecement status` to `Active`
+- set `Enforcement status` to `Active`
 - add a `Target Branch` via `Add target->Include by pattern` and type `main`
 - adjust `Branch Rules` by selecting `Require a pull request before merging`
 - adjust `Branch Rules` by selecting `Require status checks to pass` and add the check `Run all build and unit tests` as a required check
@@ -50,7 +50,7 @@ Navigate to `Settings->Branches->Add branch ruleset` and ...
 
 From within the repo, run the following: `pre-commit install`
 
-8 **[Optional] Configure Services (Read The Docs, PyPI, etc.)**
+8. **[Optional] Configure Services (Read The Docs, PyPI, etc.)**
 
 This can be done at any time when you want to enable these features; they are simply deactivated until you do; see *https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html* for instructions.
 
