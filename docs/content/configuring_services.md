@@ -43,28 +43,21 @@ The following instructions are only for owners/maintainers of this codebase.  De
 
 2. [__Read the Docs__](https://readthedocs.org)
 
-    To (optionally) publish this project's documentation you will need a *RTD* account ([go here to get one](https://readthedocs.org)).  It can be configured in either of the following ways:
+    To (optionally) publish this project's documentation you will need a *RTD* account ([go here to get one](https://readthedocs.org)).  Configure it as follows:
 
-    1. **By connecting *RTD* to your *GitHub* account**
-        - Ensure that your *GitHub* account has been connected.  This is done automatically if you log into *RTD* with your *GitHub* credentials.  If you logged in with your email, navigate to `<login_id>->Settings->Connected Services` by clicking on `Connect Your Accounts` and click `Connect to GitHub`.  You know your account is linked if it is listed below under `Active Services`.
+    - Ensure that your *GitHub* account has been connected to *RTD*.  This is done automatically if you log into *RTD* with your *GitHub* credentials.  If you logged in with your email, navigate to `<login_id>->Settings->Connected Services` by clicking on `Connect Your Accounts` and click `Connect to GitHub`.  You know your account is linked if it is listed below under `Active Services`.
 
-        - Return to your *RTD* landing page by clicking on your account name at the top.  Click `Import a Project`.  Your *GitHub* repository should be listed here (you may need to refresh the list if it has been created recently).  Import it.
-        - To obtain **RTD_WEBHOOK_TOKEN**, navigate to `<Account>->Settings->API Tokens` on *Read the Docs*.  Create a new one.
-        - To obtain **RTD_WEBHOOK_URL**, migrate to the `Admin->Integrations` tab on the *RTD* project page.  Click on your incomming webhook and get the URL there.
+    - Return to your *RTD* landing page by clicking on your account name at the top.  Click `Import a Project`.  Your *GitHub* repository should be listed here (you may need to refresh the list if it has been created recently).  Import it.
 
-    2. **By creating a Generic Webhook**
-        - If you do not have your *RTD* account connected to *GitHub*, import your project manually by
-        clicking `Import a Project->Import Manually` and providing the details of your *GitHub* repo.
+    - To obtain **RTD_WEBHOOK_TOKEN**, navigate to `<Account>->Settings->API Tokens` on *Read the Docs* and create a new token.
 
-        - Navigate to your new project and click `Admin->Integrations->Add integration` and select `Generic API incoming webhook` from the dropdown.
-
-        - Values for **RTD_WEBHOOK_URL** and **RTD_WEBHOOK_TOKEN** are given when you create the webhook, but if you need to retrieve them late, migrate to the `Admin->Integrations` tab on the *RTD* project page and click on your incomming webhook.
+    - To obtain **RTD_WEBHOOK_URL**, use the RTD API v3 builds endpoint for your project:
+      ```
+      https://readthedocs.org/api/v3/projects/<project-slug>/builds/
+      ```
+      where `<project-slug>` matches the slug shown on your RTD project page.
 
     Once properly configured, the documentation for this project should build automatically on *RTD* every time you [generate a new release](#new-release).
-
-    ::: {note}
-    Make sure **RTD_WEBHOOK_URL** starts with `https://`.  Prepend it if not.
-    :::
 
 (config-pypi)=
 3. The [__Python Package Index (*PyPI*)__](https://pypi.org)
