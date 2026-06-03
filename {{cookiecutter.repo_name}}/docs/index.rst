@@ -10,7 +10,8 @@
    Home <self>
    Getting Started <content/getting_started>
    API Documentation <_apidoc/{{cookiecutter.__package_name}}>
-   Notes for Developers <content/notes_for_developers>
+   Development guidelines <content/development_guidelines>
+   Configuring services <content/configuring_services>
 
 Index
 =====

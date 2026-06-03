@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.python.org/downloads/release/python-3110/">
-    <img src="https://img.shields.io/badge/python-3.11-blue.svg" alt="Python 3.11">
+    <img src="https://img.shields.io/badge/python-3.13-blue.svg" alt="Python 3.13">
   </a>
   <a href='https://adacs-base-python-template.readthedocs.io/en/latest/?badge=latest'>
     <img src='https://readthedocs.org/projects/adacs-base-python-template/badge/?version=latest' alt='Documentation Status' />
@@ -50,7 +50,7 @@ and answer the questions:
 ![ADACS Python Template Questions](https://github.com/ADACS-Australia/adacs_template_python_base/blob/main/docs/assets/adacs_python_template_cookiecutter_questions.png?raw=true)
 
 ### Install the new project
-Create and activate a new virtual environment (**use Python version >= 3.11**) using your favourite method (if you don't know how to use Python environments, we advise you to go learn about them now) and install the project by running the following in the new repo directory:
+Create and activate a new virtual environment (**use Python version >= 3.13**) using your favourite method (if you don't know how to use Python environments, we advise you to go learn about them now) and install the project by running the following in the new repo directory:
 ``` console
 poetry install
 ```

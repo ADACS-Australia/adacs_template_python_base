@@ -2,7 +2,7 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
+SPHINXBUILD   = poetry run sphinx-build
 SOURCEDIR     = docs
 BUILDDIR      = docs/_build
 
@@ -10,8 +10,8 @@ BUILDDIR      = docs/_build
 PATH_EXCLUDE_LIST = docs hooks local_extensions
 
 # Set some variables needed by the documentation
-PKG_PROJECT := $(shell poetry run python3 -c 'from tomllib import load;print(load(open("pyproject.toml","rb"))["tool"]["poetry"]["name"])')
-PKG_AUTHOR  := $(shell poetry run python3 -c 'from importlib.metadata import metadata; print(metadata("${PKG_PROJECT}")["author"])')
+PKG_PROJECT := $(shell poetry run python3 -c 'from tomllib import load;print(load(open("pyproject.toml","rb"))["project"]["name"])')
+PKG_AUTHOR  := $(shell poetry run python3 -c 'from tomllib import load;d=load(open("pyproject.toml","rb"));print(d["project"]["authors"][0]["name"])')
 PKG_VERSION := $(word 2,$(shell poetry version))
 PKG_RELEASE := ${PKG_VERSION}
 

@@ -37,14 +37,51 @@ def bake_in_temp_dir(cookies: Cookies, *args, **kwargs):
         rmtree(str(result.project_path))
 
 
-def run_inside_dir(command: str, path: Path):
+def run_inside_venv(command, venv_path):
+    activate_script = os.path.join(
+        venv_path, "venv", "bin", "activate"
+    )  # For Linux/macOS
+
+    if os.name == "nt":  # Windows
+        process = subprocess.Popen(
+            [f"{activate_script} && {command}"],
+            shell=True,
+            executable=os.environ["COMSPEC"],
+        )
+    else:  # macOS and Linux
+        process = subprocess.Popen(
+            [f"source {activate_script} && {command}"],
+            shell=True,
+            executable="/bin/bash",
+        )
+    process.wait()
+
+    return process.returncode
+
+
+def run_inside_dir(command: str, path: Path, source_env=True):
     """
     Run a command from inside a given directory, returning the exit status
     :param command: Command that will be executed
     :param path: String, path of the directory the command is being run.
     """
     with inside_dir(path):
-        return subprocess.check_call(shlex.split(command))
+        if source_env:
+            result = run_inside_venv(command, path)
+        else:
+            result = subprocess.check_call(shlex.split(command))
+        return result == 0
+
+
+def source_inside_dir(command: str, path: Path):
+    """
+    Source a shell script from inside a given directory, returning the exit status
+    :param command: Script that will be sourced
+    :param path: String, path of the directory the command is being run.
+    """
+    with inside_dir(path):
+        result = subprocess.check_call(shlex.split(command))
+        return result
 
 
 def check_output_inside_dir(command: str, path: Path):

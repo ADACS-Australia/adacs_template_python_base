@@ -1,6 +1,7 @@
-# Notes for Developers
+(development-guidelines)=
+# Development Guidelines
 
-This section provides details on how to configure and/or develop this codebase.
+This section provides details on how to configure and/or develop this codebase.  For details specific to configuring the services used by this codebase, see [Configuring Services](#configuring-services).
 
 ## Continuos Integration/Continuous Deployment (CI/CD) Workflow
 
@@ -22,15 +23,14 @@ workflows can be found within the `./.github/workflows/` directory and include:
 
 3. **publish.yml**
 
-    This workflow is run whenever a new release is generated through *GitHub* (see below for details on how to do this).  Documentation is updated on *Read the Docs* and a new version of the code is published on the *Python Package Index* (*PyPI*).
+    This workflow is run whenever a new release is generated through *GitHub* (see below for details on how to do this).  Documentation is updated on *Read the Docs* (if configured to do so) and a new version of the code is published on the *Python Package Index* (*PyPI*; if configured to do so).
 
 ## Setting-up the Code
 
 A local development copy of the code base can be obtained and configured as follows:
 
 * Navigate to the *GitHub* page hosting the project
-* If you want to fork the code so that you work on your own version of the repository (not generally needed or
-  recommended):
+* If you want to fork the code so that you work on your own version of the repository (not generally needed or recommended):
     - Click on the `fork` button at the top of the page;
     - Edit the details you want to have for the new repoitory; and
     - Press `Create fork`.
@@ -39,7 +39,7 @@ A local development copy of the code base can be obtained and configured as foll
 * Generate a local copy using `git clone <url>`;
 
 ::: {note}
-Although not strictly necessary, it is recommended that you configure the branch permissions of any forked repositories as detailed in the *GitHub* configuration section below.
+Although not strictly necessary, it is recommended that you configure the branch permissions of any forked repositories as detailed in the [*GitHub* configuration section](#configuring-github).
 :::
 
 ## Poetry and Python environments for development
@@ -71,7 +71,7 @@ Poetry is used to manage this project ([see here for an introduction](https://py
 
 ## Installing Development Dependencies
 
-Once the code is locally installed, development dependencies should be installed by moving to the project's root directory and executing the following:
+Once the code is locally installed, dependencies should be installed by moving to the project's root directory and executing the following:
 
 ``` console
 $ poetry install
@@ -85,7 +85,7 @@ In the following, we lay-out some important guidelines for developing on this co
 
 ### Branches
 
-***Development should never be conducted on the `main` branch***.  If *GitHub* has been properly configured (see below), then merges to this branch are limited to Pull Requests (PRs) only.  Once a PR is opened for the `main` branch, the project tests are run.  When it is closed and code is committed to the main branch, the project version is automatically incremented (see below).
+***Development should never be conducted on the `main` branch***.  If *GitHub* has been properly configured (see [here](#configuring-github)), then merges to this branch are limited to Pull Requests (PRs) only.  Once a PR is opened for the `main` branch, the project tests are run.  When it is closed and code is committed to the main branch, the project version is automatically incremented (see below).
 
 ### Versioning
 
@@ -105,14 +105,11 @@ Make sure you think carefully about what type of changes you are committing.  If
 
 ### Tests
 
-*PyTest* is used to run tests for this codebase.  Make sure you run them before submitting any code to a PR by
-executing the following from the project root directory:
+*PyTest* is used to run tests for this codebase.  Make sure you run them before submitting any code to a PR by executing the following from the project root directory:
 
 ``` console
 $ pytest
 ```
-
-Some further comments about how testing has been configured for this project:
 
 #### Coverage
 
@@ -174,9 +171,10 @@ Releases are generated through the *GitHub* UI.  A *GitHub Workflow* has been co
 4. Publish a new version of the code on [*PyPI*](https://pypi.org/).
 
 ::: {note}
-If a release is flagged as a "pre-release" through the *GitHub* interface, then documentation will not be built and the project will be published on *test.PyPI.org* instead.
+If a release is flagged as a "pre-release" through the *GitHub* interface, then documentation will not be built and the project will be published on *test.PyPI.org* (if configured; see [instructions here](#config-pypi)) instead.
 :::
 
+(new-release)=
 #### Generating a new release
 
 To generate a new release, do the following:
@@ -242,80 +240,13 @@ The majority of documentation changes can be managed in one of the following 4 w
 
 4. **Add a new Markdown file**:
 
-	Otherwise, create a new `.md` file in the `docs/content` directory and add it to the list of Markdown files referenced in `docs/index.rst`.  Note that these files will be added to the documentation in the order specified, so place it in that list where you want it to appear in the final documentation.  This new `.md` file should start with a top-level title (marked-up by starting a line with a single `#`; see the top of this file for an example).
+    Otherwise, create a new `.md` file in the `docs/content` directory and add it to the list of Markdown files referenced in `docs/index.rst`.  Note that these files will be added to the documentation in the order specified, so place it in that list where you want it to appear in the final documentation.  This new `.md` file should start with a top-level title (marked-up by starting a line with a single `#`; see the top of this file for an example).
 
-5. **Extend the MyST-Parser support***
+5. **Extend the MyST-Parser support**:
 
-    New MyST-Parser extensions can be enabled in `docs/conf.py` by extending the `myst_enable_extensions` list.  See the
-    MyST-Parser documentation for a list of available extensions and instructions on how to use them.
+    New MyST-Parser extensions can be enabled in `docs/conf.py` by extending the `myst_enable_extensions` list.  See the MyST-Parser documentation for a list of available extensions and instructions on how to use them.
 
 #### Adding images, etc.
 
 While not strictly required, it is best practice to place any images, plots, etc. used in the documentation in the `docs/assets` directory.
 
-## Configuring Services
-
-Develpers and project owners/maintainers will require accounts with one or all of the following services to work with this codebase.  This section details how these services need to be configured.  Following these steps should only be necessarry - or partially necessary - if a developer chooses to fork the project.
-
-1. [***GitHub***](https:/github.com)
-
-    To work with this codebase, you will require a *GitHub* account ([go here to get one](https://github.com)).
-    
-    Branch permissions for the main project repository should be configured only permit merges from pull requests.  To do so, navigate to `Settings->Branches->Add branch ruleset` and:
-
-        - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
-        - set `Enforecement status` to `Active`
-        - add a `Target Branch` targeting criteria by pattern and type `main`
-        - select `Require a pull request before merging`
-        - select `Require status checks to pass` and add `Run all build and unit tests` from GitHub Actions as a required check
-
-    This will ensure that all CI/CD tests pass before a merge to the main branch can be made.
-    
-    Several secrets need to be configured by navigating to `Settings->Secrets->Actions` and adding the following:
-    
-    - To host the project documentation on *Read the Docs* (see below), the following secrets need to be set (see below for where to find these values):
-    
-        - **RTD_WEBHOOK_TOKEN**, and
-        - **RTD_WEBHOOK_URL**
-    
-    - To make code releases available on the **Python Package Index** (see below), then the following secret needs to be set (see below for where to find this value):
-    
-        - **PYPI_TOKEN**,
-    
-    - To test code releases with the **Test Python Package Index** (see below), then the following secret needs to be set (see below for where to find this value):
-    
-        - **TEST_PYPI_TOKEN**,
-
-2. [__Read the Docs__](https://readthedocs.org)
-
-    **Read the Docs** (*RTD*) is used to build and host the project documentation.  An account is needed if you are an owner/maintainer of the project and will be publishing and managing the project's documentation online, but not needed if you are simply a contributing developer.  *RTD* can be configured in either of the following ways:
-
-    1. **By connecting *RTD* to your *GitHub* account**
-        - Ensure that your *GitHub* account has been connected.  This is done automatically if you log into *RTD* with your *GitHub* credentials.  If you logged in with your email, navigate to `<login_id>->Settings->Connected Services` by clicking on "Connect Your Accounts" and click "Connect to GitHub".  You know your account is linked if it is listed below under "Active Services".
-
-        - Return to your *RTD* landing page by clicking on your account name at the top.  Click "Import a Project".  Your *GitHub* repository should be listed here (you may need to refresh the list if it has been created recently).  Import it.
-
-        - To obtain **RTD_WEBHOOK_TOKEN**, navigate to `<Account>->Settings->API Tokens` on *Read the Docs*.  If a token has been created already, you can use it.  Otherwise (or if you want a token specifically for this project), create a new one.
-
-        - To obtain **RTD_WEBHOOK_URL**, migrate to the `Admin->Integrations` tab on the *RTD* project page.  Click on your incomming webhook and get the URL there.
-
-    2. **By creating a Generic Webhook**
-        - Navigate to the `Admin->Integrations` tab on the *RTD* project page and click `Add integration`.  Then select `Generic API incoming webhook` from the dropdown and click `Add integration`.
-
-        - To obtain **RTD_WEBHOOK_URL** and **RTD_WEBHOOK_TOKEN**, migrate to the `Admin->Integrations` tab on the *RTD* project page and click on your incomming webhook.
-
-    Once properly configured, the documentation for this project should build automatically on *RTD* every time you generate a new release (see below for instructions).
-
-    ::: {note}
-    Make sure **RTD_WEBHOOK_URL** starts with `https://`.  Prepend it if not.
-    :::
-
-3. The [__Python Package Index (*PyPI*)__](https://pypi.org)
-
-    This service is used to publish project releases.  An account is needed if you are the owner of the project, but not generally needed if you are simply a contributing developer.  An API token will need to be created and added to your *GitHub* project as **PYPI_TOKEN** (as detailed above).  This can be generated from the *PyPI* UI by navigating to `Account Settings->Add API Token`.
-
-    To test releases, a parallel account on *test.PyPI* is needed and a similar token to **PYPI_TOKEN** - named **TEST_PYPI_TOKEN** needs to be set, in the same way as above.  To create a test release, flag it as a "pre-release" through the *GitHub* interface when you generate a release, and it will be published on *test.PyPI.org* rather than *PyPI.org*.
-
-    ::: {note}
-    Although `poetry` can be used to directly publish this project to *PyPI*, users should not do this.  The proper way to publish the project is through the *GitHub* interface, which leverages the *GitHub Workflows* of this project to ensure the enforcement of project standards before a new version can be created.
-    :::

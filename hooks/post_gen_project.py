@@ -82,7 +82,7 @@ def venv(venv_type: str) -> None:
         # result = subprocess.run(["poetry", "config", "--local", "virtualenvs.create",     "true"])
         pass
     elif venv_type == "pyenv":
-        # result = subprocess.run(["pyenv", "virtualenv", "3.11", "{{cookiecutter.__project_slug}}"])
+        # result = subprocess.run(["pyenv", "virtualenv", "3.13", "{{cookiecutter.__project_slug}}"])
         # result = subprocess.run(["pyenv", "local", "{{cookiecutter.__project_slug}}"])
         pass
     elif venv_type == "Conda":

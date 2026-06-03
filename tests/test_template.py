@@ -16,24 +16,33 @@ def bake_path(cookies, request):
     exit_code_expected = request.param[1]
     exception_expected = request.param[2]
     with bake_in_temp_dir(cookies, extra_context=extra_context) as result:
-        assert result.project_path.is_dir()
         assert result.exit_code == exit_code_expected
         assert result.exception is exception_expected
-        run_inside_dir("poetry install", result.project_path) == 0
+        assert result.project_path.is_dir()
+        # Create a virtual env for testing this bake
+        assert run_inside_dir(
+            "python -m venv venv", result.project_path, source_env=False
+        )
+        # Install the baked project into its environment (with dev extras for pytest-cov etc.)
+        assert run_inside_dir("poetry install --extras dev", result.project_path)
         yield result.project_path
 
 
+def test_bake_and_check_poetry(bake_path):
+    assert run_inside_dir("poetry check --lock", bake_path)
+
+
 def test_bake_and_run_tests(bake_path):
-    run_inside_dir("pytest", bake_path) == 0
+    assert run_inside_dir("poetry run pytest", bake_path)
 
 
 def test_template_make_docs(bake_path):
-    run_inside_dir("make docs", bake_path) == 0
+    assert run_inside_dir("poetry run make docs", bake_path)
 
 
 def test_template_run_black(bake_path):
-    run_inside_dir("black .", bake_path) == 0
+    assert run_inside_dir("poetry run black .", bake_path)
 
 
 def test_template_run_ruff(bake_path):
-    run_inside_dir("ruff check .", bake_path) == 0
+    assert run_inside_dir("poetry run ruff check .", bake_path)

@@ -33,10 +33,9 @@ sys.path.insert(0, os.path.abspath("../python"))
 
 # -- Project information -----------------------------------------------------
 
-project = load(open("../pyproject.toml", "rb"))["tool"]["poetry"]["name"]
-author = format_authors(
-    load(open("../pyproject.toml", "rb"))["tool"]["poetry"]["authors"]
-)
+_toml = load(open("../pyproject.toml", "rb"))
+project = _toml["project"]["name"]
+author = format_authors([a["name"] for a in _toml["project"]["authors"]])
 copyright_year = {{current_year}}
 copyright = f"{copyright_year}, {author}"
 

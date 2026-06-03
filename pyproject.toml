@@ -1,36 +1,45 @@
-[tool.poetry]
+[project]
 name = "adacs_template_python_base"
 version = "0.0.0-dev" # Just a place holder; package version is managed by the dynamic-versioning plugin & git tags
 description = "A Cookiecutter template for instantiating Python projects"
-authors = [ "ADACS" ]
-license = "MIT-expat"
+authors = [
+    { name = "ADACS", email = "contact@adacs.org.au" }
+]
+license = "MIT"
 readme = "README.md"
+requires-python = ">=3.13"
+
+dependencies = [
+    "rich~=13.0",
+    "cookiecutter~=2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ADACS-Australia/adacs_template_python_base"
+Documentation = "https://adacs-base-python-template.readthedocs.io/en/latest/"
+
+[project.optional-dependencies]
+docs = [
+    "Sphinx~=8.0",
+    "sphinx-rtd-theme~=3.0",
+    "sphinx-click~=6.0",
+    "sphinx-copybutton~=0.0",
+    "myst-parser~=4.0",
+]
+dev = [
+    "pytest~=8.0",
+    "pytest-mock~=3.0",
+    "pytest-cookies~=0.0",
+    "black~=25.0",
+    "ruff~=0.0",
+    "mypy~=1.0",
+    "pre-commit~=4.0",
+]
+
+[tool.poetry]
 packages = [
     { include = "adacs_template_python_base", from = "python" }
 ]
-homepage = "https://github.com/ADACS-Australia/adacs_template_python_base"
-documentation = "https://adacs-base-python-template.readthedocs.io/en/latest/"
-
-[tool.poetry.dependencies]
-python = " >=3.11"
-rich = "^13"
-cookiecutter = "^2"
-
-[tool.poetry.group.docs.dependencies]
-Sphinx = "^6"
-sphinx-rtd-theme = "^1"
-sphinx-click = "^4"
-sphinx-copybutton = "^0"
-myst-parser = "^1"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^7"
-pytest-mock = "^3"
-pytest-cookies = "^0"
-black = "^24"
-ruff = "^0"
-mypy = "^1"
-pre-commit = "^3"
 
 # This configures the Poetry plugin which enables dynamic versioning via the repo tags
 # Note the changes that are also needed to the [build-system] config below.
@@ -38,6 +47,9 @@ pre-commit = "^3"
 enable = true
 vcs = "git"
 style = "semver"
+
+[tool.poetry.requires-plugins]
+poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
 
 [tool.pytest.ini_options]
 pythonpath = ["./tests", "./"] # relative to root directory
@@ -84,5 +96,5 @@ ignore = [
 convention = "numpy"
 
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+requires = ["poetry-core>=2.0.0", "poetry-dynamic-versioning"]
 build-backend = "poetry_dynamic_versioning.backend"
