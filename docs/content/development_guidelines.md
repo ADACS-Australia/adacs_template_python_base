@@ -51,14 +51,16 @@ Poetry is used to manage this project ([see here for an introduction](https://py
 
 1. **Creation and activation of a Python environment for the project**
 
-    Python development should always be managed using a Python environment.  Poetry makes this easy for you.  You simply run the following from within the project:
+    Python development should always be managed using a Python environment.  Poetry creates and manages one for you automatically.  To activate it, run the following from within the project and then execute the printed command:
 
     ``` console
-    $ poetry shell
+    $ poetry env activate
     ```
-    
+
+    This prints the shell command needed to activate the environment (e.g. `source /path/to/venv/bin/activate`).  Run that command to enter the environment, after which `python` and installed tools will be from the project's venv.  Alternatively, prefix individual commands with `poetry run` to run them inside the environment without activating it globally.
+
     ::: {note}
-    You don't have to use Poetry to manage your Python environment if you would rather not.  You can instruct Poetry to respect your Python environemnts (e.g. created with `pyenv`) by setting the following option:
+    You don't have to use Poetry to manage your Python environment if you would rather not.  You can instruct Poetry to respect your existing Python environments (e.g. created with `pyenv`) by setting the following option:
     ``` console
     $ poetry config virtualenvs.prefer-active-python true
     ```
