@@ -55,7 +55,7 @@ The following instructions are only for owners/maintainers of this codebase.  De
       ```
       https://readthedocs.org/api/v3/projects/<project-slug>/versions/latest/builds/
       ```
-      where `<project-slug>` matches the slug shown on your RTD project page.
+      where `<project-slug>` is the URL-friendly identifier for your project on Read the Docs — visible in your browser's address bar when you are on your project's RTD page (e.g. `https://readthedocs.org/projects/my-project/` has slug `my-project`).  It is also shown in the *Admin* section of your RTD project.
 
     Once properly configured, the documentation for this project should build automatically on *RTD* every time you [generate a new release](#new-release).
 

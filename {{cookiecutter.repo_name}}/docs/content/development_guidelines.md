@@ -3,27 +3,25 @@
 
 This section provides details on how to configure and/or develop this codebase.  For details specific to configuring the services used by this codebase, see [Configuring Services](#configuring-services).
 
+The development workflow for this project follows a standard collaborative pattern: all work happens on feature branches, changes are proposed via *Pull Requests* (PRs) on GitHub, automated checks run on every PR, and code only reaches the `main` branch once those checks pass.  This means contributors don't need to manually remember every quality standard — the automation handles verification, and everyone can focus on the work itself.
+
 ## Continuous Integration/Continuous Deployment (CI/CD) Workflow
 
-This project uses *GitHub Workflows* to automate or ease a number of development tasks.  These
-workflows can be found within the `./.github/workflows/` directory and include:
-1. **pull_request.yml**
+*Continuous Integration* (CI) means that every proposed change is automatically built and tested before it can be merged — catching problems early, when they are cheap to fix.  *Continuous Deployment* (CD) means that once a change is accepted, publishing a new release is a single button press rather than a manual multi-step process.
 
-    This workflow is run whenever a pull request is opened, updated or reopened.  The following things are enforced by this workflow:
+This project uses *GitHub Workflows* (scripts that GitHub runs automatically in response to events such as opening a PR or creating a release) to automate these tasks.  The workflow files live in `./.github/workflows/` and cover three situations:
 
-    - linting and code formatting standards
-    - proper maintainance of the Poetry project
+1. **pull_request.yml** — runs whenever a Pull Request (a proposal to merge a branch into `main`) is opened or updated.  It enforces:
+
+    - *linting* (automated checks that flag common code mistakes and style issues) and code formatting standards
+    - proper maintenance of the Poetry project
     - successful building of the project
     - successful building of the documentation
     - successful running of tests
 
-2. **bump.yml**
+2. **bump.yml** — runs whenever code is merged to `main`.  It automatically increments the project version number (see [Versioning](#versioning) below).
 
-    This workflow leverages the colocated `bump.sh` bash script to automatically increment the project version whenever code is pushed to the `main` branch.  It is controlled by adding the text `[version:minor]` or `[version:major]` to the message of the pull request's head commit.
-
-3. **publish.yml**
-
-    This workflow is run whenever a new release is generated through *GitHub* (see below for details on how to do this).  Documentation is updated on *Read the Docs* (if configured to do so) and a new version of the code is published on the *Python Package Index* (*PyPI*; if configured to do so).
+3. **publish.yml** — runs whenever a new release is created through the *GitHub* UI.  It rebuilds the documentation on *Read the Docs* (if configured) and publishes a new package version to the *Python Package Index* (*PyPI*; if configured).
 
 ## Setting-up the Code
 
@@ -87,7 +85,7 @@ In the following, we lay-out some important guidelines for developing on this co
 
 ### Branches
 
-***Development should never be conducted on the `main` branch***.  If *GitHub* has been properly configured (see [here](#configuring-github)), then merges to this branch are limited to Pull Requests (PRs) only.  Once a PR is opened for the `main` branch, the project tests are run.  When it is closed and code is committed to the main branch, the project version is automatically incremented (see below).
+***Development should never be conducted on the `main` branch***.  Instead, create a new branch for each piece of work (`git checkout -b my-feature`), then open a *Pull Request* (PR) — a GitHub mechanism for proposing that your branch be merged into `main`.  GitHub will run the automated checks on your PR; once they pass and a reviewer approves, the branch can be merged.  If *GitHub* has been properly configured (see [here](#configuring-github)), direct pushes to `main` are blocked, so this workflow is enforced automatically.
 
 ### Versioning
 
@@ -115,9 +113,9 @@ $ pytest
 
 #### Coverage
 
-*PyTest* has been configured for this project to create a coverage report after running.  This report will inform the developer of what fraction of the code base is exercised by the tests and give a list of lines of code in each Python filename which has not been exercised by the tests run.
+*Code coverage* measures what fraction of the codebase is executed by the test suite — a line that is never run by any test cannot be verified to be correct.  *PyTest* has been configured to produce a coverage report after each run, listing the percentage covered per file and the specific line numbers that no test reached.
 
-While not strictly enforced, we encourage developers to make sure that anything they do to the codebase does not reduce this metric.  This report can be used to inform what parts of the codebase need further testing.
+While not strictly enforced, we encourage developers to make sure that anything they do to the codebase does not reduce this metric.  The report is a useful guide to where additional tests would add the most value.
 
 ### Type Hints
 

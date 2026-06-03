@@ -12,6 +12,7 @@
    API Documentation <_apidoc/{{cookiecutter.__package_name}}>
    Development guidelines <content/development_guidelines>
    Configuring services <content/configuring_services>
+   Common Gotchas <content/common_gotchas>
 
 Index
 =====

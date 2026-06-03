@@ -50,7 +50,7 @@ and answer the questions:
 ![ADACS Python Template Questions](https://github.com/ADACS-Australia/adacs_template_python_base/blob/main/docs/assets/adacs_python_template_cookiecutter_questions.png?raw=true)
 
 ### Install the new project
-Create and activate a new virtual environment (**use Python version >= 3.13**) using your favourite method (if you don't know how to use Python environments, we advise you to go learn about them now) and install the project by running the following in the new repo directory:
+Create and activate a new virtual environment for Python >= 3.13 using your preferred method (e.g. `python -m venv .venv && source .venv/bin/activate`, or via `pyenv`, `conda`, etc.) and install the project by running the following in the new repo directory:
 ``` console
 poetry install
 ```
