@@ -4,6 +4,11 @@
 
 *Now that your template has been rendered, we recommend configuring it as follows:*
 
+**If you are new to this template, read the development guidelines and common gotchas in the documentation before you begin:**
+
+- *Development Guidelines*: *https://adacs-base-python-template.readthedocs.io/en/latest/content/development_guidelines.html*
+- *Common Gotchas*: *https://adacs-base-python-template.readthedocs.io/en/latest/content/common_gotchas.html*
+
 1. **Create and activate a Python 3.13 environment**
 
 Use your favourite method to *create and activate* a Python 3.13 environment for your development.
@@ -38,7 +43,7 @@ Your new repo has been configured with your GitHub repo details.  Run the follow
 Navigate to `Settings->Branches->Add branch ruleset` and ...
 
 - give the Ruleset whatever name you'd like (e.g. `Protect Main`)
-- set `Enforecement status` to `Active`
+- set `Enforcement status` to `Active`
 - add a `Target Branch` via `Add target->Include by pattern` and type `main`
 - adjust `Branch Rules` by selecting `Require a pull request before merging`
 - adjust `Branch Rules` by selecting `Require status checks to pass` and add the check `Run all build and unit tests` as a required check
@@ -50,19 +55,13 @@ Navigate to `Settings->Branches->Add branch ruleset` and ...
 
 From within the repo, run the following: `pre-commit install`
 
-8 **[Optional] Configure Services (Read The Docs, PyPI, etc.)**
+8. **[Optional] Configure Services (Read The Docs, PyPI, etc.)**
 
-This can be done at any time when you want to enable these features; they are simply deactivated until you do; see *https://adacs-python-template.readthedocs.io/en/latest/content/configuring_services.html* for instructions.
+This can be done at any time when you want to enable these features; they are simply deactivated until you do; see *https://adacs-base-python-template.readthedocs.io/en/latest/content/configuring_services.html* for instructions.
 
 9. **Start developing!**
 
 No development should be done on the *main* branch, so create and checkout a new git branch with `git checkout -b new_branch_name` and start developing.
-
-**N.B.: If you are new to the use of this template, make sure you have a good read of the following
-sections of the documentation:**
-
-- `Guidelines for Developing a New Project`: *https://adacs-base-python-template.readthedocs.io/en/latest/content/development_guidelines.html*
-- `Common Gotchas`: *https://adacs-base-python-template.readthedocs.io/en/latest/content/common_gotchas.html*
 
 Any questions?  Consult the docs at *https://adacs-base-python-template.readthedocs.io/en/latest/index.html*.
 

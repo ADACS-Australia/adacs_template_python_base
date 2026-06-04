@@ -1,6 +1,7 @@
 [project]
 name = "{{cookiecutter.__package_name}}"
 version = "0.0.0-dev" # Just a place holder; package version is managed by the dynamic-versioning plugin & git tags
+dynamic = ["version"]
 description = "{{cookiecutter.description}}"
 authors = [
     {name = "{{cookiecutter.author | escape_quotes}}"}

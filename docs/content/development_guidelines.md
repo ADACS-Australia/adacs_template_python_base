@@ -6,27 +6,25 @@ This section provides details on how to configure and/or develop this codebase. 
 1. maintaining the template served by this codebase, see [Maintaining This Template](#template-maintenance).
 2. configuring the services used by this codebase, see [Configuring Services](#configuring-services).
 
-## Continuos Integration/Continuous Deployment (CI/CD) Workflow
+The development workflow for this project follows a standard collaborative pattern: all work happens on feature branches, changes are proposed via *Pull Requests* (PRs) on GitHub, automated checks run on every PR, and code only reaches the `main` branch once those checks pass.  This means contributors don't need to manually remember every quality standard — the automation handles verification, and everyone can focus on the work itself.
 
-This project uses *GitHub Workflows* to automate or ease a number of development tasks.  These
-workflows can be found within the `./.github/workflows/` directory and include:
-1. **pull_request.yml**
+## Continuous Integration/Continuous Deployment (CI/CD) Workflow
 
-    This workflow is run whenever a pull request is opened, updated or reopened.  The following things are enforced by this workflow:
+*Continuous Integration* (CI) means that every proposed change is automatically built and tested before it can be merged — catching problems early, when they are cheap to fix.  *Continuous Deployment* (CD) means that once a change is accepted, publishing a new release is a single button press rather than a manual multi-step process.
 
-    - linting and code formatting standards
-    - proper maintainance of the Poetry project
+This project uses *GitHub Workflows* (scripts that GitHub runs automatically in response to events such as opening a PR or creating a release) to automate these tasks.  The workflow files live in `./.github/workflows/` and cover three situations:
+
+1. **pull_request.yml** — runs whenever a Pull Request (a proposal to merge a branch into `main`) is opened or updated.  It enforces:
+
+    - *linting* (automated checks that flag common code mistakes and style issues) and code formatting standards
+    - proper maintenance of the Poetry project
     - successful building of the project
     - successful building of the documentation
     - successful running of tests
 
-2. **bump.yml**
+2. **bump.yml** — runs whenever code is merged to `main`.  It automatically increments the project version number (see [Versioning](#versioning) below).
 
-    This workflow leverages the colocated `bump.sh` bash script to automatically increment the project version whenever code is pushed to the `main` branch.  It is controlled by adding the text `[version:minor]` or `[version:major]` to the message of the pull request's head commit.
-
-3. **publish.yml**
-
-    This workflow is run whenever a new release is generated through *GitHub* (see below for details on how to do this).  Documentation is updated on *Read the Docs* (if configured to do so) and a new version of the code is published on the *Python Package Index* (*PyPI*; if configured to do so).
+3. **publish.yml** — runs whenever a new release is created through the *GitHub* UI.  It rebuilds the documentation on *Read the Docs* (if configured) and publishes a new package version to the *Python Package Index* (*PyPI*; if configured).
 
 ## Setting-up the Code
 
@@ -35,7 +33,7 @@ A local development copy of the code base can be obtained and configured as foll
 * Navigate to the *GitHub* page hosting the project
 * If you want to fork the code so that you work on your own version of the repository (not generally needed or recommended):
     - Click on the `fork` button at the top of the page;
-    - Edit the details you want to have for the new repoitory; and
+    - Edit the details you want to have for the new repository; and
     - Press `Create fork`.
 * Obtain the URL for the repository you're going to use (denoted `<url>`) by clicking on the green `Code` button on the repository *GitHub* page
 * On your local machine, navigate with your terminal to the location where you want to place the code
@@ -51,14 +49,16 @@ Poetry is used to manage this project ([see here for an introduction](https://py
 
 1. **Creation and activation of a Python environment for the project**
 
-    Python development should always be managed using a Python environment.  Poetry makes this easy for you.  You simply run the following from within the project:
+    Python development should always be managed using a Python environment.  Poetry creates and manages one for you automatically.  To activate it, run the following from within the project and then execute the printed command:
 
     ``` console
-    $ poetry shell
+    $ poetry env activate
     ```
-    
+
+    This prints the shell command needed to activate the environment (e.g. `source /path/to/venv/bin/activate`).  Run that command to enter the environment, after which `python` and installed tools will be from the project's venv.  Alternatively, prefix individual commands with `poetry run` to run them inside the environment without activating it globally.
+
     ::: {note}
-    You don't have to use Poetry to manage your Python environment if you would rather not.  You can instruct Poetry to respect your Python environemnts (e.g. created with `pyenv`) by setting the following option:
+    You don't have to use Poetry to manage your Python environment if you would rather not.  You can instruct Poetry to respect your existing Python environments (e.g. created with `pyenv`) by setting the following option:
     ``` console
     $ poetry config virtualenvs.prefer-active-python true
     ```
@@ -88,7 +88,7 @@ In the following, we lay-out some important guidelines for developing on this co
 
 ### Branches
 
-***Development should never be conducted on the `main` branch***.  If *GitHub* has been properly configured (see [here](#configuring-github)), then merges to this branch are limited to Pull Requests (PRs) only.  Once a PR is opened for the `main` branch, the project tests are run.  When it is closed and code is committed to the main branch, the project version is automatically incremented (see below).
+***Development should never be conducted on the `main` branch***.  Instead, create a new branch for each piece of work (`git checkout -b my-feature`), then open a *Pull Request* (PR) — a GitHub mechanism for proposing that your branch be merged into `main`.  GitHub will run the automated checks on your PR; once they pass and a reviewer approves, the branch can be merged.  If *GitHub* has been properly configured (see [here](#configuring-github)), direct pushes to `main` are blocked, so this workflow is enforced automatically.
 
 ### Versioning
 
@@ -137,9 +137,9 @@ Some further comments about how testing has been configured for projects rendere
 
 #### Coverage
 
-*PyTest* has been configured for this project to create a coverage report after running.  This report will inform the developer of what fraction of the code base is exercised by the tests and give a list of lines of code in each Python filename which has not been exercised by the tests run.
+*Code coverage* measures what fraction of the codebase is executed by the test suite — a line that is never run by any test cannot be verified to be correct.  *PyTest* has been configured to produce a coverage report after each run, listing the percentage covered per file and the specific line numbers that no test reached.
 
-While not strictly enforced, we encourage developers to make sure that anything they do to the codebase does not reduce this metric.  This report can be used to inform what parts of the codebase need further testing.
+While not strictly enforced, we encourage developers to make sure that anything they do to the codebase does not reduce this metric.  The report is a useful guide to where additional tests would add the most value.
 
 ### Type Hints
 
@@ -168,7 +168,7 @@ $ pre-commit install
 ```
 
 Some of these hooks require internet access to work.  If you are trying to commit to the
-repository locally and are being prevented from doing so because you are working online, the
+repository locally and are being prevented from doing so because you are working offline, the
 hooks can be ignored by using the `--no-verify` flag when running `git commit`, like so:
 ``` console
 $ git commit --no-verify
@@ -248,7 +248,7 @@ $ open docs/_build/html/index.html
 
 #### Editing the Documentation
 
-The majority of documentation changes can be managed in one of the following 4 ways:
+The majority of documentation changes can be managed in one of the following 5 ways:
 
 1. **Edits to `README.md`**:
 
